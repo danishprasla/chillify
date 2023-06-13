@@ -13,7 +13,7 @@ class Song(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     author_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')))
+    album_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('albums.id')), default=False)
     genre_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('genres.id')), nullable=False)
     song_name = db.Column(db.String(200), nullable = False)
     song_url = db.Column(db.String(1000), nullable = False)

@@ -46,10 +46,14 @@ class User(db.Model, UserMixin):
         album_ids = []
         for album in self.albums:
             album_ids.append(album.id)
+        playlist_ids = []
+        for playlist in self.playlist:
+            playlist_ids.append(playlist.id)
         return {
             'id': self.id,
             'username': self.username,
             'email': self.email,
             'likedSongsIds': song_ids,
-            'albumIds': album_ids
+            'albumIds': album_ids,
+            'playlistIds': playlist_ids
         }

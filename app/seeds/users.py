@@ -6,14 +6,40 @@ from sqlalchemy.sql import text
 def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    user2 = User(
+        username='Shigeru Umbeyashi', email='got@aa.io', password='password')
+    user3 = User(
+        username='Ilan Eshkeri', email='got2@aa.io', password='password')
+    user4 = User(
+        username='Bethesda', email='skyrim@aa.io', password='password')
+    user5 = User(
+        username='Motoi Sakuraba', email='darksouls@aa.io', password='password')
+    user6 = User(
+        username='Mick Gordon', email='doom@aa.io', password='password')
+    
+    user7 = User(
+        username='Cadred', email='aot@aa.io', password='password')
+    
+    user8 = User(
+        username='L.Dre', email='avatar@aa.io', password='password')
+    
+    user9 = User(
+        username='Kijugo', email='kijugo@aa.io', password='password')
+    
+    user10 = User(
+        username='Kurochuu', email='kurochuu@aa.io', password='password')
 
+    
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(user2)
+    db.session.add(user3)
+    db.session.add(user4)
+    db.session.add(user5)
+    db.session.add(user6)
+    db.session.add(user7)
+    db.session.add(user8)
+    db.session.add(user9)
+    db.session.add(user10)
     db.session.commit()
 
 

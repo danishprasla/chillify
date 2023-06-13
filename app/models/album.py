@@ -21,4 +21,19 @@ class Album(db.Model):
     user = db.relationship("User", back_populates= 'albums')
     songs = db.relationship("Song", back_populates='album')
 
+    def to_dict(self):
+        song_ids = []
+        for song in self.songs:
+            song_ids.append(song.id)
+        
+        return {
+            'id': self.id,
+            'authorId': self.user,
+            'genreId': self.genre_id,
+            'name': self.name,
+            'songIds': song_ids,
+            'coverPhoto': self.album_cover_photo
+        }
+
+
 
