@@ -40,6 +40,7 @@ class Song(db.Model):
             'authorId': self.user,
             'likes': liked_count,
             'genre': self.genre_id,
+            'albumId': self.album_id,
             'songName': self.song_name,
             'songUrl': self.song_url,
             'coverPicture': self.song_cover_photo,

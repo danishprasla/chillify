@@ -45,12 +45,10 @@ def seed_user_likes():
     user1.liked_songs.append(song17)
     user1.liked_songs.append(song18)
     user1.liked_songs.append(song23)
-
     user1.liked_songs.append(song5)
     user1.liked_songs.append(song6)
     user1.liked_songs.append(song7)
     user1.liked_songs.append(song8)
-    user1.liked_songs.append(song23)
     user1.liked_songs.append(song10)
     user1.liked_songs.append(song9)
 
@@ -90,8 +88,8 @@ def seed_user_likes():
 # it will reset the primary keys for you as well.
 def undo_user_likes():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.user_likes RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.likes RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM user_likes"))
+        db.session.execute(text("DELETE FROM likes"))
         
     db.session.commit()

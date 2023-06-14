@@ -26,9 +26,9 @@ class User(db.Model, UserMixin):
     def check_password(self, password):
         return check_password_hash(self.password, password)
     
-    song = db.relationship("User", back_populates= 'user')
+    song = db.relationship("Song", back_populates= 'user')
 
-    playlist = db.relationship("User", back_populates= 'user')
+    playlist = db.relationship("Playlist", back_populates= 'user')
 
     ## Join table relationship
     liked_songs = db.relationship('Song', secondary=likes, back_populates='liked_by_users')
