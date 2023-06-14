@@ -1,7 +1,7 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .user_likes import likes
+from app.models.db import db, environment, SCHEMA, add_prefix_for_prod
+from app.models.user_likes import likes
 from datetime import date
-from .playlist_songs import playlist_songs
+from app.models.playlist_songs import playlist_songs
 
 
 

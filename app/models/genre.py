@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from app.models.db import db, environment, SCHEMA, add_prefix_for_prod
 
 
 

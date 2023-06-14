@@ -1,8 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
-from app.models.user_likes import Like
 from flask_login import UserMixin
-from .user_likes import likes
+from app.models.user_likes import likes
 
 
 class User(db.Model, UserMixin):

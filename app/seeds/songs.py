@@ -56,6 +56,8 @@ def seed_songs():
 
     song23 = Song(author_id= 10,album_id = False, genre_id= 4, song_name ="Guren's Theme Lo-fi",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Guren's+Theme++Naruto_+Shippuden+sad+lofi+ver..mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118321403675037746/artworks-PvzrkHS2iiQJz8s0-pll3iQ-t500x500.png')
 
+    #-----^ anime lo-fi--- need to add classical and lo-fi next
+
 
     db.session.add(song1)
     db.session.add(song2)
@@ -77,6 +79,9 @@ def seed_songs():
     db.session.add(song18)
     db.session.add(song19)
     db.session.add(song20)
+    db.session.add(song21)
+    db.session.add(song22)
+    db.session.add(song23)
     db.session.commit()
 
 

@@ -1,10 +1,6 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
-
-
-
+from app.models.db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Album(db.Model):
-    """Model for albums"""
     __tablename__ = 'albums'
 
     if environment == "production":
