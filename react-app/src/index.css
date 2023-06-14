@@ -1,1 +1,18 @@
 /* TODO Add site wide styles */
+.main-body {
+  height: 100%;
+}
+
+.body-sidebar {
+  border: 1px solid red;
+  min-height: 100vh;
+  display: flex;
+}
+.side-bar {
+  border: 1px solid blue;
+  flex: .2;
+}
+.content-body {
+  border: 1px solid green;
+  flex: .8;
+}
