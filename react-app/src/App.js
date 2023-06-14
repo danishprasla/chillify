@@ -9,6 +9,7 @@ import Sidebar from "./components/Sidebar";
 import LandingPage from "./components/LandingPage";
 import Player from "./components/Player"
 import HomePage from "./components/HomePage";
+import GenrePage from "./components/GenrePage";
 
 
 function App() {
@@ -31,14 +32,18 @@ function App() {
               <Navigation isLoaded={isLoaded} />
               {isLoaded && (
                 <Switch>
-                  <Route path = '/'>
-                    <HomePage/>
+                  <Route exact path='/'>
+                    <HomePage />
                   </Route>
                   <Route path="/login" >
                     <LoginFormPage />
                   </Route>
                   <Route path="/signup">
                     <SignupFormPage />
+                  </Route>
+                  <Route exact path='/genre/:genreId'>
+                    <GenrePage />
+
                   </Route>
                 </Switch>
               )}
@@ -52,7 +57,6 @@ function App() {
       )
 
       }
-      {/* Player here */}
     </div>
   );
 }

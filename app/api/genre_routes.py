@@ -12,3 +12,5 @@ def get_all_genre():
     all_genres = Genre.query.all()
     res = [genre.to_dict() for genre in all_genres]
     return {"genres": res}
+
+@genre_routes.route('/')

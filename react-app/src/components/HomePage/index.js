@@ -33,7 +33,7 @@ function HomePage() {
 
         <div className="genres-container">
           {genresArr.map((genre) => (
-            <div className='genre-tile' key={genre.name}>
+            <div className='genre-tile' onClick={() => history.push(`/genre/${genre.id}`)} key={genre.name}>
               <img className='genre-image' src={genre.genreCover} alt={genre.name} />
               <h3 className="genre-title">
                 {genre.name}
