@@ -7,7 +7,7 @@ function Sidebar(){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<div>
+		<div className='side-bar'>
       This is the sidebar
     </div>
 	);

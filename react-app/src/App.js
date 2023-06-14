@@ -7,6 +7,9 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import Sidebar from "./components/Sidebar";
 import LandingPage from "./components/LandingPage";
+import Player from "./components/Player"
+import HomePage from "./components/HomePage";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -19,22 +22,33 @@ function App() {
   return (
     <div>
       {sessionUser ? (
-        <div className="body-sidebar">
-          <Sidebar />
-          <Navigation isLoaded={isLoaded} />
-          {isLoaded && (
-            <Switch>
-              <Route path="/login" >
-                <LoginFormPage />
-              </Route>
-              <Route path="/signup">
-                <SignupFormPage />
-              </Route>
-            </Switch>
-          )}
+        <div className="main-body">
+          <div className="body-sidebar">
+            <div className="side-bar">
+              <Sidebar />
+            </div>
+            <div className="content-body">
+              <Navigation isLoaded={isLoaded} />
+              {isLoaded && (
+                <Switch>
+                  <Route path = '/'>
+                    <HomePage/>
+                  </Route>
+                  <Route path="/login" >
+                    <LoginFormPage />
+                  </Route>
+                  <Route path="/signup">
+                    <SignupFormPage />
+                  </Route>
+                </Switch>
+              )}
+            </div>
+          </div>
+          <Player />
         </div>
-      ): (
-      <LandingPage />
+
+      ) : (
+        <LandingPage />
       )
 
       }
