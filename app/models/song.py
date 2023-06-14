@@ -37,7 +37,7 @@ class Song(db.Model):
         liked_count = len(self.liked_by_users)
         return {
             'id': self.id,
-            'authorId': self.user,
+            'authorInfo': self.user.to_dict(),
             'likes': liked_count,
             'genre': self.genre_id,
             'albumId': self.album_id,
