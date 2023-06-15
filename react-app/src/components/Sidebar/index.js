@@ -16,8 +16,7 @@ function Sidebar() {
 
 
 	return (
-		<div className='side-bar'>
-			This is the sidebar
+		<div className='side-bar-container'>
 			<div className='first-side-bar-section'>
 				<div className='side-bar-home' onClick={handleHomeClick}>
 					<div>

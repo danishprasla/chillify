@@ -25,11 +25,13 @@ class Playlist(db.Model):
         for song in self.playlist_songs:
             dict_song = song.to_dict()
             song_ids.append(dict_song['id'])
+        playlist_user = self.user.to_dict()
         return {
             'id': self.id,
             'user': self.user_id,
             'name': self.name,
             'public': self.public,
             'coverImage': self.playlist_cover_url,
-            'songs': song_ids
+            'songs': song_ids,
+            'playlistOwner': playlist_user["username"]
         }
