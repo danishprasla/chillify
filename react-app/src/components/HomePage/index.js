@@ -27,11 +27,11 @@ function HomePage() {
       <h1> Loading ... </h1>
     )
   }
-  console.log('user ------>', user)
+  // console.log('user ------>', user)
   const playlistArr = Object.values(playlists)
 
   let userPlaylists = playlistArr.filter(playlist => playlist.user == user.id)
-  console.log('user playlistsssssss ~~~~~~>', userPlaylists)
+  // console.log('user playlistsssssss ~~~~~~>', userPlaylists)
 
 
 

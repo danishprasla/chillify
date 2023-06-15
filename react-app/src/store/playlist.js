@@ -1,5 +1,6 @@
 const GET_PLAYLISTS = 'playlists/getAllPlaylists'
 const POST_PLAYLIST = 'playlist/postPlaylist'
+const DELETE_PLAYLIST = 'playlist/deletePlaylist'
 
 const getPlaylists = (playlists) => {
   return {
@@ -12,6 +13,13 @@ const postPlaylist = (playlist) => {
   return {
     type: POST_PLAYLIST,
     playlist
+  }
+}
+
+const deletePlaylist = (playlistId) => {
+  return {
+    type: DELETE_PLAYLIST,
+    playlistId
   }
 }
 
@@ -40,6 +48,21 @@ export const postPlaylistThunk = (playlist) => async (dispatch) => {
   return data
 }
 
+export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
+  console.log('INSiDE DELETE THUNK!!!!!!!!', playlistId)
+  const res = await fetch(`/api/playlists/${playlistId}`, {
+    method: 'DELETE'
+  })
+  if (res.ok) {
+    console.log('SUCCESSFUL DELETE RESPONSE????')
+    dispatch(deletePlaylist(playlistId))
+    return false
+  } else {
+    console.log('UNSUCCESSFUL????!?!?!?!?')
+    return { 'errors': 'error deleting playlist' }
+  }
+}
+
 
 
 const initialState = {};
@@ -59,6 +82,12 @@ const playlistReducer = (state = initialState, action) => {
       newState[action.playlist.id] = action.playlist
       return newState
     }
+    case DELETE_PLAYLIST: {
+      const newState = { ...state }
+      delete newState[action.playlistId]
+      return newState
+    }
+
     default:
       return state;
   }

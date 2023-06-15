@@ -45,3 +45,21 @@ def post_playlist():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
     
+@playlist_routes.route('/<int:playlist_id>', methods =['DELETE'])
+@login_required
+def delete_playlist(playlist_id):
+    playlist_to_delete = Playlist.query.get(playlist_id)
+    playlist_dict = playlist_to_delete.to_dict()
+    user_id = current_user.id
+    if playlist_dict["user"] != user_id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    elif playlist_to_delete is None:
+        return {"message": "Playlist not found"}
+    else:
+        file_to_delete = remove_file_from_s3(playlist_to_delete.playlist_cover_url)
+        if file_to_delete:
+            db.session.delete(playlist_to_delete)
+            db.session.commit()
+            return {"success": "Playlist deleted"}
+
+    

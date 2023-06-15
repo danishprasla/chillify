@@ -12,6 +12,7 @@ function PostPlaylistModal({ formType }) {
   const [name, setName] = useState('')
   const [visibility, setVisibility] = useState('private')
   const [coverPicture, setCoverPicture] = useState('private')
+  const [submitted, setSubmitted] = useState(false)
   const history = useHistory()
 
   // const user = useSelector(state => state.session.user)
@@ -31,6 +32,7 @@ function PostPlaylistModal({ formType }) {
     formData.append("playlist_cover_url", coverPicture)
     formData.append("public", visibilityStatus)
     // console.log('form data --->', formData)
+    setSubmitted(true)
     if (formType === 'edit') {
 
     }
@@ -39,10 +41,11 @@ function PostPlaylistModal({ formType }) {
       if (res.errors) {
         return
       } else {
+        closeModal()
         return history.push(`/playlists/${res.id}`)
       }
     }
-    closeModal()
+    // closeModal()
   }
 
   return (
@@ -51,6 +54,9 @@ function PostPlaylistModal({ formType }) {
         (formType === 'edit') ? <h1 className='formHeader'>Edit your Playlist </h1> :
           <h1 className="formHeader">Create a Playlist</h1>
       }
+      {submitted && (
+        <h3>Submitting playlist. Please wait...</h3>
+      )}
       <form onSubmit={handleSubmit}>
         <label>
           Playlist Name:
@@ -79,7 +85,7 @@ function PostPlaylistModal({ formType }) {
             onChange={(e) => setCoverPicture(e.target.files[0])}
           />
         </label>
-        <button>
+        <button disabled={submitted}>
           Create Playlist
         </button>
 
