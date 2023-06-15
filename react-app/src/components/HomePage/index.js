@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import { getGenreThunk } from "../../store/genre";
 import './HomePage.css'
 import { getPlaylistsThunk } from "../../store/playlist";
+import OpenModalButton from "../OpenModalButton";
+import PostPlaylistModal from "../PostPlaylistModal";
 
 
 function HomePage() {
@@ -37,6 +39,10 @@ function HomePage() {
     <div>
       <div>
         <h2>Your playlists:</h2>
+        <OpenModalButton
+          className='create-playlist-button'
+          buttonText="Create a Playlist"
+          modalComponent={<PostPlaylistModal />} />
         {(!user.playlistIds.length) ? (
           <div>
             You don't currently have any playlists start by clicking below to make your first one!
@@ -45,8 +51,8 @@ function HomePage() {
         ) : (
           <div className="home-playlist-container">
             {userPlaylists.map((playlist) => (
-              <div className='home-playlist-tile' key={playlist.id}>
-                <img className='home-playlist-image'src={playlist.coverImage} />
+              <div className='home-playlist-tile' key={playlist.id} onClick={() => history.push(`/playlists/${playlist.id}`)}>
+                <img className='home-playlist-image' src={playlist.coverImage} />
                 <h3> {playlist.name} </h3>
               </div>
             ))}

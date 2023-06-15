@@ -10,6 +10,7 @@ import LandingPage from "./components/LandingPage";
 import Player from "./components/Player"
 import HomePage from "./components/HomePage";
 import GenrePage from "./components/GenrePage";
+import PlaylistPage from "./components/PlaylistPage";
 
 
 function App() {
@@ -43,7 +44,9 @@ function App() {
                   </Route>
                   <Route exact path='/genre/:genreId'>
                     <GenrePage />
-
+                  </Route>
+                  <Route exact path='/playlists/:playlistId'>
+                    <PlaylistPage />
                   </Route>
                 </Switch>
               )}
