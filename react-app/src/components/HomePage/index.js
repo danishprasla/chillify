@@ -53,7 +53,7 @@ function HomePage() {
             {userPlaylists.map((playlist) => (
               <div className='home-playlist-tile' key={playlist.id} onClick={() => history.push(`/playlists/${playlist.id}`)}>
                 <img className='home-playlist-image' src={playlist.coverImage} />
-                <h3> {playlist.name} </h3>
+                <h3 className="home-playlist-title"> {playlist.name} </h3>
               </div>
             ))}
           </div>
@@ -71,7 +71,7 @@ function HomePage() {
           {genresArr.map((genre) => (
             <div className='genre-tile' onClick={() => history.push(`/genre/${genre.id}`)} key={genre.name}>
               <img className='genre-image' src={genre.genreCover} alt={genre.name} />
-              <h3 className="genre-title">
+              <h3 className="home-genre-title">
                 {genre.name}
               </h3>
             </div>
