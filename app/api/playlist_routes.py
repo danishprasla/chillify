@@ -94,7 +94,7 @@ def edit_playlist(playlist_id):
         db.session.commit()
         return playlist_to_edit.to_dict()
     else:
-        return {'errors', validation_errors_to_error_messages(form.errors)}
+        return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 

@@ -35,12 +35,18 @@ function PlaylistPage() {
     <div>
       This is playlist {playlistId} page
       {user.id === playlist.user && (
-        <OpenModalButton
-          className='delete-playlist-button'
-          buttonText="Delete this playlist"
-          modalComponent={<DeletePlaylistModal playlistId={playlistId} />}
-
-        />
+        <div>
+          <OpenModalButton
+            className='delete-playlist-button'
+            buttonText="Delete this playlist"
+            modalComponent={<DeletePlaylistModal playlistId={playlistId} />}
+          />
+          <OpenModalButton
+            className='edit-playlist-button'
+            buttonText='Edit this playlist'
+            modalComponent={<PostPlaylistModal formType={'edit'} playlist={playlist} />}
+          />
+        </div>
       )}
 
     </div>
