@@ -6,6 +6,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 from app.models.playlist import Playlist
 from app.models.song import Song
 from app.forms.playlist_form import PlaylistForm
+from app.forms.playlist_edit_form import PlaylistEditForm
 
 playlist_routes = Blueprint("playlist", __name__)
 
@@ -61,5 +62,42 @@ def delete_playlist(playlist_id):
             db.session.delete(playlist_to_delete)
             db.session.commit()
             return {"success": "Playlist deleted"}
+        
+@playlist_routes.route('/<int:playlist_id>/edit', methods =['PUT'])
+@login_required
+def edit_playlist(playlist_id):
+    """Route to edit a playlist"""
+    playlist_to_edit = Playlist.query.get(playlist_id)
+    form = PlaylistEditForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    user_id = current_user.id
+    if playlist_to_edit.user_id != user_id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    elif playlist_to_edit is None:
+        return {"message": "Playlist not found"}
+    elif form.validate_on_submit():
+        aws_link = ''
+        if form.data['playlist_cover_url']:
+            old_aws_link_remove = remove_file_from_s3(playlist_to_edit.playlist_cover_url)
+
+            picture = form.data['playlist_cover_url']
+            picture.filename = get_unique_filename(picture.filename)
+            uploaded_picture = upload_file_to_s3(picture)
+            aws_link = uploaded_picture['url']
+
+        playlist_to_edit.name = form.data['name']
+        #Only overwritting the aws link if a new link has been populated
+        if len(aws_link) > 0:
+            playlist_to_edit.playlist_cover_url = aws_link
+
+        playlist_to_edit.public = form.data["public"]
+        db.session.commit()
+        return playlist_to_edit.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
+
+
 
     

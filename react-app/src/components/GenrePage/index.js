@@ -31,7 +31,7 @@ function GenrePage() {
 
       ): (
         <div>
-          <h2>Explore {selectedGenre?.name} music</h2>
+          <h2>Explore {selectedGenre?.name}</h2>
         </div>
 
       )}

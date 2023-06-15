@@ -1,6 +1,7 @@
 const GET_PLAYLISTS = 'playlists/getAllPlaylists'
 const POST_PLAYLIST = 'playlist/postPlaylist'
 const DELETE_PLAYLIST = 'playlist/deletePlaylist'
+const EDIT_PLAYLIST = 'playlist/editPlaylist'
 
 const getPlaylists = (playlists) => {
   return {
@@ -20,6 +21,13 @@ const deletePlaylist = (playlistId) => {
   return {
     type: DELETE_PLAYLIST,
     playlistId
+  }
+}
+
+const editPlaylist = (playlist) => {
+  return {
+    type: EDIT_PLAYLIST,
+    playlist
   }
 }
 
@@ -61,6 +69,21 @@ export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
     console.log('UNSUCCESSFUL????!?!?!?!?')
     return { 'errors': 'error deleting playlist' }
   }
+}
+
+export const editPlaylistThunk = (playlistId, editData) => async (dispatch) => {
+  const res = await fetch(`/api/playlists/${playlistId}/edit`, {
+    method: 'PUT',
+    body: editData
+  })
+  const data = await res.json()
+  if (res.ok) {
+    dispatch(editPlaylist(data))
+    return data
+  } else {
+    return data
+  }
+
 }
 
 

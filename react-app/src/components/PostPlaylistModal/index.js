@@ -2,17 +2,26 @@ import React, { useState } from 'react'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
-import { postPlaylistThunk } from '../../store/playlist';
+import { editPlaylistThunk, getPlaylistsThunk, postPlaylistThunk } from '../../store/playlist';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-function PostPlaylistModal({ formType }) {
+function PostPlaylistModal({ formType, playlist }) {
+
+  let visibilityPlaylist = 'private'
+  // console.log('PLAY LIST ---->', playlist)
+  if (playlist) {
+    if (playlist.public === false) visibilityPlaylist = 'private'
+    else visibilityPlaylist = 'public'
+  }
+  console.log(visibilityPlaylist)
 
   const dispatch = useDispatch()
   const { closeModal } = useModal();
-  const [name, setName] = useState('')
-  const [visibility, setVisibility] = useState('private')
-  const [coverPicture, setCoverPicture] = useState('private')
+  const [name, setName] = useState(playlist?.name || '')
+  const [visibility, setVisibility] = useState(visibilityPlaylist)
+  const [coverPicture, setCoverPicture] = useState(undefined)
   const [submitted, setSubmitted] = useState(false)
+  const [errors, setErrors] = useState(false)
   const history = useHistory()
 
   // const user = useSelector(state => state.session.user)
@@ -23,25 +32,37 @@ function PostPlaylistModal({ formType }) {
 
     const formData = new FormData()
     let visibilityStatus = ''
-    if (visibility == 'private') visibilityStatus = false
+    if (visibility === 'private') visibilityStatus = false
     else visibilityStatus = true
 
     // console.log(visibilityStatus)
 
     formData.append("name", name)
-    formData.append("playlist_cover_url", coverPicture)
+    if (coverPicture) formData.append("playlist_cover_url", coverPicture)
     formData.append("public", visibilityStatus)
     // console.log('form data --->', formData)
     setSubmitted(true)
     if (formType === 'edit') {
+      const res = await dispatch(editPlaylistThunk(playlist.id,formData))
+      if (res.errors) {
+        setSubmitted(false)
+        setErrors(true)
+        return
+      } else {
+        closeModal()
+
+      }
 
     }
     else {
       const res = await dispatch(postPlaylistThunk(formData))
       if (res.errors) {
+        setSubmitted(false)
+        setErrors(true)
         return
       } else {
         closeModal()
+        // await dispatch(getPlaylistsThunk())
         return history.push(`/playlists/${res.id}`)
       }
     }
