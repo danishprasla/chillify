@@ -13,6 +13,7 @@ import GenrePage from "./components/GenrePage";
 import PlaylistPage from "./components/PlaylistPage";
 import { getPlaylistsThunk } from "./store/playlist";
 import { getSongsThunk } from "./store/songs";
+import { getGenreThunk } from "./store/genre";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
   const sessionUser = useSelector(state => state.session.user)
   const playlists = useSelector((state) => state.playlists)
   const songs = useSelector((state) => state.songs)
+  const genres = useSelector((state) => state.genres)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
     if (Object.values(playlists).length == 0) {
@@ -29,6 +31,9 @@ function App() {
     }
     if (Object.values(songs).length == 0) {
       dispatch(getSongsThunk())
+    }
+    if (Object.values(genres).length == 0) {
+      dispatch(getGenreThunk())
     }
 
   }, [dispatch]);

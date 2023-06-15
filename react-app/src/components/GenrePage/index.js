@@ -9,18 +9,21 @@ function GenrePage() {
   const dispatch = useDispatch()
 
   const genres = useSelector((state) => state.genres)
+  const songs = useSelector((state) => state.songs)
 
-  useEffect(()=> {
-    dispatch(getGenreThunk())
-  }, [dispatch])
+  // useEffect(()=> {
+  //   dispatch(getGenreThunk())
+  // }, [dispatch])
 
-  if (!genres) {
+  // console.log('---->',genres)
+  if (Object.values(genres).length == 0 || Object.values(songs).length == 0) {
     return (
       <h1>Loading...</h1>
     )
   }
   const selectedGenre = genres[genreId]
-  console.log(selectedGenre)
+  console.log('selected genre ', selectedGenre)
+  const genreMusicIds = selectedGenre.songIds
 
   return (
     <div>
@@ -29,10 +32,49 @@ function GenrePage() {
           This genre has no music
         </h2>
 
-      ): (
+      ) : (
         <div>
-          <h2>Explore {selectedGenre?.name}</h2>
+
+          <div className='playlist-page-playlist-detail'>
+            <img className='playlist-page-cover-img' src={selectedGenre.genreCover} />
+            <div>
+              <div>Playlist</div>
+              <h1>Explore {selectedGenre?.name}</h1>
+            </div>
+
+          </div>
+          <div className='songs-container-labels'>
+            <div></div>
+          </div>
+          <div className='songs-container'>
+            {genreMusicIds.map((songId, idx) => (
+              <div key={`genre-${songId}`} className='song-tile'>
+                <div>
+                  {idx + 1}
+                </div>
+                <div>
+                  <img className='song-image' src={songs[songId].coverPicture} />
+                </div>
+                <div className='song-description-container'>
+                  <div className='song-description-name-artist'>
+                    <div className='song-description-name'>
+                      {songs[songId].songName}
+                    </div>
+                    <div className='song-description-author'>
+                      {songs[songId].authorInfo.username}
+                    </div>
+                  </div>
+                  <div>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+
+          </div>
         </div>
+
+
 
       )}
     </div>
