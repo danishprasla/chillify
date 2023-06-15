@@ -4,7 +4,9 @@
   width: 270px;
   height: 270px;
   border-radius: 10px;
-
+  text-align: center;
+  align-items: center;
+  
 }
 
 .genre-tile:hover {
@@ -28,12 +30,16 @@
   background-color: rgb(39, 39, 39);
   border-radius: 10px;
   width: 300px;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
+  text-align: center;
   padding: 10px;
+  padding-top: 25px;
+}
+.home-genre-title, .home-playlist-title {
+  text-align: left;
+  padding: 0px 15px;
+  word-wrap: break-word;
 }
 
-/* .genres-container-wrapper {
-  width: 100%;
-  overflow-x: scroll;
-} */
+
