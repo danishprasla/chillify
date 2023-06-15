@@ -12,6 +12,7 @@ import HomePage from "./components/HomePage";
 import GenrePage from "./components/GenrePage";
 import PlaylistPage from "./components/PlaylistPage";
 import { getPlaylistsThunk } from "./store/playlist";
+import { getSongsThunk } from "./store/songs";
 
 
 function App() {
@@ -19,11 +20,15 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user)
   const playlists = useSelector((state) => state.playlists)
+  const songs = useSelector((state) => state.songs)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
     if (Object.values(playlists).length == 0) {
       // console.log('inside if conditional')
       dispatch(getPlaylistsThunk())
+    }
+    if (Object.values(songs).length == 0) {
+      dispatch(getSongsThunk())
     }
 
   }, [dispatch]);

@@ -3,9 +3,9 @@ import React from "react";
 
 function Player(){
   return (
-    <h1>
-      This is the player
-    </h1>
+    <div className="audio-player">
+      <h1>This will be the audio player</h1>
+    </div>
   )
 
 }

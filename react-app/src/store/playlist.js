@@ -100,6 +100,11 @@ const playlistReducer = (state = initialState, action) => {
       })
       return newState
     }
+    case EDIT_PLAYLIST: {
+      const newState = {...state}
+      newState[action.playlist.id] = action.playlist
+      return newState
+    }
     case POST_PLAYLIST: {
       const newState = { ...state }
       newState[action.playlist.id] = action.playlist
