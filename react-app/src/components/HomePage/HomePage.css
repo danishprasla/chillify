@@ -1,14 +1,26 @@
-.genre-image {
+.genre-image, .home-playlist-image {
   object-fit: cover;
-  width: 300px;
-  height: 300px;
+  width: 270px;
+  height: 270px;
   border-radius: 10px;
+  
 }
-.genres-container {
+.genres-container, .home-playlist-container {
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  margin: 30px;
 }
-.genres-container-wrapper {
+.genre-tile, .home-playlist-tile {
+  cursor:pointer;
+  background-color: gray;
+  border-radius: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+/* .genres-container-wrapper {
   width: 100%;
   overflow-x: scroll;
-}
+} */

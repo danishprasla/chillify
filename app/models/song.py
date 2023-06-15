@@ -29,15 +29,15 @@ class Song(db.Model):
     song_genre = db.relationship("Genre", back_populates='genre_songs')
 
     ##join tables:
-    liked_by_users = db.relationship('User', secondary=likes, back_populates='liked_songs')
+    liked_by_users = db.relationship('User', secondary=likes, cascade="all,delete", back_populates='liked_songs')
 
-    added_to_playlists = db.relationship('Playlist', secondary=playlist_songs, back_populates='playlist_songs')
+    added_to_playlists = db.relationship('Playlist', secondary=playlist_songs, cascade="all,delete", back_populates='playlist_songs')
 
     def to_dict(self):
         liked_count = len(self.liked_by_users)
         return {
             'id': self.id,
-            'authorId': self.user,
+            'authorInfo': self.user.to_dict(),
             'likes': liked_count,
             'genre': self.genre_id,
             'albumId': self.album_id,

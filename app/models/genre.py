@@ -14,8 +14,8 @@ class Genre(db.Model):
     genre_name = db.Column(db.String(240))
     genre_photo = db.Column(db.String(1000))
 
-    genre_songs = db.relationship("Song", back_populates='song_genre')
-    genre_albums = db.relationship("Album", back_populates='album_genre')
+    genre_songs = db.relationship("Song", cascade="all,delete-orphan", back_populates='song_genre')
+    genre_albums = db.relationship("Album", cascade="all,delete-orphan", back_populates='album_genre')
 
 
     

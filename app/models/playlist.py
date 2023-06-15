@@ -18,16 +18,18 @@ class Playlist(db.Model):
 
     user = db.relationship("User", back_populates= 'playlist')
 
-    playlist_songs = db.relationship('Song', secondary=playlist_songs, back_populates='added_to_playlists')
+    playlist_songs = db.relationship('Song', secondary=playlist_songs, cascade="all,delete",back_populates='added_to_playlists')
 
     def to_dict(self):
         song_ids = []
-        for song in playlist_songs:
-            song_ids.append(song.id)
+        for song in self.playlist_songs:
+            dict_song = song.to_dict()
+            song_ids.append(dict_song['id'])
         return {
             'id': self.id,
-            'user': self.user,
+            'user': self.user_id,
             'name': self.name,
+            'public': self.public,
             'coverImage': self.playlist_cover_url,
             'songs': song_ids
         }

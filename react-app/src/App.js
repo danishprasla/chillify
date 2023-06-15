@@ -9,14 +9,23 @@ import Sidebar from "./components/Sidebar";
 import LandingPage from "./components/LandingPage";
 import Player from "./components/Player"
 import HomePage from "./components/HomePage";
+import GenrePage from "./components/GenrePage";
+import PlaylistPage from "./components/PlaylistPage";
+import { getPlaylistsThunk } from "./store/playlist";
 
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user)
+  const playlists = useSelector((state) => state.playlists)
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    if (Object.values(playlists).length == 0) {
+      // console.log('inside if conditional')
+      dispatch(getPlaylistsThunk())
+    }
+
   }, [dispatch]);
 
   return (
@@ -31,14 +40,20 @@ function App() {
               <Navigation isLoaded={isLoaded} />
               {isLoaded && (
                 <Switch>
-                  <Route path = '/'>
-                    <HomePage/>
+                  <Route exact path='/'>
+                    <HomePage />
                   </Route>
                   <Route path="/login" >
                     <LoginFormPage />
                   </Route>
                   <Route path="/signup">
                     <SignupFormPage />
+                  </Route>
+                  <Route exact path='/genre/:genreId'>
+                    <GenrePage />
+                  </Route>
+                  <Route exact path='/playlists/:playlistId'>
+                    <PlaylistPage />
                   </Route>
                 </Switch>
               )}
@@ -52,7 +67,6 @@ function App() {
       )
 
       }
-      {/* Player here */}
     </div>
   );
 }

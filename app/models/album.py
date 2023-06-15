@@ -15,7 +15,7 @@ class Album(db.Model):
     # Relationships
     album_genre = db.relationship("Genre", back_populates='genre_albums')
     user = db.relationship("User", back_populates= 'albums')
-    songs = db.relationship("Song", back_populates='album')
+    songs = db.relationship("Song", cascade="all,delete-orphan",back_populates='album')
 
     def to_dict(self):
         song_ids = []
