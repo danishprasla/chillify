@@ -1,6 +1,7 @@
 /* TODO Add site wide styles */
 .main-body {
   height: 100%;
+  color: white;
 }
 
 .body-sidebar {
@@ -15,4 +16,8 @@
 .content-body {
   border: 1px solid green;
   flex: .8;
+}
+body {
+  background-color: rgb(18, 18, 18);
+  margin: 0;
 }

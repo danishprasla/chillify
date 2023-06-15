@@ -1,0 +1,15 @@
+.side-bar-home-link {
+  text-decoration: none;
+  color: white;
+}
+
+.side-bar-home {
+  cursor: pointer;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.first-side-bar-section {
+  background-color: rgb(33, 33, 33);
+  border-radius: 10px;
+}
