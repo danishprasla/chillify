@@ -1,17 +1,17 @@
-.genre-image {
+.genre-image, .home-playlist-image {
   object-fit: cover;
   width: 270px;
   height: 270px;
   border-radius: 10px;
   
 }
-.genres-container {
+.genres-container, .home-playlist-container {
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
   margin: 30px;
 }
-.genre-tile {
+.genre-tile, .home-playlist-tile {
   cursor:pointer;
   background-color: gray;
   border-radius: 10px;

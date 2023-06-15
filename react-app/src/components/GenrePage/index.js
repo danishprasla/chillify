@@ -23,20 +23,19 @@ function GenrePage() {
   console.log(selectedGenre)
 
   return (
-    <h1>
-      This is the GenrePage {genreId}
-      {(!selectedGenre.songIds.length) ? (
+    <div>
+      {(selectedGenre && !selectedGenre.songIds.length) ? (
         <h2>
           This genre has no music
         </h2>
 
       ): (
         <div>
-          <h2>Explore {selectedGenre.name} music</h2>
+          <h2>Explore {selectedGenre?.name} music</h2>
         </div>
 
       )}
-    </h1>
+    </div>
   )
 }
 
