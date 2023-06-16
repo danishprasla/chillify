@@ -36,6 +36,7 @@ def post_song():
         audio.filename = get_unique_filename(audio.filename)
         uploaded_audio = upload_file_to_s3(audio)
         aws_audio_link = uploaded_audio['url']
+        # print('GENRE ID ~~~~~~~~~~~~>', form.data["genre_id"])
 
         release_date_val = date.today
 
@@ -57,6 +58,7 @@ def post_song():
         db.session.commit()
         return new_song.to_dict()
     else:
+        print('FORM ERRORS ON CLASSICAL POST BUT WHY?!', form.errors)
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
