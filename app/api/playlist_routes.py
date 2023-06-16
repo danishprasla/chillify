@@ -55,7 +55,7 @@ def delete_playlist(playlist_id):
     if playlist_dict["user"] != user_id:
         return {"message": 'Forbidden: You are not the owner'}, 403
     elif playlist_to_delete is None:
-        return {"message": "Playlist not found"}
+        return {"message": "Playlist not found"}, 404
     else:
         file_to_delete = remove_file_from_s3(playlist_to_delete.playlist_cover_url)
         if file_to_delete:

@@ -8,8 +8,24 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  color: rgb(188, 188, 188);
 }
+
+.fa-solid.fa-house.fa-xl {
+  color: rgb(188, 188, 188);
+}
+
+.side-bar-home:hover {
+  color: white;
+}
+
+.fa-solid.fa-house.fa-xl:hover {
+  color: white;
+}
+
 .first-side-bar-section {
   background-color: rgb(33, 33, 33);
   border-radius: 10px;
+  padding: 0px 10px;
+  padding-bottom: 20px;
 }

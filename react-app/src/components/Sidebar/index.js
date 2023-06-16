@@ -20,8 +20,7 @@ function Sidebar() {
 			<div className='first-side-bar-section'>
 				<div className='side-bar-home' onClick={handleHomeClick}>
 					<div>
-						<i className="fa-solid fa-house fa-xl" style={{ color: "#ffffff", }} />
-
+						<i className="fa-solid fa-house fa-xl" />
 					</div>
 					<h2>
 						Home
@@ -32,7 +31,6 @@ function Sidebar() {
 						className='side-bar-upload-song-button'
 						buttonText="Upload Music"
 						modalComponent={<PostSongModal />}
-
 					/>
 				</div>
 			</div>
