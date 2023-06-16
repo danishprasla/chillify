@@ -15,20 +15,23 @@
 .side-bar {
   border: 1px solid blue;
   flex: .2;
+  overflow-y: scroll;
 }
 
 .content-body {
   border: 1px solid green;
   flex: .8;
   background-color: rgb(33, 33, 33);
-  margin: 5px;
-  padding: 10px;
+  margin: 2px;
+  padding: 10px 30px;
   border-radius: 10px;
   overflow-y: scroll;
+  /* padding: 0px 20px; */
 }
 
 .side-bar {
-  margin: 5px;
+  margin: 2px;
+  padding: 0px 5px;
 }
 
 body {

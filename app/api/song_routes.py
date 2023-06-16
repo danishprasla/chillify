@@ -19,6 +19,7 @@ def get_all_songs():
     return {"songs": res}
 
 @song_routes.route('/new', methods = ['POST'])
+@login_required
 def post_song():
     """Route to post a song"""
     user_id = current_user.id
@@ -58,3 +59,22 @@ def post_song():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+
+@song_routes.route('/<int:song_id>', methods = ['DELETE'])
+@login_required
+def delete_song(song_id):
+    """Route to delete a song - authorization req"""
+    user_id = current_user.id
+
+    song_to_delete = Song.query.get(song_id)
+    if song_to_delete is None:
+        return {"message": "Song not found"}, 404
+    elif user_id != song_to_delete.user.id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    else:
+        audio_to_delete = remove_file_from_s3(song_to_delete.song_url)
+        picture_to_delete = remove_file_from_s3(song_to_delete.song_cover_photo)
+        if audio_to_delete and picture_to_delete:
+            db.session.delete(song_to_delete)
+            db.session.commit()
+            return {"success": "Song deleted"}

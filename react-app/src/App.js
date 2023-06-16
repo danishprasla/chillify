@@ -14,6 +14,7 @@ import PlaylistPage from "./components/PlaylistPage";
 import { getPlaylistsThunk } from "./store/playlist";
 import { getSongsThunk } from "./store/songs";
 import { getGenreThunk } from "./store/genre";
+import MyMusic from "./components/UserMusic";
 
 
 function App() {
@@ -64,6 +65,9 @@ function App() {
                   </Route>
                   <Route exact path='/playlists/:playlistId'>
                     <PlaylistPage />
+                  </Route>
+                  <Route exact path='/my-music'>
+                    <MyMusic />
                   </Route>
                 </Switch>
               )}

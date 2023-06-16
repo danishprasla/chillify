@@ -9,8 +9,9 @@ import { postSongThunk } from '../../store/songs';
 function PostSongModal({ formType, song }) {
 
   const dispatch = useDispatch()
+  console.log(song)
   const { closeModal } = useModal();
-  const [name, setName] = useState('')
+  const [name, setName] = useState(song?.songName || '')
   const [coverPicture, setCoverPicture] = useState(undefined)
   const [audioFile, setAudioFile] = useState(undefined)
   const [genre, setGenre] = useState('')
@@ -45,7 +46,6 @@ function PostSongModal({ formType, song }) {
         closeModal()
         // await dispatch(getPlaylistsThunk())
       }
-
     }
   }
 
