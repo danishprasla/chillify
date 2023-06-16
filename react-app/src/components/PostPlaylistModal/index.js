@@ -43,7 +43,7 @@ function PostPlaylistModal({ formType, playlist }) {
     // console.log('form data --->', formData)
     setSubmitted(true)
     if (formType === 'edit') {
-      const res = await dispatch(editPlaylistThunk(playlist.id,formData))
+      const res = await dispatch(editPlaylistThunk(playlist.id, formData))
       if (res.errors) {
         setSubmitted(false)
         setErrors(true)
@@ -107,7 +107,10 @@ function PostPlaylistModal({ formType, playlist }) {
           />
         </label>
         <button disabled={submitted}>
-          Create Playlist
+          {
+            (formType === 'edit') ? "Edit Playlist" :
+              "Create Playlist"
+          }
         </button>
 
       </form>

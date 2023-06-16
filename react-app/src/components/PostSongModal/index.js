@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import { editPlaylistThunk, getPlaylistsThunk, postPlaylistThunk } from '../../store/playlist';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { postSongThunk } from '../../store/songs';
+import { getSongsThunk, postSongThunk } from '../../store/songs';
+import { authenticate } from '../../store/session';
 
 function PostSongModal({ formType, song }) {
 
@@ -14,8 +15,8 @@ function PostSongModal({ formType, song }) {
   const [name, setName] = useState(song?.songName || '')
   const [coverPicture, setCoverPicture] = useState(undefined)
   const [audioFile, setAudioFile] = useState(undefined)
-  const [genre, setGenre] = useState('')
-  const [releaseDate, setReleaseDate] = useState()
+  const [genre, setGenre] = useState(song?.genre || 1)
+  const [releaseDate, setReleaseDate] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState(false)
 
@@ -25,6 +26,7 @@ function PostSongModal({ formType, song }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
+    // console.log('REACT GENRE ID FOR CLASSSICAL', genre)
     formData.append('song_name', name)
     formData.append('song_cover_photo', coverPicture)
     formData.append('song_url', audioFile)
@@ -35,14 +37,17 @@ function PostSongModal({ formType, song }) {
 
     } else {
       // do posting here
-      console.log('inside if conditional for posting')
+      // console.log('inside if conditional for posting')
       const res = await dispatch(postSongThunk(formData))
       if (res.errors) {
-        // setSubmitted(false)
-        // setErrors(true)
+        setSubmitted(false)
+        setErrors(true)
         return
       } else {
-        console.log('inside successful route (last step)')
+        // console.log('inside successful route (last step)')
+        await dispatch(getSongsThunk())
+        dispatch(authenticate())
+        // dispatch(sessionActions.authenticate())
         closeModal()
         // await dispatch(getPlaylistsThunk())
       }
@@ -71,11 +76,11 @@ function PostSongModal({ formType, song }) {
         <label>
           Genre
           <select value={genre} onChange={(e) => setGenre(e.target.value)}>
-            <option value='1'>Classical</option>
-            <option value='2'>Video Game Soundtracks</option>
-            <option value='3'>Anime Lo-fi</option>
-            <option value='4'>Lo-fi</option>
-            <option value='5'>DOOM</option>
+            <option value={1}>Classical</option>
+            <option value={2}>Video Game Soundtracks</option>
+            <option value={3}>Anime Lo-fi</option>
+            <option value={4}>Lo-fi</option>
+            <option value={5}>DOOM</option>
           </select>
         </label>
         <label>
@@ -108,7 +113,10 @@ function PostSongModal({ formType, song }) {
           />
         </label>
         <button disabled={submitted}>
-          Submit
+          {
+            (formType === 'edit') ? "Edit your Song" :
+              "Post your Song"
+          }
         </button>
       </form>
     </div>
