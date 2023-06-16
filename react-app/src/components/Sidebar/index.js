@@ -41,6 +41,7 @@ function Sidebar() {
 	}, [showMenu]);
 
 	const dropDown = "library-button" + (showMenu ? "" : " hidden");
+	const closeMenu = () => setShowMenu(false);
 
 
 	return (
@@ -79,15 +80,19 @@ function Sidebar() {
 
 						<div className={dropDown} ref={ulRef}>
 							<div className='side-bar-upload-song-div'>
+								<i className="fa-regular fa-file-audio fa-lg" />
 								<OpenModalMenuItem
 									className='side-bar-upload-song-button'
+									onItemClick={closeMenu}
 									itemText="Upload Music"
 									modalComponent={<PostSongModal />}
 								/>
 							</div>
 							<div className='side-bar-upload-playlist-div'>
+								<i className="fa-solid fa-headphones-simple fa-lg" />
 								<OpenModalMenuItem
 									className='side-bar-upload-playlist-button'
+									onItemClick={closeMenu}
 									itemText="Create Playlist"
 									modalComponent={<PostPlaylistModal />}
 								/>

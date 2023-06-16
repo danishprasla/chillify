@@ -13,7 +13,9 @@
   box-sizing: border-box;
 }
 
-
+.modal-content {
+  background: rgb(63, 63, 63);
+}
 
 .content-body {
   /* border: 1px solid green; */

@@ -9,7 +9,14 @@
 
 .side-bar-upload-song-div,
 .side-bar-upload-playlist-div {
-  margin: 5px;
+  margin: 8px 5px;
+  display: flex;
+  gap: 10px;
+}
+
+.fa-regular.fa-file-audio.fa-lg {
+  margin-right: 3px;
+  margin-left: 2.5px
 }
 
 .side-bar-upload-song-div:hover,
