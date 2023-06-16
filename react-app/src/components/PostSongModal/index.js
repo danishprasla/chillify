@@ -33,13 +33,13 @@ const dateFormater = (date) => {
 function PostSongModal({ formType, song }) {
 
   const dispatch = useDispatch()
-  console.log('date --->', dateFormater(song.releaseDate))
+  // console.log('date --->', dateFormater(song.releaseDate))
 
   let editDate = null
   if (formType === 'edit') {
     editDate = dateFormater(song.releaseDate)
   }
-  console.log('edit date --->', editDate)
+  // console.log('edit date --->', editDate)
 
 
   const { closeModal } = useModal();
