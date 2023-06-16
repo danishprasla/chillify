@@ -21,6 +21,8 @@
 .song-tile:hover {
   background-color: rgb(83, 83, 83);
   border-radius: 10px;
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
 }
 
 .playlist-page-playlist-detail {

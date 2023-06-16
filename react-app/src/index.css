@@ -5,21 +5,20 @@
 }
 
 .body-sidebar {
-  border: 1px solid red;
+  /* border: 1px solid red; */
   height: 93vh;
   display: flex;
+  margin-top: 5px;
   margin-bottom: 70px;
   box-sizing: border-box;
 }
 
-.side-bar {
-  border: 1px solid blue;
-  flex: .2;
-  overflow-y: scroll;
+.modal-content {
+  background: rgb(63, 63, 63);
 }
 
 .content-body {
-  border: 1px solid green;
+  /* border: 1px solid green; */
   flex: .8;
   background-color: rgb(33, 33, 33);
   margin: 2px;
@@ -30,13 +29,18 @@
 }
 
 .side-bar {
+  flex: .2;
+  overflow-y: scroll;
   margin: 2px;
+  margin-left: 0px;
   padding: 0px 5px;
+  padding-left: 2px;
+  box-sizing:border-box;
 }
 
 body {
   background-color: rgb(18, 18, 18);
-  margin: 0;
+  /* margin: 7px; */
   font-family: basic-sans, sans-serif;
 }
 

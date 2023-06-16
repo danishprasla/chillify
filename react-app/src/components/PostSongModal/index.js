@@ -54,6 +54,21 @@ function PostSongModal({ formType, song }) {
 
   const history = useHistory()
 
+  let today = new Date()
+  let day = today.getDate()
+  let month = today.getMonth() + 1
+  let year = today.getFullYear()
+
+  if (month < 10) {
+    month = `0${month}`
+  }
+  if (day < 10) {
+    day = `0${day}`
+  }
+
+  let maxDate = `${year}-${month}-${day}`
+  // console.log('max date ------>', maxDate)
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     const formData = new FormData()
@@ -85,6 +100,7 @@ function PostSongModal({ formType, song }) {
       }
     }
   }
+  //webkit <-- 
 
   return (
     <div className='song-modal-form-container'>
@@ -119,6 +135,7 @@ function PostSongModal({ formType, song }) {
           Release Date
           <input
             type="date"
+            max={maxDate}
             value={releaseDate}
             onChange={(e) => setReleaseDate(e.target.value)}
           />
