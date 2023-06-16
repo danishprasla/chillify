@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import PostSongModal from "../PostSongModal";
+import DeleteSongModal from "../DeleteSongModal";
 
 const MyMusic = () => {
 
@@ -33,25 +34,27 @@ const MyMusic = () => {
               {mySongIds.length - idx}
             </div>
             <div>
-              <img className='song-image' src={songs[songId].coverPicture} />
+              <img className='song-image' src={songs[songId]?.coverPicture} />
             </div>
             <div className='song-description-container'>
               <div className='song-description-name-artist'>
                 <div className='song-description-name'>
-                  {songs[songId].songName}
+                  {songs[songId]?.songName}
                 </div>
                 <div className='song-description-author'>
-                  {songs[songId].authorInfo.username}
+                  {songs[songId]?.authorInfo.username}
                 </div>
               </div>
               <div>
                 <OpenModalButton
-                  className='side-bar-upload-song-button'
+                  className='edit-song-button'
                   buttonText="Edit Song"
                   modalComponent={<PostSongModal song={songs[songId]} formType={'edit'} />}
                 />
-                <OpenModalButton 
-                buttonText="Delete Song"
+                <OpenModalButton
+                  buttonText="Delete Song"
+                  className='delete-song-button'
+                  modalComponent={<DeleteSongModal songId={songId}/>}
                 />
               </div>
             </div>
