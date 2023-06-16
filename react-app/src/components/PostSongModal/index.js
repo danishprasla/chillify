@@ -7,16 +7,47 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { getSongsThunk, postSongThunk } from '../../store/songs';
 import { authenticate } from '../../store/session';
 
+const dateFormater = (date) => {
+  const months = {
+    'Jan': '01',
+    'Feb': '02',
+    'Mar': '03',
+    'Apr': '04',
+    'May': '05',
+    'Jun': '06',
+    'Jul': '07',
+    'Aug': '08',
+    'Sep': '09',
+    'Oct': '10',
+    'Nov': '11',
+    'Dec': '12'
+  }
+  let split1 = date.split(", ")
+  let [day, month, year, time, tz] = split1[1].split(" ")
+
+  month = months[month]
+
+  return `${year}-${month}-${day}`
+}
+
 function PostSongModal({ formType, song }) {
 
   const dispatch = useDispatch()
-  console.log(song)
+  console.log('date --->', dateFormater(song.releaseDate))
+
+  let editDate = null
+  if (formType === 'edit') {
+    editDate = dateFormater(song.releaseDate)
+  }
+  console.log('edit date --->', editDate)
+
+
   const { closeModal } = useModal();
   const [name, setName] = useState(song?.songName || '')
   const [coverPicture, setCoverPicture] = useState(undefined)
   const [audioFile, setAudioFile] = useState(undefined)
   const [genre, setGenre] = useState(song?.genre || 1)
-  const [releaseDate, setReleaseDate] = useState('')
+  const [releaseDate, setReleaseDate] = useState(editDate || '')
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState(false)
 
@@ -46,8 +77,9 @@ function PostSongModal({ formType, song }) {
       } else {
         // console.log('inside successful route (last step)')
         await dispatch(getSongsThunk())
+        //dispatch getSongs to get the updated song state
         dispatch(authenticate())
-        // dispatch(sessionActions.authenticate())
+        // dispatch user state to get updated user state including user songs which should include all of a user's music
         closeModal()
         // await dispatch(getPlaylistsThunk())
       }
@@ -114,8 +146,8 @@ function PostSongModal({ formType, song }) {
         </label>
         <button disabled={submitted}>
           {
-            (formType === 'edit') ? "Edit your Song" :
-              "Post your Song"
+            (formType === 'edit') ? "Submit Edit" :
+              "Submit Song"
           }
         </button>
       </form>

@@ -47,7 +47,6 @@ def post_song():
 
         new_song = Song(
             author_id=int(user_id),
-            album_id = 0,
             genre_id = int(form.data["genre_id"]),
             song_name = form.data["song_name"],
             release_date = release_date_val,
@@ -58,7 +57,7 @@ def post_song():
         db.session.commit()
         return new_song.to_dict()
     else:
-        print('FORM ERRORS ON CLASSICAL POST BUT WHY?!', form.errors)
+        # print('FORM ERRORS ON CLASSICAL POST BUT WHY?!', form.errors)
         return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
