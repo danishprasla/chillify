@@ -3,13 +3,42 @@
   color: white;
 }
 
+.hidden {
+  display: none;
+}
+.library-button {
+  position: absolute;
+  /* z-index: 1; */
+  background-color: rgb(63, 63, 63);
+  border-radius: 3px;
+  width: 120px;
+  padding: 10px;
+  /* left: 450px;
+  top: 150px; */
+  align-items: flex-end;
+  right: 0
+}
+.drop-down-wrapper {
+  position: relative;
+}
+
 .side-bar-home,
 .side-bar-music-title {
   cursor: pointer;
   display: flex;
   gap: 10px;
   align-items: center;
+  /* padding-left: 5px; */
   color: rgb(255, 255, 255);
+}
+
+.side-bar-home:hover,
+.side-bar-music-title:hover,
+.side-bar-plus:hover {
+  text-shadow: 0 0 5px #c3c3c3;
+  cursor: pointer;
+  transition-delay: 300ms ease;
+  transition: text-shadow 300ms ease;
 }
 
 .side-bar-library-title {
@@ -29,8 +58,31 @@
 
 }
 
-.fa-solid.fa-house.fa-xl:hover {
+.footer-side-bar-section {
+  display: flex;
+  margin-top: 10px;
+  justify-content: center;
+  background-color: rgb(33, 33, 33);
+  padding: 0px 20px;
+  border-radius: 10px;
+  height: 16.35%;
+}
+
+.me-container {
+  margin-top: 10px;
+}
+
+/* .fa-solid.fa-house.fa-xl:hover {
   color: white;
+} */
+.second-side-bar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.side-bar-library-title {
+  width: fit-content
 }
 
 .first-side-bar-section {
@@ -38,6 +90,7 @@
   border-radius: 10px;
   padding: 0px 20px;
   padding-bottom: 20px;
+  height: 10%;
 }
 
 .second-side-bar-section {
@@ -46,9 +99,22 @@
   padding: 0px 20px;
   height: 70%;
   margin-top: 10px;
+  overflow-y: scroll;
 
 }
 
 .side-bar-container {
   height: 100%;
+}
+
+.footer-name-block {
+  display: flex;
+  justify-content: space-around;
+}
+
+.github-logo,
+.linkedin-logo {
+  width: 50px;
+  height: 50px;
+
 }

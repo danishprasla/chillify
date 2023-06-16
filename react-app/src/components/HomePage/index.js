@@ -38,6 +38,7 @@ function HomePage() {
   return (
     <div>
       <div>
+        <h1>Welcome back, {user.username}</h1>
         <h2>Your playlists:</h2>
         <OpenModalButton
           className='create-playlist-button'

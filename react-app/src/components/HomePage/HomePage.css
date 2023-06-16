@@ -6,14 +6,19 @@
   border-radius: 10px;
   text-align: center;
   align-items: center;
-  
+
 }
 
 .genre-tile:hover {
-  background-color: rgb(83, 83, 83)
+  background-color: rgb(83, 83, 83);
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
 }
+
 .home-playlist-tile:hover {
-  background-color: rgb(83, 83, 83)
+  background-color: rgb(83, 83, 83);
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
 }
 
 .genres-container,
@@ -36,10 +41,10 @@
   padding: 10px;
   padding-top: 25px;
 }
-.home-genre-title, .home-playlist-title {
+
+.home-genre-title,
+.home-playlist-title {
   text-align: left;
   padding: 0px 15px;
   word-wrap: break-word;
 }
-
-
