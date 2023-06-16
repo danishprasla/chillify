@@ -3,20 +3,30 @@
   color: white;
 }
 
-.side-bar-home {
+.side-bar-home,
+.side-bar-music-title {
   cursor: pointer;
   display: flex;
   gap: 10px;
   align-items: center;
-  color: rgb(188, 188, 188);
+  color: rgb(255, 255, 255);
+}
+
+.side-bar-library-title {
+  cursor: default;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: rgb(255, 255, 255);
 }
 
 .fa-solid.fa-house.fa-xl {
-  color: rgb(188, 188, 188);
+  color: rgb(255, 255, 255);
 }
 
 .side-bar-home:hover {
   color: white;
+
 }
 
 .fa-solid.fa-house.fa-xl:hover {
@@ -26,6 +36,19 @@
 .first-side-bar-section {
   background-color: rgb(33, 33, 33);
   border-radius: 10px;
-  padding: 0px 10px;
+  padding: 0px 20px;
   padding-bottom: 20px;
+}
+
+.second-side-bar-section {
+  background-color: rgb(33, 33, 33);
+  border-radius: 10px;
+  padding: 0px 20px;
+  height: 70%;
+  margin-top: 10px;
+
+}
+
+.side-bar-container {
+  height: 100%;
 }

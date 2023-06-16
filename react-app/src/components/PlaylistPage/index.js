@@ -63,11 +63,13 @@ function PlaylistPage() {
         </div>
       )}
       <div className='songs-container-labels'>
-        <div></div>
+        <div>
+
+        </div>
       </div>
       <div className='songs-container'>
         {playlistSongs.map((songId, idx) => (
-          <div key={`playlist-${songId}`}className='song-tile'>
+          <div key={`playlist-${songId}`} className='song-tile'>
             <div>
               {idx + 1}
             </div>
