@@ -6,6 +6,7 @@ import OpenModalButton from '../OpenModalButton';
 import PostPlaylistModal from '../PostPlaylistModal';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import PostSongModal from '../PostSongModal';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
 function Sidebar() {
 	const history = useHistory()
@@ -77,11 +78,19 @@ function Sidebar() {
 					<div className='drop-down-wrapper'>
 
 						<div className={dropDown} ref={ulRef}>
-							<div>
-								Upload Music
+							<div className='side-bar-upload-song-div'>
+								<OpenModalMenuItem
+									className='side-bar-upload-song-button'
+									itemText="Upload Music"
+									modalComponent={<PostSongModal />}
+								/>
 							</div>
-							<div>
-								Create Playlist
+							<div className='side-bar-upload-playlist-div'>
+								<OpenModalMenuItem
+									className='side-bar-upload-playlist-button'
+									itemText="Create Playlist"
+									modalComponent={<PostPlaylistModal />}
+								/>
 							</div>
 
 						</div>
