@@ -112,7 +112,19 @@ function Player() {
   return (
     <div className="audio-player">
       <div>
-        Track details
+        {songUrl.length > 0 && (
+          <div className="player-song-detail">
+            <img className="player-song-image" src={selected.song.coverPicture} />
+            <div className="player-song-details">
+              <div className="player-song-name">
+                {selected.song.songName}
+              </div>
+              <div className="player-song-author">
+                {selected.song.authorInfo.username}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <audio
         ref={player}

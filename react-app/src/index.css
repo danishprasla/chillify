@@ -51,11 +51,11 @@ body {
   position: fixed;
   bottom: 0;
   height: 70px;
-  width: 90%;
+  width: 98.5%;
   /* width: fit-content; */
   /* border: solid 1px red; */
   background-color: rgb(18, 18, 18);
-  padding: 0px 50px;
+  padding: 0px 20px;
   align-items: center; 
   /* text-align: center; */
 }

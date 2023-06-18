@@ -1,8 +1,25 @@
 .audio-player {
   display: flex;
   justify-content: space-between;
-  width: 90%;
+  width: 98%;
 }
+
 .player-details {
   display: flex;
+}
+
+.player-song-image {
+  object-fit: cover;
+  width: 55px;
+  height: 55px;
+  border-radius: 5px;
+}
+.player-song-detail {
+  display: flex;
+  align-items: center;
+  gap: 5px
+}
+.player-song-author {
+  font-size: 10pt;
+  margin-top: 5px;
 }
