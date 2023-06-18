@@ -58,16 +58,16 @@ function GenrePage() {
                 onMouseLeave={() => setHoverPlay(null)}
               >
                 {hoverPlay === idx ? (
-              <div
-                className='song-play-button'
-                onClick={() => dispatch(selectSong(songs[songId], genreMusicIds))}
-              >
-                <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
-              </div>) :
-              (<div>
-                {idx + 1}
-              </div>)
-            }
+                  <div
+                    className='song-play-button'
+                    onClick={() => dispatch(selectSong(songs[songId], genreMusicIds))}
+                  >
+                    <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
+                  </div>) :
+                  (<div className='song-list-num' >
+                    {idx + 1}
+                  </div>)
+                }
                 <div>
                   <img className='song-image' src={songs[songId].coverPicture} />
                 </div>

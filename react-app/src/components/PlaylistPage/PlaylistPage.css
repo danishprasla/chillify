@@ -15,8 +15,9 @@
   gap: 10px;
   align-items: center;
   padding: 4px 10px;
-  cursor:default
+  cursor: default
 }
+
 .song-play-button {
   cursor: pointer;
 }
@@ -27,9 +28,11 @@
   transition-delay: 300ms ease;
   transition: background-color 300ms ease;
 }
+
 .song-image-container {
   margin-left: 5px;
 }
+
 .playlist-page-playlist-detail {
   display: flex;
   align-items: center;
@@ -44,4 +47,10 @@
 .playlist-page-buttons {
   margin: 20px;
   gap: 20px;
+}
+
+.song-list-num,
+.song-play-button {
+  width: 20px;
+  text-align: right;
 }
