@@ -41,8 +41,11 @@ function Player() {
   // console.log('FINAL CHECK TO SEE IF SONG URL IS GOOD',songUrl)
 
   useEffect(() => {
-    player.current.play()
-    setPlaying(true)
+    if (songUrl.length > 0) {
+      player.current.play()
+      setPlaying(true)
+
+    }
 
   }, [songUrl])
 
