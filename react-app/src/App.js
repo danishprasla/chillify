@@ -73,7 +73,10 @@ function App() {
               )}
             </div>
           </div>
-          <Player />
+          <div className="audio-player-wrapper">
+
+            <Player />
+          </div>
         </div>
 
       ) : (

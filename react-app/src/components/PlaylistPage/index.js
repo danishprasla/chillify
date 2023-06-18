@@ -25,7 +25,7 @@ function PlaylistPage() {
   // }
   // console.log(user)
   // console.log(playlists)
-  if (Object.values(playlists).length == 0) {
+  if (Object.values(playlists).length == 0 || Object.values(songs).length == 0) {
     return (<h1>Loading...</h1>)
   }
   // console.log(playlistId)
