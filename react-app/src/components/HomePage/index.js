@@ -40,13 +40,13 @@ function HomePage() {
       <div>
         <h1>Welcome back, {user.username}</h1>
         <h2>Your playlists:</h2>
-        <OpenModalButton
+        {/* <OpenModalButton
           className='create-playlist-button'
           buttonText="Create a Playlist"
-          modalComponent={<PostPlaylistModal />} />
+          modalComponent={<PostPlaylistModal />} /> */}
         {(!user.playlistIds.length) ? (
           <div>
-            You don't currently have any playlists start by clicking below to make your first one!
+            Looks like you currently have no playlists!
           </div>
 
         ) : (

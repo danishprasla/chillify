@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal'
@@ -9,10 +9,11 @@ import { getPlaylistsThunk } from '../../store/playlist';
 import PostPlaylistModal from '../PostPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
+import { selectSong } from '../../store/selectedSong';
 
 function PlaylistPage() {
 
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
   const { playlistId } = useParams()
   // console.log(playlistId)
@@ -23,9 +24,11 @@ function PlaylistPage() {
   //   console.log('inside if conditional')
   //   dispatch(getPlaylistsThunk())
   // }
+  const [hoverPlay, setHoverPlay] = useState(null)
+  // console.log(hoverPlay)
   // console.log(user)
   // console.log(playlists)
-  if (Object.values(playlists).length == 0) {
+  if (Object.values(playlists).length == 0 || Object.values(songs).length == 0) {
     return (<h1>Loading...</h1>)
   }
   // console.log(playlistId)
@@ -33,6 +36,8 @@ function PlaylistPage() {
   // console.log('playlist ----<',playlist.songs)
   const playlistSongs = playlist.songs
   const playlistLength = playlistSongs.length
+
+  // console.log('PLAYLIST SONGS!!!', playlistSongs)
 
 
   return (
@@ -69,11 +74,24 @@ function PlaylistPage() {
       </div>
       <div className='songs-container'>
         {playlistSongs.map((songId, idx) => (
-          <div key={`playlist-${songId}`} className='song-tile'>
-            <div>
-              {idx + 1}
-            </div>
-            <div>
+          <div
+            key={`playlist-${songId}`}
+            className='song-tile'
+            onMouseEnter={() => setHoverPlay(idx)}
+            onMouseLeave={() => setHoverPlay(null)}
+          >
+            {hoverPlay === idx ? (
+              <div
+                className='song-play-button'
+                onClick={() => dispatch(selectSong(songs[songId], playlistSongs))}
+              >
+                <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
+              </div>) :
+              (<div>
+                {idx + 1}
+              </div>)
+            }
+            <div className='song-image-container'>
               <img className='song-image' src={songs[songId].coverPicture} />
             </div>
             <div className='song-description-container'>
