@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import './Player.css'
+import { useSelector } from "react-redux";
 
 
 function Player() {
@@ -11,10 +12,19 @@ function Player() {
   const [songUrl, setSongUrl] = useState('')
   const [seekerBar, setSeekerBar] = useState(0)
 
+
+  const selected = useSelector((state) => state.selected)
+  // console.log('INSIDE PLAYER COMPONENT - SELECTED --->', selected)
+  // if (selected) {
+  //   setSongUrl(selected.song)
+  // }
+
   //I can sset up a store that will have the song id of the selected song which I can use to key into the song store and get the relevant info
   // I will also need to set up another store(?) which will include a list of id's for the songs belonging to that playlist/genre from which the above song was selected
+  // console.log('SONG URL !!#!@#!@#!@#', songUrl)
 
   const player = useRef()
+
   useEffect(() => {
     player.current.addEventListener('loadedmetadata', loaded);
     return () => {
@@ -22,10 +32,23 @@ function Player() {
     };
   }, []);
 
+  useEffect(() => {
+    if (selected.song) {
+      setSongUrl(selected.song.songUrl)
+      // console.log('SONG URL', selected?.song?.songUrl)
+    }
+  }, [selected])
+  // console.log('FINAL CHECK TO SEE IF SONG URL IS GOOD',songUrl)
+
+  useEffect(() => {
+    player.current.play()
+    setPlaying(true)
+
+  }, [songUrl])
+
   const loaded = () => {
     setSongLength(Math.floor(player.current.duration));
   };
-
 
 
   const handlePlayPause = (e) => {
@@ -90,7 +113,7 @@ function Player() {
       </div>
       <audio
         ref={player}
-        src="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/for+lu+ten+(Leaves+from+the+vine+but+it's+lofi+hip+hop).mp3"
+        src={songUrl}
         preload="metadata"
         onTimeUpdate={timeUpdate}
       ></audio>
@@ -110,8 +133,8 @@ function Player() {
               className="seek-bar"
               type="range"
               onChange={handleSeekerChange}
-              defaultValue={0}
-              max={songLength}
+              // defaultValue={0}
+              max={isNaN(songLength) ? 0 : songLength}
               value={seekerBar}
             />
           </div>
@@ -127,11 +150,4 @@ function Player() {
   )
 
 }
-
-{/* <ReactAudioPlayer
-  src="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/for+lu+ten+(Leaves+from+the+vine+but+it's+lofi+hip+hop).mp3"
-  autoPlay
-  controls
-  controlsList=""
-/> */}
 export default Player
