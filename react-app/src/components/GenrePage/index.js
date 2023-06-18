@@ -41,7 +41,7 @@ function GenrePage() {
           <div className='playlist-page-playlist-detail'>
             <img className='playlist-page-cover-img' src={selectedGenre.genreCover} />
             <div>
-              <div>Playlist</div>
+              <div>Genre</div>
               <h1>Explore {selectedGenre?.name}</h1>
             </div>
 
