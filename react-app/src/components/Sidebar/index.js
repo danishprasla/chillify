@@ -16,6 +16,9 @@ function Sidebar() {
 	const handleMyMusicClick = () => {
 		history.push('/my-music')
 	}
+	const user = useSelector((state) => state.session.user)
+	const playlists = useSelector((state) => state.playlists)
+
 
 
 	const [showMenu, setShowMenu] = useState(false);
@@ -40,9 +43,16 @@ function Sidebar() {
 		return () => document.removeEventListener("click", closeMenu);
 	}, [showMenu]);
 
+	if (!user) {
+		return (
+			<h1> Loading ... </h1>
+		)
+	}
 	const dropDown = "library-button" + (showMenu ? "" : " hidden");
 	const closeMenu = () => setShowMenu(false);
 
+	const playlistArr = Object.values(playlists)
+	const userPlaylists = playlistArr.filter(playlist => playlist.user == user.id)
 
 	return (
 		<div className='side-bar-container'>
@@ -108,6 +118,33 @@ function Sidebar() {
 					<h3>
 						Your Music
 					</h3>
+				</div>
+				<div className='side-bar-playlist-wrapper'>
+					{(!user.playlistIds.length) ? (
+						<div>
+							No playlists. Click the plus sign above to create one now!
+						</div>
+
+					) : (
+						<div className="side-bar-playlist-container">
+							{userPlaylists.map((playlist) => (
+								<div className='side-bar-playlist-tile' key={`side-bar-${playlist.id}`} onClick={() => history.push(`/playlists/${playlist.id}`)}>
+									<img className='side-bar-playlist-image' src={playlist.coverImage} />
+									<div>
+										<div className="side-bar-playlist-title"> {playlist.name}
+										</div>
+										<div className='side-bar-playlist-owner'>
+											{playlist.playlistOwner}
+										</div>
+
+									</div>
+								</div>
+							))}
+						</div>
+
+					)}
+
+
 				</div>
 			</div>
 			<div className='footer-side-bar-section'>
