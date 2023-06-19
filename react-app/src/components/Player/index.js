@@ -12,7 +12,9 @@ function Player() {
   const [songSpotTime, setSongSpotTime] = useState(1)
   const [songUrl, setSongUrl] = useState('')
   const [seekerBar, setSeekerBar] = useState(0)
-  const [songIndex, setSongIndex] = useState(-1)
+  const [songIndex, setSongIndex] = useState(0)
+  const [loop, setLoop] = useState(false)
+  const [volume, setVolume] = useState(100)
 
   const dispatch = useDispatch()
   const selected = useSelector((state) => state.selected)
@@ -52,7 +54,11 @@ function Player() {
   // console.log('SONG INDEX ---->',songIndex)
   useEffect(() => {
     if (songSpotTime == songLength) {
-      console.log('end of song!')
+      // console.log('end of song!')
+      if (loop) {
+        player.current.currentTime = 0
+        return
+      }
       let nextIdx = -1
       if (songIndex == (selectedPlaylist.length - 1)) {
         nextIdx = 0
@@ -127,7 +133,12 @@ function Player() {
     setSeekerBar(e.target.value)
     player.current.currentTime = e.target.value
   }
-
+  const handleVolumeSeekerChange = (e) => {
+    e.preventDefault()
+    // console.log(e.target.value)
+    setVolume(e.target.value)
+    player.current.volume = e.target.value / 100
+  }
   const secondConverter = (rawSeconds) => {
 
     const minutes = Math.floor(rawSeconds / 60)
@@ -201,7 +212,6 @@ function Player() {
         <div className="player-details">
           <div>{secondConverter(songSpotTime)}</div>
           <div>
-            {/* {seekerBar} */}
             <input
               className="seek-bar"
               type="range"
@@ -217,8 +227,23 @@ function Player() {
         </div>
 
       </div>
-      <div>
-        Volume controls
+      <div className="player-volume-controls">
+        <div>
+          {volume == 0 ? (
+            <i className="fa-solid fa-volume-xmark fa-lg" style={{ color: "#ffffff" }} />
+          ) : (
+            <i className="fa-solid fa-volume-high fa-lg" style={{ color: "#ffffff" }} />
+          )}
+
+        </div>
+        <input
+          className="volume-seek-bar"
+          type="range"
+          onChange={handleVolumeSeekerChange}
+          // defaultValue={0}
+          max={100}
+          value={volume}
+        />
       </div>
 
     </div>
