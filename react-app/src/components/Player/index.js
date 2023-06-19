@@ -80,6 +80,7 @@ function Player() {
 
   const handlePlayPause = (e) => {
     e.preventDefault()
+    if (songUrl.length < 1) return
     if (playing) {
       player.current.pause()
     } else {
