@@ -15,6 +15,7 @@ import { getPlaylistsThunk } from "./store/playlist";
 import { getSongsThunk } from "./store/songs";
 import { getGenreThunk } from "./store/genre";
 import MyMusic from "./components/UserMusic";
+import LoadingComp from "./components/Loading";
 
 
 function App() {
@@ -41,49 +42,52 @@ function App() {
 
   return (
     <div>
-      {sessionUser ? (
-        <div className="main-body">
-          <div className="body-sidebar">
-            <div className="side-bar">
-              <Sidebar />
+      {!isLoaded ? (
+        <LoadingComp />
+      ) :
+        sessionUser ? (
+          <div className="main-body">
+            <div className="body-sidebar">
+              <div className="side-bar">
+                <Sidebar />
+              </div>
+              <div className="content-body">
+                <Navigation isLoaded={isLoaded} />
+                {isLoaded && (
+                  <Switch>
+                    <Route exact path='/'>
+                      <HomePage />
+                    </Route>
+                    <Route path="/login" >
+                      <LoginFormPage />
+                    </Route>
+                    <Route path="/signup">
+                      <SignupFormPage />
+                    </Route>
+                    <Route exact path='/genre/:genreId'>
+                      <GenrePage />
+                    </Route>
+                    <Route exact path='/playlists/:playlistId'>
+                      <PlaylistPage />
+                    </Route>
+                    <Route exact path='/my-music'>
+                      <MyMusic />
+                    </Route>
+                  </Switch>
+                )}
+              </div>
             </div>
-            <div className="content-body">
-              <Navigation isLoaded={isLoaded} />
-              {isLoaded && (
-                <Switch>
-                  <Route exact path='/'>
-                    <HomePage />
-                  </Route>
-                  <Route path="/login" >
-                    <LoginFormPage />
-                  </Route>
-                  <Route path="/signup">
-                    <SignupFormPage />
-                  </Route>
-                  <Route exact path='/genre/:genreId'>
-                    <GenrePage />
-                  </Route>
-                  <Route exact path='/playlists/:playlistId'>
-                    <PlaylistPage />
-                  </Route>
-                  <Route exact path='/my-music'>
-                    <MyMusic />
-                  </Route>
-                </Switch>
-              )}
+            <div className="audio-player-wrapper">
+
+              <Player />
             </div>
           </div>
-          <div className="audio-player-wrapper">
 
-            <Player />
-          </div>
-        </div>
-
-      ) : (
-        <LandingPage />
-      )
-
+        ) : (
+          <LandingPage />
+        )
       }
+
     </div>
   );
 }

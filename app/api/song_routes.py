@@ -5,6 +5,7 @@ from app.api.auth_routes import validation_errors_to_error_messages
 from app.models.song import Song
 from datetime import date
 from app.forms.song_form import SongForm
+from app.forms.song_edit_form import SongEditForm
 from app.models.db import db
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -79,3 +80,55 @@ def delete_song(song_id):
             db.session.delete(song_to_delete)
             db.session.commit()
             return {"success": "Song deleted"}
+
+@song_routes.route('/<int:song_id>/edit', methods = ['PUT'])
+@login_required
+def update_song(song_id):
+    """Route to update a song based off song ID"""
+    user_id = current_user.id
+    form = SongEditForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    song_to_update = Song.query.get(song_id)
+    if song_to_update is None:
+        return {"message": "Song not found"}, 404
+    elif user_id != song_to_update.user.id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    elif form.validate_on_submit():
+        ## do form stuff here
+        aws_song_link = ''
+        aws_song_photo = ''
+        if form.data['song_url']:
+            old_aws_link_song = remove_file_from_s3(song_to_update.song_url)
+            song = form.data['song_url']
+            song.filename = get_unique_filename(song.filename)
+            uploaded_song = upload_file_to_s3(song)
+            aws_song_link = uploaded_song['url']
+
+        if form.data['song_cover_photo']:
+            old_aws_link_photo = remove_file_from_s3(song_to_update.song_cover_photo)
+            picture = form.data['song_cover_photo']
+            picture.filename = get_unique_filename(picture.filename)
+            uploaded_picture = upload_file_to_s3(picture)
+            aws_song_photo = uploaded_picture['url']
+
+        release_date_string = form.data["release_date"]
+        [year, month, day] = release_date_string.split("-")
+        release_date_val = date(int(year), int(month), int(day))
+
+        song_to_update.song_name = form.data["song_name"]
+        song_to_update.genre_id = form.data["genre_id"]
+        song_to_update.release_date = release_date_val
+        
+        if len(aws_song_link) > 0:
+            song_to_update.song_url = aws_song_link
+        if len(aws_song_photo) > 0:
+            song_to_update.song_cover_photo = aws_song_photo
+        db.session.commit()
+        return song_to_update.to_dict()
+    else:
+        return {
+            'errors': validation_errors_to_error_messages(form.errors)
+        }
+        
+
+            

@@ -17,9 +17,17 @@
 .player-song-detail {
   display: flex;
   align-items: center;
-  gap: 5px
+  gap: 5px;
+  width: 400px;
 }
 .player-song-author {
   font-size: 10pt;
   margin-top: 5px;
+}
+.player-volume-controls {
+  width: 400px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
 }

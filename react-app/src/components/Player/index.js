@@ -1,23 +1,31 @@
 import React, { useState, useRef, useEffect } from "react";
 import ReactAudioPlayer from 'react-audio-player';
 import './Player.css'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSongChange } from "../../store/selectedSong";
 
 
 function Player() {
 
   const [playing, setPlaying] = useState(false)
   const [songLength, setSongLength] = useState(0)
-  const [songSpotTime, setSongSpotTime] = useState(0)
+  const [songSpotTime, setSongSpotTime] = useState(1)
   const [songUrl, setSongUrl] = useState('')
   const [seekerBar, setSeekerBar] = useState(0)
+  const [songIndex, setSongIndex] = useState(0)
+  const [loop, setLoop] = useState(false)
+  const [volume, setVolume] = useState(100)
 
-
+  const dispatch = useDispatch()
   const selected = useSelector((state) => state.selected)
+  const songs = useSelector((state) => state.songs)
+  const selectedPlaylist = selected.songIds
+  // console.log('selected playlist!',selectedPlaylist)
   // console.log('INSIDE PLAYER COMPONENT - SELECTED --->', selected)
   // if (selected) {
   //   setSongUrl(selected.song)
   // }
+  // console.log('CURRENT SONG INDEX!', currentSongIndex)
 
   //I can sset up a store that will have the song id of the selected song which I can use to key into the song store and get the relevant info
   // I will also need to set up another store(?) which will include a list of id's for the songs belonging to that playlist/genre from which the above song was selected
@@ -25,37 +33,60 @@ function Player() {
 
   const player = useRef()
 
-  useEffect(() => {
-    player.current.addEventListener('loadedmetadata', loaded);
-    return () => {
-      player.current.removeEventListener('loadedmetadata', loaded);
-    };
-  }, []);
+  // useEffect(() => {
+  //   player.current.addEventListener('loadedmetadata', loaded);
+  //   return () => {
+  //     player.current.removeEventListener('loadedmetadata', loaded);
+  //   };
+  // }, []);
 
   useEffect(() => {
     if (selected.song) {
       setSongUrl(selected.song.songUrl)
-      // console.log('SONG URL', selected?.song?.songUrl)
+      setSongIndex(selectedPlaylist.indexOf(selected?.song?.id))
     }
   }, [selected])
   // console.log('FINAL CHECK TO SEE IF SONG URL IS GOOD',songUrl)
+  // useEffect(() => {
+  //   console.log('spot time test')
+
+  // }, [songSpotTime])
+  // console.log('SONG INDEX ---->',songIndex)
+  useEffect(() => {
+    if (songSpotTime == songLength) {
+      // console.log('end of song!')
+      if (loop) {
+        player.current.currentTime = 0
+        return
+      }
+      let nextIdx = -1
+      if (songIndex == (selectedPlaylist.length - 1)) {
+        nextIdx = 0
+      } else {
+        nextIdx = songIndex + 1
+      }
+      setSongIndex(nextIdx)
+      let songId = selectedPlaylist[nextIdx]
+      dispatch(selectSongChange(songs[songId]))
+    }
+
+  }, [songSpotTime])
 
   useEffect(() => {
     if (songUrl.length > 0) {
       player.current.play()
       setPlaying(true)
-
     }
-
   }, [songUrl])
 
-  const loaded = () => {
-    setSongLength(Math.floor(player.current.duration));
-  };
+  // const loaded = () => {
+  //   setSongLength(Math.floor(player.current.duration));
+  // };
 
 
   const handlePlayPause = (e) => {
     e.preventDefault()
+    if (songUrl.length < 1) return
     if (playing) {
       player.current.pause()
     } else {
@@ -63,13 +94,51 @@ function Player() {
     }
     setPlaying(!playing)
   }
+  const handleBackClick = (e) => {
+    e.preventDefault()
+    if (songSpotTime > 5) {
+      player.current.currentTime = 0
+      return
+    } else {
+      let nextIdx = -1
+      if (songIndex == 0) {
+        nextIdx = selectedPlaylist.length - 1
+      } else {
+        nextIdx = songIndex - 1
+      }
+      let songId = selectedPlaylist[nextIdx]
+      dispatch(selectSongChange(songs[songId]))
+      return
+    }
+
+  }
+  const handleForwardClick = (e) => {
+    e.preventDefault()
+    let nextIdx = -1
+    if (songIndex == (selectedPlaylist.length - 1)) {
+      nextIdx = 0
+    } else {
+      nextIdx = songIndex + 1
+    }
+    setSongIndex(nextIdx)
+    let songId = selectedPlaylist[nextIdx]
+    dispatch(selectSongChange(songs[songId]))
+    return
+
+  }
+
   const handleSeekerChange = (e) => {
     e.preventDefault()
     // console.log(e.target.value)
     setSeekerBar(e.target.value)
     player.current.currentTime = e.target.value
   }
-
+  const handleVolumeSeekerChange = (e) => {
+    e.preventDefault()
+    // console.log(e.target.value)
+    setVolume(e.target.value)
+    player.current.volume = e.target.value / 100
+  }
   const secondConverter = (rawSeconds) => {
 
     const minutes = Math.floor(rawSeconds / 60)
@@ -135,15 +204,14 @@ function Player() {
       <div>
         <div className="player-buttons">
           <button> <i className="fa-solid fa-shuffle" /> </button>
-          <button> <i className="fa-solid fa-backward" /></button>
-          <button onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause" />) : (<i className="fa-solid fa-play" />)} </button>
-          <button><i className="fa-solid fa-forward" /></button>
+          <button onClick={(e) => handleBackClick(e)}> <i className="fa-solid fa-backward" /></button>
+          <button onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause fa-xl" />) : (<i className="fa-solid fa-play fa-xl" />)} </button>
+          <button onClick={(e) => handleForwardClick(e)} ><i className="fa-solid fa-forward" /></button>
           <button> <i className="fa-solid fa-repeat" /> </button>
         </div>
         <div className="player-details">
           <div>{secondConverter(songSpotTime)}</div>
           <div>
-            {/* {seekerBar} */}
             <input
               className="seek-bar"
               type="range"
@@ -153,12 +221,29 @@ function Player() {
               value={seekerBar}
             />
           </div>
-          <div>{secondConverter(songLength)}</div>
+          <div>
+            {isNaN(songLength) ? '0:00' : secondConverter(songLength)}
+          </div>
         </div>
 
       </div>
-      <div>
-        Volume controls
+      <div className="player-volume-controls">
+        <div>
+          {volume == 0 ? (
+            <i className="fa-solid fa-volume-xmark fa-lg" style={{ color: "#ffffff" }} />
+          ) : (
+            <i className="fa-solid fa-volume-high fa-lg" style={{ color: "#ffffff" }} />
+          )}
+
+        </div>
+        <input
+          className="volume-seek-bar"
+          type="range"
+          onChange={handleVolumeSeekerChange}
+          // defaultValue={0}
+          max={100}
+          value={volume}
+        />
       </div>
 
     </div>

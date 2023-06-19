@@ -12,6 +12,7 @@
   margin: 8px 5px;
   display: flex;
   gap: 10px;
+  color: rgb(200, 200, 200);
 }
 
 .fa-regular.fa-file-audio.fa-lg {
@@ -22,8 +23,10 @@
 .side-bar-upload-song-div:hover,
 .side-bar-upload-playlist-div:hover {
   text-shadow: 0 0 5px #c3c3c3;
+  color: white;
   cursor: pointer;
   transition-delay: 300ms ease;
+  transition: color 300ms ease;
   transition: text-shadow 300ms ease;
 }
 
@@ -52,15 +55,20 @@
   gap: 10px;
   align-items: center;
   /* padding-left: 5px; */
-  color: rgb(255, 255, 255);
+  color: rgb(200, 200, 200);
+}
+.side-bar-plus {
+  color: rgb(200, 200, 200);
 }
 
 .side-bar-home:hover,
 .side-bar-music-title:hover,
 .side-bar-plus:hover {
-  text-shadow: 0 0 5px #c3c3c3;
+  /* text-shadow: 0 0 5px #c3c3c3; */
+  color: white;
   cursor: pointer;
   transition-delay: 300ms ease;
+  transition: color 300ms ease;
   transition: text-shadow 300ms ease;
 }
 
@@ -74,11 +82,6 @@
 
 .fa-solid.fa-house.fa-xl {
   color: rgb(255, 255, 255);
-}
-
-.side-bar-home:hover {
-  color: white;
-
 }
 
 .footer-side-bar-section {
@@ -103,6 +106,11 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 0px 20px;
+  box-sizing: border-box;
+}
+.side-bar-music-title {
+  padding: 0px 20px;
 }
 
 .side-bar-library-title {
@@ -120,10 +128,10 @@
 .second-side-bar-section {
   background-color: rgb(33, 33, 33);
   border-radius: 10px;
-  padding: 0px 20px;
   height: 70%;
   margin-top: 10px;
-  overflow-y: scroll;
+  /* padding: 0px 20px; */
+  /* overflow-y: scroll; */
 
 }
 
@@ -140,4 +148,33 @@
 .linkedin-logo {
   width: 50px;
   height: 50px;
+}
+
+.side-bar-playlist-image {
+  object-fit: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+}
+.side-bar-playlist-tile {
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+  gap: 10px;
+  cursor: pointer;
+  height: 65px;
+  width: 100%;
+  padding: 0px 8px;
+  box-sizing: border-box;
+  /* margin-left: -5px; */
+}
+.side-bar-playlist-tile:hover {
+  background-color: rgb(39, 39, 39);
+  border-radius: 5px;
+
+}
+.side-bar-playlist-wrapper {
+  overflow-y: scroll;
+  padding: 0px 7px;
+  height: 73%;
 }

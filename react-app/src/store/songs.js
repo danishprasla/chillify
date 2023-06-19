@@ -1,6 +1,7 @@
 const GET_ALL_SONGS = 'songs/getAllSongs'
 const POST_SONG = 'songs/postSong'
 const DELETE_SONG = 'songs/deleteSong'
+const EDIT_SONG = 'songs/editSong'
 
 const getSongs = (songs) => {
   return {
@@ -22,6 +23,13 @@ const deleteSong = (songId) => {
     songId
   }
 
+}
+
+const editSong = (song) => {
+  return {
+    type: EDIT_SONG,
+    song
+  }
 }
 
 export const getSongsThunk = () => async (dispatch) => {
@@ -63,6 +71,21 @@ export const deleteSongThunk = (songId) => async (dispatch) => {
 
 }
 
+export const editSongThunk = (songId, editData) => async (dispatch) => {
+  const res = await fetch(`api/songs/${songId}/edit`, {
+    method: 'PUT',
+    body: editData
+  })
+  const data = await res.json()
+  if (res.ok) {
+    dispatch(editSong(data))
+    return data
+  } else {
+    return data
+  }
+  
+}
+
 
 
 const initialState = {};
@@ -80,6 +103,10 @@ const songReducer = (state = initialState, action) => {
     }
     case POST_SONG: {
       const newState = { ...state }
+      newState[action.song.id] = action.song
+    }
+    case EDIT_SONG: {
+      const newState = {...state}
       newState[action.song.id] = action.song
     }
     case DELETE_SONG: {

@@ -33,6 +33,10 @@ function HomePage() {
   let userPlaylists = playlistArr.filter(playlist => playlist.user == user.id)
   // console.log('user playlistsssssss ~~~~~~>', userPlaylists)
 
+  const publicPlaylists = playlistArr.filter(playlist => playlist.public === true && playlist.user !== user.id)
+
+  console.log('PUBLIC PLAYLISTS ~~~~>', publicPlaylists)
+
 
 
   return (
@@ -64,7 +68,7 @@ function HomePage() {
       </div>
 
       <h2>
-        Explore Genres and Discover New Music
+        Explore Genres and Discover New Music:
       </h2>
       <div className="genres-container-wrapper">
 
@@ -81,6 +85,21 @@ function HomePage() {
 
         </div>
 
+      </div>
+
+      <h2>
+        Public playlists made by other users:
+      </h2>
+      <div className="home-playlist-container">
+        {publicPlaylists.map((playlist) => (
+          <div className='home-playlist-tile' key={playlist.id} onClick={() => history.push(`/playlists/${playlist.id}`)}>
+            <img className='home-playlist-image' src={playlist.coverImage} />
+            <h3 className="home-playlist-title"> {playlist.name} </h3>
+            {/* <h5 className="playlist-owner">
+              {playlist.playlistOwner}
+            </h5> */}
+          </div>
+        ))}
       </div>
     </div>
   )

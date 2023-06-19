@@ -1,0 +1,16 @@
+
+.loading-wrapper { 
+  text-align: center;
+  width: max-content;
+  background-color: rgb(0, 0, 0);
+  margin: 0;
+  color: white;
+}
+.loading-component {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
