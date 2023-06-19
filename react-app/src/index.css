@@ -9,7 +9,7 @@
 
 .body-sidebar {
   /* border: 1px solid red; */
-  height: 93vh;
+  height: 92vh;
   display: flex;
   margin-top: 5px;
   margin-bottom: 70px;
@@ -50,7 +50,7 @@ body {
 .audio-player {
   position: fixed;
   bottom: 0;
-  height: 70px;
+  height: 80px;
   width: 98.5%;
   /* width: fit-content; */
   /* border: solid 1px red; */

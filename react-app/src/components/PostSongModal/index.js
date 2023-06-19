@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import { editPlaylistThunk, getPlaylistsThunk, postPlaylistThunk } from '../../store/playlist';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-import { getSongsThunk, postSongThunk } from '../../store/songs';
+import { editSongThunk, getSongsThunk, postSongThunk } from '../../store/songs';
 import { authenticate } from '../../store/session';
 
 const dateFormater = (date) => {
@@ -40,6 +40,7 @@ function PostSongModal({ formType, song }) {
     editDate = dateFormater(song.releaseDate)
   }
   // console.log('edit date --->', editDate)
+  console.log('SONG FROM EDIT OPT',song)
 
 
   const { closeModal } = useModal();
@@ -74,12 +75,27 @@ function PostSongModal({ formType, song }) {
     const formData = new FormData()
     // console.log('REACT GENRE ID FOR CLASSSICAL', genre)
     formData.append('song_name', name)
-    formData.append('song_cover_photo', coverPicture)
-    formData.append('song_url', audioFile)
+    if (coverPicture) {
+      formData.append('song_cover_photo', coverPicture)
+    }
+    if (audioFile) {
+      formData.append('song_url', audioFile)
+    }
     formData.append('genre_id', parseInt(genre))
     formData.append('release_date', releaseDate)
     setSubmitted(true)
     if (formType === 'edit') {
+      const res = await dispatch(editSongThunk(song.id, formData))
+      // console.log('res from edit cond', res)
+      if (res.errors) {
+        setSubmitted(false)
+        setErrors(true)
+        return
+      } else {
+        await dispatch(authenticate())
+        dispatch(getSongsThunk())
+        closeModal()
+      }
 
     } else {
       // do posting here
@@ -93,7 +109,7 @@ function PostSongModal({ formType, song }) {
         // console.log('inside successful route (last step)')
         await dispatch(getSongsThunk())
         //dispatch getSongs to get the updated song state
-        dispatch(authenticate())
+        await dispatch(authenticate())
         // dispatch user state to get updated user state including user songs which should include all of a user's music
         closeModal()
         // await dispatch(getPlaylistsThunk())
@@ -109,7 +125,7 @@ function PostSongModal({ formType, song }) {
           <h1 className="formHeader">Post your Song</h1>
       }
       {submitted && (
-        <h3>Submitting song. Please wait...</h3>
+        <h3>Submitting. Please wait...</h3>
       )}
       <form onSubmit={handleSubmit}>
         <label>
