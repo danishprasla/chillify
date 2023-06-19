@@ -87,6 +87,39 @@ function Player() {
     }
     setPlaying(!playing)
   }
+  const handleBackClick = (e) => {
+    e.preventDefault()
+    if (songSpotTime > 5) {
+      player.current.currentTime = 0
+      return
+    } else {
+      let nextIdx = -1
+      if (songIndex == 0) {
+        nextIdx = selectedPlaylist.length - 1
+      } else {
+        nextIdx = songIndex - 1
+      }
+      let songId = selectedPlaylist[nextIdx]
+      dispatch(selectSongChange(songs[songId]))
+      return
+    }
+
+  }
+  const handleForwardClick = (e) => {
+    e.preventDefault()
+    let nextIdx = -1
+    if (songIndex == (selectedPlaylist.length - 1)) {
+      nextIdx = 0
+    } else {
+      nextIdx = songIndex + 1
+    }
+    setSongIndex(nextIdx)
+    let songId = selectedPlaylist[nextIdx]
+    dispatch(selectSongChange(songs[songId]))
+    return
+
+  }
+
   const handleSeekerChange = (e) => {
     e.preventDefault()
     // console.log(e.target.value)
@@ -159,9 +192,9 @@ function Player() {
       <div>
         <div className="player-buttons">
           <button> <i className="fa-solid fa-shuffle" /> </button>
-          <button> <i className="fa-solid fa-backward" /></button>
-          <button onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause" />) : (<i className="fa-solid fa-play" />)} </button>
-          <button><i className="fa-solid fa-forward" /></button>
+          <button onClick={(e) => handleBackClick(e)}> <i className="fa-solid fa-backward" /></button>
+          <button onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause fa-xl" />) : (<i className="fa-solid fa-play fa-xl" />)} </button>
+          <button onClick={(e) => handleForwardClick(e)} ><i className="fa-solid fa-forward" /></button>
           <button> <i className="fa-solid fa-repeat" /> </button>
         </div>
         <div className="player-details">
