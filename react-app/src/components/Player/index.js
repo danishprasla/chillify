@@ -9,7 +9,7 @@ function Player() {
 
   const [playing, setPlaying] = useState(false)
   const [songLength, setSongLength] = useState(0)
-  const [songSpotTime, setSongSpotTime] = useState(1)
+  const [songSpotTime, setSongSpotTime] = useState(0)
   const [songUrl, setSongUrl] = useState('')
   const [seekerBar, setSeekerBar] = useState(0)
   const [songIndex, setSongIndex] = useState(0)

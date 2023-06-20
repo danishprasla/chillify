@@ -44,9 +44,12 @@
 }
 .other-player-buttons {
   border: none;
-  color: white;
+  color: rgb(200, 200, 200);
   background-color: transparent;
   cursor: pointer;
+}
+.other-player-buttons:hover {
+  color: white
 }
 .player-buttons {
   display: flex;
@@ -63,6 +66,7 @@
 .seek-bar{
   width: 600px;
   /* margin: 0px 10px; */
+  cursor: pointer;
 }
 .player-details {
   display: flex;
