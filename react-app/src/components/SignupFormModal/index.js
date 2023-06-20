@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { signUp } from "../../store/session";
@@ -11,7 +11,9 @@ function SignupFormModal() {
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
+	const [errObj, setErrObj] = useState({})
 	const { closeModal } = useModal();
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -30,17 +32,18 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className="sign-up-form">
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+			<form className='signup-form-container' onSubmit={handleSubmit}>
+				<div>
 					{errors.map((error, idx) => (
-						<li key={idx}>{error}</li>
+						<div className="form-error-message" key={idx}>{error}</div>
 					))}
-				</ul>
+				</div>
 				<label>
 					Email
 					<input
+						className="signup-text-field"
 						type="text"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
@@ -50,6 +53,7 @@ function SignupFormModal() {
 				<label>
 					Username
 					<input
+						className="signup-text-field"
 						type="text"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
@@ -59,6 +63,7 @@ function SignupFormModal() {
 				<label>
 					Password
 					<input
+						className="signup-text-field"
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
@@ -68,15 +73,16 @@ function SignupFormModal() {
 				<label>
 					Confirm Password
 					<input
+						className="signup-text-field"
 						type="password"
 						value={confirmPassword}
 						onChange={(e) => setConfirmPassword(e.target.value)}
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button className='submit-button' type="submit">Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

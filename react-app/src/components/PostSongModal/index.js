@@ -7,6 +7,8 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { editSongThunk, getSongsThunk, postSongThunk } from '../../store/songs';
 import { authenticate } from '../../store/session';
 
+import './PostSong.css'
+
 const dateFormater = (date) => {
   const months = {
     'Jan': '01',
@@ -144,18 +146,19 @@ function PostSongModal({ formType, song }) {
           <h1 className="formHeader">Post your Song</h1>
       }
       {(submitted && !errors) && (
-        <div>
+        <div className='loading-field-submit'>
           <h5>Submitting playlist. Please wait...</h5>
-          <img src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
+          <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form className='song-form' onSubmit={handleSubmit}>
         <label>
           Song name:
           {(errors && errObj.name) && (
             <p className='form-error-message'>{errObj.name}</p>
           )}
           <input
+            className='form-text-name'
             placeholder='Enter your song name'
             type='text'
             value={name}
@@ -164,7 +167,7 @@ function PostSongModal({ formType, song }) {
         </label>
         <label>
           Genre
-          <select value={genre} onChange={(e) => setGenre(e.target.value)}>
+          <select className='select-genre' value={genre} onChange={(e) => setGenre(e.target.value)}>
             <option value={1}>Classical</option>
             <option value={2}>Video Game Soundtracks</option>
             <option value={3}>Anime Lo-fi</option>
@@ -175,6 +178,7 @@ function PostSongModal({ formType, song }) {
         <label>
           Release Date
           <input
+            className='release-date-field'
             type="date"
             max={maxDate}
             value={releaseDate}
@@ -188,6 +192,7 @@ function PostSongModal({ formType, song }) {
             <p className='form-error-message'>{errObj.coverPicture}</p>
           )}
           <input
+            className='file-field'
             placeholder='insert file'
             type="file"
             accept='image/*'
@@ -201,6 +206,7 @@ function PostSongModal({ formType, song }) {
             <p className='form-error-message'>{errObj.audio}</p>
           )}
           <input
+            className='file-field'
             placeholder='insert file'
             type="file"
             accept='audio/*'
@@ -208,7 +214,7 @@ function PostSongModal({ formType, song }) {
             onChange={(e) => setAudioFile(e.target.files[0])}
           />
         </label>
-        <button disabled={submitted}>
+        <button className='submit-button' disabled={submitted}>
           {
             (formType === 'edit') ? "Submit Edit" :
               "Submit Song"
