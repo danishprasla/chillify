@@ -25,7 +25,7 @@ function GenrePage() {
     )
   }
   const selectedGenre = genres[genreId]
-  console.log('selected genre ', selectedGenre)
+  // console.log('selected genre ', selectedGenre)
   const genreMusicIds = selectedGenre.songIds
 
   return (

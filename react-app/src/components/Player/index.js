@@ -180,7 +180,7 @@ function Player() {
 
   return (
     <div className="audio-player">
-      <div>
+      <div className="player-song-detail-wrapper">
         {songUrl.length > 0 && (
           <div className="player-song-detail">
             <img className="player-song-image" src={selected.song.coverPicture} />
@@ -201,16 +201,18 @@ function Player() {
         preload="metadata"
         onTimeUpdate={timeUpdate}
       ></audio>
-      <div>
+      <div className="player-main-player">
         <div className="player-buttons">
-          <button> <i className="fa-solid fa-shuffle" /> </button>
-          <button onClick={(e) => handleBackClick(e)}> <i className="fa-solid fa-backward" /></button>
-          <button onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause fa-xl" />) : (<i className="fa-solid fa-play fa-xl" />)} </button>
-          <button onClick={(e) => handleForwardClick(e)} ><i className="fa-solid fa-forward" /></button>
-          <button> <i className="fa-solid fa-repeat" /> </button>
+          <button className="other-player-buttons"> <i className="fa-solid fa-shuffle fa-lg" /> </button>
+          <button className="other-player-buttons" onClick={(e) => handleBackClick(e)}> <i className="fa-solid fa-backward fa-lg" /></button>
+          <button className="player-play-pause-button" onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause fa-xl" />) : (<i className="fa-solid fa-play fa-xl" />)} </button>
+          <button className="other-player-buttons" onClick={(e) => handleForwardClick(e)} ><i className="fa-solid fa-forward fa-lg" /></button>
+          <button className="other-player-buttons"> <i className="fa-solid fa-repeat fa-lg" /> </button>
         </div>
         <div className="player-details">
-          <div>{secondConverter(songSpotTime)}</div>
+          <div>
+            {secondConverter(songSpotTime)}
+          </div>
           <div>
             <input
               className="seek-bar"
