@@ -28,22 +28,21 @@ function App() {
   useEffect(() => {
     dispatch(authenticate())
       .then(() => {
-        if (Object.values(playlists).length == 0) {
-          // console.log('inside if conditional')
-          dispatch(getPlaylistsThunk())
+        const promiseArr = [];
+
+        if (Object.values(playlists).length === 0) {
+          promiseArr.push(dispatch(getPlaylistsThunk()));
         }
 
-      })
-      .then(() => {
-        if (Object.values(songs).length == 0) {
-          dispatch(getSongsThunk())
+        if (Object.values(songs).length === 0) {
+          promiseArr.push(dispatch(getSongsThunk()));
         }
 
-      })
-      .then(() => {
-        if (Object.values(genres).length == 0) {
-          dispatch(getGenreThunk())
+        if (Object.values(genres).length === 0) {
+          promiseArr.push(dispatch(getGenreThunk()));
         }
+
+        return Promise.all(promiseArr);
       })
       .then(() => setIsLoaded(true));
 
