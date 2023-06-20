@@ -57,6 +57,7 @@
   /* padding-left: 5px; */
   color: rgb(200, 200, 200);
 }
+
 .side-bar-plus {
   color: rgb(200, 200, 200);
 }
@@ -109,6 +110,7 @@
   padding: 0px 20px;
   box-sizing: border-box;
 }
+
 .side-bar-music-title {
   padding: 0px 20px;
 }
@@ -156,6 +158,18 @@
   height: 50px;
   border-radius: 5px;
 }
+
+.liked-songs-square {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(124, 212, 252, 1) 100%);
+}
+
 .side-bar-playlist-tile {
   display: flex;
   align-items: center;
@@ -168,11 +182,13 @@
   box-sizing: border-box;
   /* margin-left: -5px; */
 }
+
 .side-bar-playlist-tile:hover {
   background-color: rgb(39, 39, 39);
   border-radius: 5px;
 
 }
+
 .side-bar-playlist-wrapper {
   overflow-y: scroll;
   padding: 0px 7px;

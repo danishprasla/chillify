@@ -1,0 +1,10 @@
+.liked-songs-square-page {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(124, 212, 252, 1) 100%);
+  font-size: 3em;
+}
