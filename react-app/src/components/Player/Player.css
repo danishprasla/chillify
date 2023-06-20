@@ -54,6 +54,8 @@
 .player-buttons {
   display: flex;
   gap: 20px;
+  padding-top: 5px;
+
   
 }
 .player-main-player {
@@ -73,6 +75,6 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 5px;
 }

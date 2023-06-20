@@ -51,9 +51,9 @@ function PlaylistPage() {
     <div>
       <div className='playlist-page-playlist-detail'>
         <img className='playlist-page-cover-img' src={playlist.coverImage} />
-        <div>
+        <div className='playlist-detail-tile'>
           <div>Playlist</div>
-          <h1>{playlist.name}</h1>
+          <h1 className='playlist-name'>{playlist.name}</h1>
           <div>
             {playlist.playlistOwner} · {playlistLength} songs
           </div>
