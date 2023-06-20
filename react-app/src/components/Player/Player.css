@@ -31,3 +31,44 @@
   align-items: center;
   gap: 10px;
 }
+.player-song-detail-wrapper {
+  width: 400px;
+}
+
+.player-play-pause-button {
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  border: none;
+  cursor: pointer;
+}
+.other-player-buttons {
+  border: none;
+  color: white;
+  background-color: transparent;
+  cursor: pointer;
+}
+.player-buttons {
+  display: flex;
+  gap: 20px;
+  
+}
+.player-main-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 500px;
+}
+.seek-bar{
+  width: 600px;
+  /* margin: 0px 10px; */
+}
+.player-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
