@@ -54,3 +54,13 @@
   width: 20px;
   text-align: right;
 }
+.song-description-container {
+  display: flex;
+  justify-content: space-between;
+  width: 95%;
+}
+.song-like-section {
+  display: flex;
+  align-items: center;
+  margin-right: 5px;
+}

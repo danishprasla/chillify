@@ -11,6 +11,7 @@ function GenrePage() {
 
   const genres = useSelector((state) => state.genres)
   const songs = useSelector((state) => state.songs)
+  const user = useSelector((state) => state.session.user)
 
   const [hoverPlay, setHoverPlay] = useState(null)
 
@@ -80,7 +81,10 @@ function GenrePage() {
                       {songs[songId].authorInfo.username}
                     </div>
                   </div>
-                  <div>
+                  <div className='song-like-section'>
+                    <div className='liked-song'>
+                      {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                    </div>
                   </div>
                 </div>
               </div>

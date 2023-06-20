@@ -44,7 +44,7 @@ def post_playlist():
         db.session.commit()
         return new_playlist.to_dict()
     else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
     
 @playlist_routes.route('/<int:playlist_id>', methods =['DELETE'])
 @login_required
