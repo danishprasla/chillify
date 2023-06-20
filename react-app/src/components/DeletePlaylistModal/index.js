@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deletePlaylistThunk, getPlaylistsThunk } from "../../store/playlist";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { authenticate } from "../../store/session";
 
 const DeletePlaylistModal = ({ playlistId }) => {
   const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const DeletePlaylistModal = ({ playlistId }) => {
     history.push('/')  
     await dispatch(deletePlaylistThunk(playlistId))
     dispatch(getPlaylistsThunk())
+    dispatch(authenticate())
     closeModal()
   }
   const handleExitClick = (e) => {

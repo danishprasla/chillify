@@ -16,6 +16,7 @@ import { getSongsThunk } from "./store/songs";
 import { getGenreThunk } from "./store/genre";
 import MyMusic from "./components/UserMusic";
 import LoadingComp from "./components/Loading";
+import LikedSongs from "./components/LikedSongs";
 
 
 function App() {
@@ -80,6 +81,9 @@ function App() {
                     </Route>
                     <Route exact path='/my-music'>
                       <MyMusic />
+                    </Route>
+                    <Route exact path='/liked-songs'>
+                      <LikedSongs />
                     </Route>
                   </Switch>
                 )}

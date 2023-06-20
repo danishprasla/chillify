@@ -11,12 +11,12 @@ import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
 import { selectSong } from '../../store/selectedSong';
 
-const audioLength = async (url) => {
-  let audio = new Audio();
-  audio.src = url;
-  await audio.load();
-  return audio.duration;
-}
+// const audioLength = async (url) => {
+//   let audio = new Audio();
+//   audio.src = url;
+//   await audio.load();
+//   return audio.duration;
+// }
 
 function PlaylistPage() {
 
@@ -32,9 +32,7 @@ function PlaylistPage() {
   //   dispatch(getPlaylistsThunk())
   // }
   const [hoverPlay, setHoverPlay] = useState(null)
-  // console.log(hoverPlay)
-  // console.log(user)
-  // console.log(playlists)
+
   if (Object.values(playlists).length == 0 || Object.values(songs).length == 0) {
     return (<h1>Loading...</h1>)
   }
