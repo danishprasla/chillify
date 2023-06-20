@@ -26,17 +26,26 @@ function App() {
   const songs = useSelector((state) => state.songs)
   const genres = useSelector((state) => state.genres)
   useEffect(() => {
-    dispatch(authenticate()).then(() => setIsLoaded(true));
-    if (Object.values(playlists).length == 0) {
-      // console.log('inside if conditional')
-      dispatch(getPlaylistsThunk())
-    }
-    if (Object.values(songs).length == 0) {
-      dispatch(getSongsThunk())
-    }
-    if (Object.values(genres).length == 0) {
-      dispatch(getGenreThunk())
-    }
+    dispatch(authenticate())
+      .then(() => {
+        if (Object.values(playlists).length == 0) {
+          // console.log('inside if conditional')
+          dispatch(getPlaylistsThunk())
+        }
+
+      })
+      .then(() => {
+        if (Object.values(songs).length == 0) {
+          dispatch(getSongsThunk())
+        }
+
+      })
+      .then(() => {
+        if (Object.values(genres).length == 0) {
+          dispatch(getGenreThunk())
+        }
+      })
+      .then(() => setIsLoaded(true));
 
   }, [dispatch]);
 
