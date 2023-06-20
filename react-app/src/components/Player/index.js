@@ -14,6 +14,7 @@ function Player() {
   const [seekerBar, setSeekerBar] = useState(0)
   const [songIndex, setSongIndex] = useState(0)
   const [loop, setLoop] = useState(false)
+  const [shuffle, setShuffle] = useState(false)
   const [volume, setVolume] = useState(100)
 
   const dispatch = useDispatch()
@@ -55,6 +56,13 @@ function Player() {
   useEffect(() => {
     if (songSpotTime == songLength) {
       // console.log('end of song!')
+      if (shuffle) {
+        let randomIndex = Math.floor(Math.random() * selectedPlaylist.length)
+        setSongIndex(randomIndex)
+        let songId = selectedPlaylist[randomIndex]
+        dispatch(selectSongChange(songs[songId]))
+        return
+      }
       if (loop) {
         player.current.currentTime = 0
         return
@@ -93,6 +101,22 @@ function Player() {
       player.current.play()
     }
     setPlaying(!playing)
+    return
+  }
+  const handleShuffleClick = (e) => {
+    e.preventDefault()
+    setShuffle(!shuffle)
+    if (loop) {
+      setLoop(false)
+    }
+  }
+  const handleLoopClick = (e) => {
+    e.preventDefault()
+    setLoop(!loop)
+    if (shuffle) {
+      setShuffle(false)
+    }
+    return
   }
   const handleBackClick = (e) => {
     e.preventDefault()
@@ -203,11 +227,24 @@ function Player() {
       ></audio>
       <div className="player-main-player">
         <div className="player-buttons">
-          <button className="other-player-buttons"> <i className="fa-solid fa-shuffle fa-lg" /> </button>
+          {shuffle ? (
+            <button onClick={(e) => handleShuffleClick(e)} className="player-pressed-button">
+              <i className="fa-solid fa-shuffle fa-lg" style={{ color: "#7cd4fc" }} />
+            </button>
+
+          ) : (
+            <button onClick={(e) => handleShuffleClick(e)} className="other-player-buttons">
+              <i className="fa-solid fa-shuffle fa-lg" />
+            </button>
+          )}
           <button className="other-player-buttons" onClick={(e) => handleBackClick(e)}> <i className="fa-solid fa-backward fa-lg" /></button>
           <button className="player-play-pause-button" onClick={(e) => handlePlayPause(e)}> {playing ? (<i className="fa-solid fa-pause fa-xl" />) : (<i className="fa-solid fa-play fa-xl" />)} </button>
           <button className="other-player-buttons" onClick={(e) => handleForwardClick(e)} ><i className="fa-solid fa-forward fa-lg" /></button>
-          <button className="other-player-buttons"> <i className="fa-solid fa-repeat fa-lg" /> </button>
+          {loop ? (
+            <button onClick={(e) => handleLoopClick(e)} className="player-pressed-button"> <i className="fa-solid fa-repeat fa-lg" style={{ color: "#7cd4fc" }} /> </button>
+          ) : (
+            <button onClick={(e) => handleLoopClick(e)} className="other-player-buttons"> <i className="fa-solid fa-repeat fa-lg" /> </button>
+          )}
         </div>
         <div className="player-details">
           <div>
@@ -248,7 +285,7 @@ function Player() {
         />
       </div>
 
-    </div>
+    </div >
   )
 
 }
