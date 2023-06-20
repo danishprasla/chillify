@@ -147,7 +147,7 @@ function PostSongModal({ formType, song }) {
       }
       {(submitted && !errors) && (
         <div className='loading-field-submit'>
-          <h5>Submitting playlist. Please wait...</h5>
+          <h5>Submitting song. Please wait...</h5>
           <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
         </div>
       )}

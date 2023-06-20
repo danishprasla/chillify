@@ -78,6 +78,7 @@ function PostPlaylistModal({ formType, playlist }) {
         setErrors(true)
         return
       } else {
+        await dispatch(sessionActions.authenticate())
         closeModal()
         // await dispatch(getPlaylistsThunk())
         return history.push(`/playlists/${res.id}`)

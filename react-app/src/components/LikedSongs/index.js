@@ -12,7 +12,13 @@ function LikedSongs() {
   const [hoverPlay, setHoverPlay] = useState(null)
   // console.log(user)
   const likedSongIds = user.likedSongsIds
-  // console.log(likedSongIds)
+
+  let likedSongIdsReversed = []
+
+  for (let i = likedSongIds.length - 1; i >= 0; i--) {
+    likedSongIdsReversed.push(likedSongIds[i])
+  }
+  // console.log(likedSongIdsReversed)
   return (
     <div>
       <div>
@@ -45,7 +51,7 @@ function LikedSongs() {
               {hoverPlay === idx ? (
                 <div
                   className='song-play-button'
-                  onClick={() => dispatch(selectSong(songs[songId], likedSongIds))}
+                  onClick={() => dispatch(selectSong(songs[songId], likedSongIdsReversed))}
                 >
                   <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
                 </div>) :

@@ -61,7 +61,9 @@
 .side-bar-plus {
   color: rgb(200, 200, 200);
 }
-
+.no-playlists {
+  padding-left: 12px;
+}
 .side-bar-home:hover,
 .side-bar-music-title:hover,
 .side-bar-plus:hover {

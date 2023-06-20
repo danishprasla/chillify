@@ -122,8 +122,26 @@ function Sidebar() {
 				<div className='side-bar-playlist-wrapper'>
 					{(!user.playlistIds.length) ? (
 						<div>
-							No playlists. Click the plus sign above to create one now!
+							<div className='no-playlists'>
+								No playlists. Click the plus sign above to create one now!
+
+							</div>
+							<div className='side-bar-playlist-tile' onClick={() => history.push(`/liked-songs`)}>
+								<div className='liked-songs-square'>
+									<i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
+								</div>
+								<div>
+									<div className="side-bar-playlist-title">
+										Liked Songs
+									</div>
+									<div className='side-bar-playlist-owner'>
+										{user.username}
+									</div>
+
+								</div>
+							</div>
 						</div>
+
 
 					) : (
 						<div className="side-bar-playlist-container">
