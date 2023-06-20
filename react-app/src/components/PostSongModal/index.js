@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
@@ -40,7 +40,7 @@ function PostSongModal({ formType, song }) {
     editDate = dateFormater(song.releaseDate)
   }
   // console.log('edit date --->', editDate)
-  console.log('SONG FROM EDIT OPT',song)
+  // console.log('SONG FROM EDIT OPT',song)
 
 
   const { closeModal } = useModal();
@@ -51,9 +51,28 @@ function PostSongModal({ formType, song }) {
   const [releaseDate, setReleaseDate] = useState(editDate || '')
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState(false)
+  const [errObj, setErrObj] = useState({})
 
 
   const history = useHistory()
+
+  useEffect(() => {
+    let err = {}
+    if (name > 100) {
+      err.name = 'Name must be less than 100 characters'
+    }
+    if (name < 5) {
+      err.name = 'Name must be greater than 5 characters'
+    }
+    if (!audioFile && formType !== 'edit') {
+      err.audio = 'You must attach an audio file'
+    }
+    if (!coverPicture && formType !== 'edit') {
+      err.coverPicture = 'You must attach a cover picture for your song'
+    }
+    setErrObj(err)
+
+  }, [name, coverPicture, audioFile, genre, releaseDate])
 
   let today = new Date()
   let day = today.getDate()
@@ -124,12 +143,18 @@ function PostSongModal({ formType, song }) {
         (formType === 'edit') ? <h1 className='formHeader'>Edit your Song </h1> :
           <h1 className="formHeader">Post your Song</h1>
       }
-      {submitted && (
-        <h3>Submitting. Please wait...</h3>
+      {(submitted && !errors) && (
+        <div>
+          <h5>Submitting playlist. Please wait...</h5>
+          <img src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
+        </div>
       )}
       <form onSubmit={handleSubmit}>
         <label>
           Song name:
+          {(errors && errObj.name) && (
+            <p className='form-error-message'>{errObj.name}</p>
+          )}
           <input
             placeholder='Enter your song name'
             type='text'
@@ -159,6 +184,9 @@ function PostSongModal({ formType, song }) {
         </label>
         <label>
           Cover Image:
+          {(errors && errObj.coverPicture) && (
+            <p className='form-error-message'>{errObj.coverPicture}</p>
+          )}
           <input
             placeholder='insert file'
             type="file"
@@ -169,6 +197,9 @@ function PostSongModal({ formType, song }) {
         </label>
         <label>
           Audio File:
+          {(errors && errObj.audio) && (
+            <p className='form-error-message'>{errObj.audio}</p>
+          )}
           <input
             placeholder='insert file'
             type="file"

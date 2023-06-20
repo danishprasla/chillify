@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
@@ -22,9 +22,25 @@ function PostPlaylistModal({ formType, playlist }) {
   const [coverPicture, setCoverPicture] = useState(undefined)
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState(false)
+  const [errObj, setErrObj] = useState({})
   const history = useHistory()
 
   // const user = useSelector(state => state.session.user)
+  useEffect(() => {
+    let errors = {}
+    if (name > 100) {
+      errors.name = 'Name must be less than 100 characters'
+    }
+    if (name < 5) {
+      errors.name = 'Name must be greater than 5 characters'
+    }
+    if (!coverPicture && formType !== 'edit') {
+      errors.coverPicture = 'You must add a cover picture for your playlist'
+    }
+
+    setErrObj(errors)
+
+  }, [name, coverPicture])
 
 
   const handleSubmit = async (e) => {
@@ -76,11 +92,17 @@ function PostPlaylistModal({ formType, playlist }) {
           <h1 className="formHeader">Create a Playlist</h1>
       }
       {submitted && (
-        <h3>Submitting playlist. Please wait...</h3>
+        <div>
+          <h5>Submitting playlist. Please wait...</h5>
+          <img src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
+        </div>
       )}
       <form onSubmit={handleSubmit}>
         <label>
           Playlist Name:
+          {(errors && errObj.name) && (
+            <p className='form-error-message'>{errObj.name}</p>
+          )}
           <input
             placeholder='Playlist name'
             type="text"
@@ -98,6 +120,9 @@ function PostPlaylistModal({ formType, playlist }) {
         </label>
         <label>
           Playlist cover picture:
+          {(errors && errObj.coverPicture) && (
+            <p className='form-error-message'>{errObj.coverPicture}</p>
+          )}
           <input
             placeholder='insert file'
             type="file"

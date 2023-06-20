@@ -59,7 +59,7 @@ def post_song():
         return new_song.to_dict()
     else:
         # print('FORM ERRORS ON CLASSICAL POST BUT WHY?!', form.errors)
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @song_routes.route('/<int:song_id>', methods = ['DELETE'])

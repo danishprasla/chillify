@@ -11,6 +11,13 @@ import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
 import { selectSong } from '../../store/selectedSong';
 
+const audioLength = async (url) => {
+  let audio = new Audio();
+  audio.src = url;
+  await audio.load();
+  return audio.duration;
+}
+
 function PlaylistPage() {
 
   const dispatch = useDispatch()
@@ -103,7 +110,10 @@ function PlaylistPage() {
                   {songs[songId].authorInfo.username}
                 </div>
               </div>
-              <div>
+              <div className='song-like-section'>
+                <div className='liked-song'>
+                  {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                </div>
               </div>
             </div>
           </div>
