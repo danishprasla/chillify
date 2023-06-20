@@ -17,23 +17,24 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
   return (
-    <>
+    <div className="login-form-wrapper">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
+      <form className='login-form' onSubmit={handleSubmit}>
+        <div>
           {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
+            <div className='form-error-message' key={idx}>{error}</div>
           ))}
-        </ul>
+        </div>
         <label>
           Email
           <input
             type="text"
+            className="login-text-field"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -42,15 +43,16 @@ function LoginFormModal() {
         <label>
           Password
           <input
+            className="login-text-field"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button className='submit-button' type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

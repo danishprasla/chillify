@@ -1,0 +1,20 @@
+.login-form-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.login-text-field {
+  width: 97%;
+}
