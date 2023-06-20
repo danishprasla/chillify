@@ -1,0 +1,65 @@
+.submit-playlist-modal {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: fit-content;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+.playlist-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: flex-start; */
+  gap: 20px;
+}
+
+.submit-button {
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
+  height: 30px;
+  font-size: 14pt;
+  border: none;
+  cursor: pointer;
+}
+
+.submit-button:hover, input::file-selector-button:hover {
+  background-color: white;
+  box-shadow: 0px 0px 5px #7cd4fc;
+  /* box-shadow: 0px 0px 2px whitesmoke; */
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
+  transition: box-shadow 300ms ease;
+}
+
+.form-error-message {
+  color: red;
+  font-weight: bold;
+  margin: 0;
+}
+
+
+.playlist-file-field,
+.visibility-form {
+  width: 100%;
+}
+.form-text-name{
+  width: 97%;
+}
+
+.form-loading-gif{
+  width: 100px;
+}
+.loading-field-submit {
+  text-align: center;
+}
+input::file-selector-button {
+  background-color: rgb(200, 200, 200);
+  cursor: pointer;
+  border: none;
+  border-radius: 4px;
+  height: 20px;
+  font-weight: 14pt;
+}

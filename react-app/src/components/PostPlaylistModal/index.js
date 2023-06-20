@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../context/Modal";
 import { editPlaylistThunk, getPlaylistsThunk, postPlaylistThunk } from '../../store/playlist';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './PostModal.css'
 
 function PostPlaylistModal({ formType, playlist }) {
 
@@ -91,13 +92,13 @@ function PostPlaylistModal({ formType, playlist }) {
         (formType === 'edit') ? <h1 className='formHeader'>Edit your Playlist </h1> :
           <h1 className="formHeader">Create a Playlist</h1>
       }
-      {submitted && (
-        <div>
+      {(submitted && !errors) && (
+        <div className='loading-field-submit'>
           <h5>Submitting playlist. Please wait...</h5>
-          <img src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
+          <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
         </div>
       )}
-      <form onSubmit={handleSubmit}>
+      <form className='playlist-form' onSubmit={handleSubmit}>
         <label>
           Playlist Name:
           {(errors && errObj.name) && (
@@ -106,32 +107,37 @@ function PostPlaylistModal({ formType, playlist }) {
           <input
             placeholder='Playlist name'
             type="text"
+            className='form-text-name'
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </label>
         <label>
           Visibility:
-          <select value={visibility} onChange={(e) => setVisibility(e.target.value)}>
+          <select className='visibility-form' value={visibility} onChange={(e) => setVisibility(e.target.value)}>
             <option value='private'>Private</option>
             <option value='public'>Public</option>
           </select>
 
         </label>
         <label>
-          Playlist cover picture:
+          <div>
+            Playlist Cover Picture:
+          </div>
           {(errors && errObj.coverPicture) && (
             <p className='form-error-message'>{errObj.coverPicture}</p>
           )}
           <input
+            className='playlist-file-field'
             placeholder='insert file'
             type="file"
             accept='image/*'
             filename={coverPicture && coverPicture.name}
             onChange={(e) => setCoverPicture(e.target.files[0])}
           />
+
         </label>
-        <button disabled={submitted}>
+        <button className='submit-button' disabled={submitted}>
           {
             (formType === 'edit') ? "Edit Playlist" :
               "Create Playlist"

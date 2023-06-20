@@ -65,13 +65,13 @@ function Sidebar() {
 						Home
 					</h3>
 				</div>
-				<div>
+				{/* <div>
 					<OpenModalButton
 						className='side-bar-upload-song-button'
 						buttonText="Upload Music"
 						modalComponent={<PostSongModal />}
 					/>
-				</div>
+				</div> */}
 			</div>
 			<div className='second-side-bar-section'>
 				<div className='second-container'>
