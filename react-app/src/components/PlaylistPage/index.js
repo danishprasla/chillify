@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from '../LoginFormModal'
 import SignupFormModal from '../SignupFormModal'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { getPlaylistsThunk } from '../../store/playlist';
+import { addSongToPlaylistThunk, getPlaylistsThunk } from '../../store/playlist';
 import PostPlaylistModal from '../PostPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
@@ -27,11 +27,36 @@ function PlaylistPage() {
   const user = useSelector((state) => state.session.user)
   const playlists = useSelector((state) => state.playlists)
   const songs = useSelector((state) => state.songs)
-  // if (Object.values(playlists).length == 0) {
-  //   console.log('inside if conditional')
-  //   dispatch(getPlaylistsThunk())
-  // }
+
   const [hoverPlay, setHoverPlay] = useState(null)
+
+  //drop down code ->
+  const [showMenu, setShowMenu] = useState(false)
+  const ulRef = useRef()
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
+
+  const dropDown = "song-dropdown-button" + (showMenu ? "" : " hidden");
+
+
 
   if (Object.values(playlists).length == 0 || Object.values(songs).length == 0) {
     return (<h1>Loading...</h1>)
@@ -41,6 +66,8 @@ function PlaylistPage() {
   // console.log('playlist ----<',playlist.songs)
   const playlistSongs = playlist.songs
   const playlistLength = playlistSongs.length
+  const userPlaylists = user.playlistIds
+  // console.log('user playlist ids', userPlaylists)
 
   // console.log('PLAYLIST SONGS!!!', playlistSongs)
 
@@ -108,9 +135,38 @@ function PlaylistPage() {
                   {songs[songId].authorInfo.username}
                 </div>
               </div>
-              <div className='song-like-section'>
+              <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                 <div className='liked-song'>
                   {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                </div>
+                <div className='song-drop-down' onClick={openMenu}>
+                  {hoverPlay === idx && (
+                    <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
+                  )}
+                </div>
+                <div className='drop-down-wrapper-songs'>
+                  {hoverPlay === idx && (
+                    <div className={dropDown} ref={ulRef}>
+                      <div className='add-to-playlist-dropdown'>
+                        Add to playlist:
+                      </div>
+                      <div className='drop-down-playlist-container'>
+                        {userPlaylists.map(playlistId => (
+                          <div
+                            className='playlist-drop-down-name'
+                            key={`drop-down-playlist-${playlistId}`}
+                            onClick={() => {
+                              dispatch(addSongToPlaylistThunk(playlistId, songId))
+                              closeMenu()
+                            }}
+                          >
+                            {playlists[playlistId].name}
+                          </div>
+                        ))}
+                      </div>
+
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
