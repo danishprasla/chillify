@@ -103,6 +103,7 @@
 
 .drop-down-playlist-container {
   /* border: 1px solid red; */
+  padding-top: 5px;
   height: 90px;
   overflow-y: scroll;
 }
@@ -137,7 +138,13 @@
 
 .remove-from-playlist:hover {
   background-color: rgb(83, 83, 83);
+  color: red;
   border-radius: 5px;
   transition-delay: 300ms ease;
   transition: background-color 300ms ease;
+  transition: color 100ms ease;
+}
+
+.liked-song {
+  cursor: pointer;
 }

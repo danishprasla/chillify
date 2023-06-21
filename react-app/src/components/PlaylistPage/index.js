@@ -80,7 +80,7 @@ function PlaylistPage() {
           <div>Playlist</div>
           <h1 className='playlist-name'>{playlist.name}</h1>
           <div>
-            {playlist.playlistOwner} · {playlistLength} songs
+            {playlist.playlistOwner} · {playlistLength === 0 ? ("No songs") : playlistLength > 1 ? (`${playlistLength} songs`) : (`${playlistLength} song`)}
           </div>
         </div>
 
@@ -137,7 +137,16 @@ function PlaylistPage() {
               </div>
               <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                 <div className='liked-song'>
-                  {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                  {(user.likedSongsIds).includes(songId) ? (
+                    <i
+                      className="fa-solid fa-heart"
+                      style={{ color: "#7cd4fc" }}
+                      onClick={() => dispatch(sessionActions.removeSongLike(songId))}
+                    />) : (
+                    <i
+                      className="fa-regular fa-heart"
+                      onClick={() => dispatch(sessionActions.addSongLike(songId))}
+                    />)}
                 </div>
                 <div className='song-drop-down' onClick={openMenu}>
                   {hoverPlay === idx && (
@@ -156,6 +165,7 @@ function PlaylistPage() {
                           }}
                         >
                           Remove from this playlist
+
                         </div>
                       )}
                       <div className='add-to-playlist-dropdown'>

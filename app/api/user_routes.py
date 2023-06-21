@@ -1,6 +1,9 @@
 from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import User
+from app.models.song import Song
+from app.models.db import db
+
 
 user_routes = Blueprint('users', __name__)
 
@@ -23,3 +26,32 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+@user_routes.route('/liked-songs/<int:song_id>/add', methods = ['POST'])
+@login_required
+def add_liked_song (song_id):
+    """Route to add a liked song for a user"""
+    user_id = current_user.id
+    curr_user = User.query.get(user_id)
+    song = Song.query.get(song_id)
+    curr_user.liked_songs.append(song)
+    db.session.commit()
+    return curr_user.to_dict()
+
+
+@user_routes.route('/liked-songs/<int:song_id>/delete', methods = ['DELETE'])
+@login_required
+def remove_liked_song (song_id):
+    """Route to remove a liked song for a user"""
+    user_id = current_user.id
+    curr_user = User.query.get(user_id)
+    # print('CURR USER ~~~~~~~>', curr_user)
+    song = Song.query.get(song_id)
+    # print('CURR SONG ~~~~~~~~~~>', song)
+    # print('TEST!!!!')
+    curr_user.liked_songs.remove(song)
+    db.session.commit()
+    return curr_user.to_dict()
+
+    
+    

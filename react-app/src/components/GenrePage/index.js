@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getGenreThunk } from "../../store/genre";
 import { selectSong } from "../../store/selectedSong";
 import { addSongToPlaylistThunk } from "../../store/playlist";
+import { addSongLike, removeSongLike } from "../../store/session";
 
 
 function GenrePage() {
@@ -110,7 +111,16 @@ function GenrePage() {
                   </div>
                   <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                     <div className='liked-song'>
-                      {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                      {(user.likedSongsIds).includes(songId) ? (
+                        <i
+                          className="fa-solid fa-heart"
+                          style={{ color: "#7cd4fc" }}
+                          onClick={() => dispatch(removeSongLike(songId))}
+                        />) : (
+                        <i
+                          className="fa-regular fa-heart"
+                          onClick={() => dispatch(addSongLike(songId))}
+                        />)}
                     </div>
                     <div className='song-drop-down' onClick={openMenu}>
                       {hoverPlay === idx && (

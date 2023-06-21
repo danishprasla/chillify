@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectSong } from "../../store/selectedSong";
 import './LikedSongs.css'
 import { addSongToPlaylistThunk } from "../../store/playlist";
+import { addSongLike, removeSongLike } from "../../store/session";
 
 function LikedSongs() {
   const dispatch = useDispatch()
@@ -103,7 +104,16 @@ function LikedSongs() {
                 </div>
                 <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                   <div className='liked-song'>
-                    {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                    {(user.likedSongsIds).includes(songId) ? (
+                      <i
+                        className="fa-solid fa-heart"
+                        style={{ color: "#7cd4fc" }}
+                        onClick={() => dispatch(removeSongLike(songId))}
+                      />) : (
+                      <i
+                        className="fa-regular fa-heart"
+                        onClick={() => dispatch(addSongLike(songId))}
+                      />)}
                   </div>
                   <div className='song-drop-down' onClick={openMenu}>
                     {hoverPlay === idx && (

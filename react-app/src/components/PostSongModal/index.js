@@ -102,8 +102,12 @@ function PostSongModal({ formType, song }) {
     if (audioFile) {
       formData.append('song_url', audioFile)
     }
+    if (!releaseDate) {
+      formData.append('release_date', maxDate)
+    } else {
+      formData.append('release_date', releaseDate)
+    }
     formData.append('genre_id', parseInt(genre))
-    formData.append('release_date', releaseDate)
     setSubmitted(true)
     if (formType === 'edit') {
       const res = await dispatch(editSongThunk(song.id, formData))
