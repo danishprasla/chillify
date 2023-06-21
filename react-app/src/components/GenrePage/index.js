@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getGenreThunk } from "../../store/genre";
 import { selectSong } from "../../store/selectedSong";
+import { addSongToPlaylistThunk } from "../../store/playlist";
 
 
 function GenrePage() {
@@ -12,8 +13,33 @@ function GenrePage() {
   const genres = useSelector((state) => state.genres)
   const songs = useSelector((state) => state.songs)
   const user = useSelector((state) => state.session.user)
+  const playlists = useSelector((state) => state.playlists)
 
   const [hoverPlay, setHoverPlay] = useState(null)
+  const [showMenu, setShowMenu] = useState(false)
+  const ulRef = useRef()
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
+
+  const dropDown = "song-dropdown-button" + (showMenu ? "" : " hidden");
 
   // useEffect(()=> {
   //   dispatch(getGenreThunk())
@@ -28,6 +54,7 @@ function GenrePage() {
   const selectedGenre = genres[genreId]
   // console.log('selected genre ', selectedGenre)
   const genreMusicIds = selectedGenre.songIds
+  const userPlaylists = user.playlistIds
 
   return (
     <div>
@@ -81,9 +108,38 @@ function GenrePage() {
                       {songs[songId].authorInfo.username}
                     </div>
                   </div>
-                  <div className='song-like-section'>
+                  <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                     <div className='liked-song'>
                       {(user.likedSongsIds).includes(songId) ? (<i className="fa-solid fa-heart" style={{ color: "#7cd4fc" }} />) : (<i className="fa-regular fa-heart" />)}
+                    </div>
+                    <div className='song-drop-down' onClick={openMenu}>
+                      {hoverPlay === idx && (
+                        <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
+                      )}
+                    </div>
+                    <div className='drop-down-wrapper-songs'>
+                      {hoverPlay === idx && (
+                        <div className={dropDown} ref={ulRef}>
+                          <div className='add-to-playlist-dropdown'>
+                            Add to playlist:
+                          </div>
+                          <div className='drop-down-playlist-container'>
+                            {userPlaylists.map(playlistId => (
+                              <div
+                                className='playlist-drop-down-name'
+                                key={`drop-down-genre-${playlistId}`}
+                                onClick={() => {
+                                  dispatch(addSongToPlaylistThunk(playlistId, songId))
+                                  closeMenu()
+                                }}
+                              >
+                                {playlists[playlistId].name}
+                              </div>
+                            ))}
+                          </div>
+
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

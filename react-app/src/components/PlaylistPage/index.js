@@ -5,7 +5,7 @@ import SignupFormModal from '../SignupFormModal'
 import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
-import { addSongToPlaylistThunk, getPlaylistsThunk } from '../../store/playlist';
+import { addSongToPlaylistThunk, deleteSongFromPlaylistThunk, getPlaylistsThunk } from '../../store/playlist';
 import PostPlaylistModal from '../PostPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
@@ -147,20 +147,31 @@ function PlaylistPage() {
                 <div className='drop-down-wrapper-songs'>
                   {hoverPlay === idx && (
                     <div className={dropDown} ref={ulRef}>
+                      {playlists[playlistId].user === user.id && (
+                        <div
+                          className='remove-from-playlist'
+                          onClick={() => {
+                            dispatch(deleteSongFromPlaylistThunk(playlistId, songId))
+                            closeMenu()
+                          }}
+                        >
+                          Remove from this playlist
+                        </div>
+                      )}
                       <div className='add-to-playlist-dropdown'>
                         Add to playlist:
                       </div>
                       <div className='drop-down-playlist-container'>
-                        {userPlaylists.map(playlistId => (
+                        {userPlaylists.map(playlistIds => (
                           <div
                             className='playlist-drop-down-name'
-                            key={`drop-down-playlist-${playlistId}`}
+                            key={`drop-down-playlist-${playlistIds}`}
                             onClick={() => {
-                              dispatch(addSongToPlaylistThunk(playlistId, songId))
+                              dispatch(addSongToPlaylistThunk(playlistIds, songId))
                               closeMenu()
                             }}
                           >
-                            {playlists[playlistId].name}
+                            {playlists[playlistIds].name}
                           </div>
                         ))}
                       </div>
