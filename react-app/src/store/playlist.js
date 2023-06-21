@@ -2,6 +2,7 @@ const GET_PLAYLISTS = 'playlists/getAllPlaylists'
 const POST_PLAYLIST = 'playlist/postPlaylist'
 const DELETE_PLAYLIST = 'playlist/deletePlaylist'
 const EDIT_PLAYLIST = 'playlist/editPlaylist'
+const POST_SONG_TO_PLAYLIST = 'playlist/addSong'
 
 const getPlaylists = (playlists) => {
   return {
@@ -85,6 +86,16 @@ export const editPlaylistThunk = (playlistId, editData) => async (dispatch) => {
   }
 
 }
+export const addSongToPlaylistThunk = (playlistId, songId) => async (dispatch) => {
+  const res = await fetch(`/api/playlists/${playlistId}/song/${songId}/add`, {
+    method: 'POST'
+  })
+  const data = await res.json()
+  if (res.ok) {
+    dispatch(getPlaylistsThunk())
+    return data
+  }
+}
 
 
 
@@ -101,7 +112,7 @@ const playlistReducer = (state = initialState, action) => {
       return newState
     }
     case EDIT_PLAYLIST: {
-      const newState = {...state}
+      const newState = { ...state }
       newState[action.playlist.id] = action.playlist
       return newState
     }

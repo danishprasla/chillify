@@ -96,6 +96,20 @@ def edit_playlist(playlist_id):
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}
 
+@playlist_routes.route('/<int:playlist_id>/song/<int:song_id>/add', methods = ['POST'])
+@login_required
+def add_song_to_playlist(playlist_id, song_id):
+    playlist = Playlist.query.get(playlist_id)
+    user_id = current_user.id
+    if playlist.user_id != user_id:
+        return {"message": 'Forbidden: You are not the owner of this playlist'}, 403
+
+    song = Song.query.get(song_id)
+    playlist.playlist_songs.append(song)
+    db.session.commit()
+    return playlist.to_dict()
+
+
 
 
 
