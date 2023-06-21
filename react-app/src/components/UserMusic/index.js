@@ -7,6 +7,7 @@ import { addSongToPlaylistThunk } from "../../store/playlist";
 import { addSongLike, removeSongLike } from "../../store/session";
 import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { selectSong } from "../../store/selectedSong";
+import './UserMusic.css'
 
 const MyMusic = () => {
 
@@ -114,7 +115,7 @@ const MyMusic = () => {
                 <div className='drop-down-wrapper-songs'>
                   {hoverPlay === idx && (
                     <div className={dropDown} ref={ulRef}>
-                      <div>
+                      <div className='user-songs-tools'>
                         <OpenModalMenuItem
                           className='user-songs-edit'
                           onItemClick={closeMenu}
@@ -122,7 +123,7 @@ const MyMusic = () => {
                           modalComponent={<PostSongModal song={songs[songId]} formType={'edit'} />}
                         />
                       </div>
-                      <div>
+                      <div className='user-songs-tools2'>
                         <OpenModalMenuItem
                           className='user-songs-delete'
                           onItemClick={closeMenu}
