@@ -9,12 +9,12 @@ const DeletePlaylistModal = ({ playlistId }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { closeModal } = useModal()
-  console.log('playlist id inside modal --->',playlistId)
+  console.log('playlist id inside modal --->', playlistId)
 
   const handleDeleteClick = async (e) => {
     e.preventDefault()
     console.log('delete button pressed!!!!!')
-    history.push('/')  
+    history.push('/')
     await dispatch(deletePlaylistThunk(playlistId))
     dispatch(getPlaylistsThunk())
     dispatch(authenticate())
@@ -27,12 +27,14 @@ const DeletePlaylistModal = ({ playlistId }) => {
   return (
 
 
-    <div>
-      Deleting a playlist is permanent! Please confirm below.
-      <button onClick={(e) => handleDeleteClick(e)}>
+    <div className="delete-modal">
+      <h2>
+        Deleting a playlist is permanent! Please confirm below.
+      </h2>
+      <button className="confirm-delete-button" onClick={(e) => handleDeleteClick(e)}>
         Confirm
       </button>
-      <button onClick={(e) => handleExitClick(e)}>
+      <button className='exit-delete-button' onClick={(e) => handleExitClick(e)}>
         Exit
       </button>
     </div>

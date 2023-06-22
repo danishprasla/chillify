@@ -37,7 +37,9 @@ function SignupFormModal() {
 			<form className='signup-form-container' onSubmit={handleSubmit}>
 				<div>
 					{errors.map((error, idx) => (
-						<div className="form-error-message" key={idx}>{error}</div>
+						<div className="form-error-message-signup" key={idx}>
+							{error.split(': ')[1]}
+						</div>
 					))}
 				</div>
 				<label>

@@ -29,14 +29,14 @@ function PostPlaylistModal({ formType, playlist }) {
   // const user = useSelector(state => state.session.user)
   useEffect(() => {
     let errors = {}
-    if (name > 100) {
-      errors.name = 'Name must be less than 100 characters'
+    if (name.length > 50) {
+      errors.name = 'Name must be less than 50 characters'
     }
-    if (name < 5) {
-      errors.name = 'Name must be greater than 5 characters'
+    if (name.length < 4) {
+      errors.name = 'Name must be greater than 4 characters'
     }
     if (!coverPicture && formType !== 'edit') {
-      errors.coverPicture = 'You must add a cover picture for your playlist'
+      errors.coverPicture = 'Add a cover picture for your playlist before submitting'
     }
 
     setErrObj(errors)
@@ -59,29 +59,32 @@ function PostPlaylistModal({ formType, playlist }) {
     formData.append("public", visibilityStatus)
     // console.log('form data --->', formData)
     setSubmitted(true)
-    if (formType === 'edit') {
-      const res = await dispatch(editPlaylistThunk(playlist.id, formData))
-      if (res.errors) {
-        setSubmitted(false)
-        setErrors(true)
-        return
-      } else {
-        closeModal()
+    if (Object.values(errObj).length > 0) {
+      setErrors(true)
+      setSubmitted(false)
+    } else {
 
+      if (formType === 'edit') {
+        const res = await dispatch(editPlaylistThunk(playlist.id, formData))
+        if (res.errors) {
+          setSubmitted(false)
+          setErrors(true)
+          return
+        } else {
+          closeModal()
+        }
       }
-
-    }
-    else {
-      const res = await dispatch(postPlaylistThunk(formData))
-      if (res.errors) {
-        setSubmitted(false)
-        setErrors(true)
-        return
-      } else {
-        await dispatch(sessionActions.authenticate())
-        closeModal()
-        // await dispatch(getPlaylistsThunk())
-        return history.push(`/playlists/${res.id}`)
+      else {
+        const res = await dispatch(postPlaylistThunk(formData))
+        if (res.errors) {
+          setSubmitted(false)
+          setErrors(true)
+          return
+        } else {
+          await dispatch(sessionActions.authenticate())
+          closeModal()
+          return history.push(`/playlists/${res.id}`)
+        }
       }
     }
     // closeModal()

@@ -1,3 +1,6 @@
+.liked-songs-details {
+  width: 80%;
+}
 .side-bar-home-link {
   text-decoration: none;
   color: white;
@@ -162,8 +165,8 @@
 }
 
 .liked-songs-square {
-  width: 50px;
-  height: 50px;
+  min-width: 50px;
+  min-height: 50px;
   border-radius: 5px;
   display: flex;
   justify-content: center;
@@ -182,6 +185,7 @@
   width: 100%;
   padding: 0px 8px;
   box-sizing: border-box;
+  /* border: 1px solid yellow; */
   /* margin-left: -5px; */
 }
 
@@ -195,4 +199,25 @@
   overflow-y: scroll;
   padding: 0px 7px;
   height: 73%;
+}
+.side-bar-playlist-title {
+  width: 100%;
+  font-size: 12pt;
+  overflow: hidden;
+  /* word-wrap: break-word; */
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  /* border: 1px solid red; */
+}
+.side-bar-playlist-detail {
+  width: 100%;
+  /* box-sizing: border-box; */
+}
+
+.side-bar-playlist-detail {
+  /* border: 1px solid blue; */
+  max-width: 65%;
+}
+.side-bar-playlist-title-like {
+  width: 85%;
 }

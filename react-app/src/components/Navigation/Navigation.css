@@ -3,10 +3,9 @@
   right: 0;
   background-color: rgb(63, 63, 63);
   border-radius: 3px;
-  padding: 10px;
   text-align: left;
   top: 35px;
-  
+
 }
 
 .hidden {
@@ -21,7 +20,7 @@
 }
 
 .profile-button-nav {
-  background-color:black;
+  background-color: black;
   color: white;
   border: none;
   border-radius: 50px;
@@ -37,7 +36,27 @@
   transition-delay: 300ms ease;
   transition: text-shadow 300ms ease;
 }
+
 .profile-wrapper {
   position: relative;
   height: 34px;
+}
+
+.logout-div {
+  cursor: pointer;
+  padding: 5px;
+  margin: 5px;
+}
+
+.logout-div:hover {
+  border-radius: 5px;
+  background-color: rgb(83, 83, 83);
+}
+
+.nav-user-email,
+.nav-user-username {
+  padding: 5px 10px;
+}
+.nav-user-email {
+  border-bottom: 2px solid rgb(83, 83, 83);
 }

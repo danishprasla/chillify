@@ -17,3 +17,8 @@
 .signup-text-field {
   width: 97%;
 }
+.form-error-message-signup {
+  color: red;
+  font-weight: bold;
+  margin-top: 5px;
+}

@@ -60,11 +60,11 @@ function PostSongModal({ formType, song }) {
 
   useEffect(() => {
     let err = {}
-    if (name > 100) {
-      err.name = 'Name must be less than 100 characters'
+    if (name.length > 60) {
+      err.name = 'Name must be less than 60 characters'
     }
-    if (name < 5) {
-      err.name = 'Name must be greater than 5 characters'
+    if (name.length < 4) {
+      err.name = 'Name must be greater than 4 characters'
     }
     if (!audioFile && formType !== 'edit') {
       err.audio = 'You must attach an audio file'
@@ -109,39 +109,45 @@ function PostSongModal({ formType, song }) {
     }
     formData.append('genre_id', parseInt(genre))
     setSubmitted(true)
-    if (formType === 'edit') {
-      const res = await dispatch(editSongThunk(song.id, formData))
-      // console.log('res from edit cond', res)
-      if (res.errors) {
-        setSubmitted(false)
-        setErrors(true)
-        return
-      } else {
-        await dispatch(authenticate())
-        dispatch(getSongsThunk())
-        closeModal()
-      }
-
+    if (Object.values(errObj).length > 0) {
+      setErrors(true)
+      setSubmitted(false)
+      return
     } else {
-      // do posting here
-      // console.log('inside if conditional for posting')
-      const res = await dispatch(postSongThunk(formData))
-      if (res.errors) {
-        setSubmitted(false)
-        setErrors(true)
-        return
+
+      if (formType === 'edit') {
+        const res = await dispatch(editSongThunk(song.id, formData))
+        // console.log('res from edit cond', res)
+        if (res.errors) {
+          setSubmitted(false)
+          setErrors(true)
+          return
+        } else {
+          await dispatch(authenticate())
+          dispatch(getSongsThunk())
+          closeModal()
+        }
+
       } else {
-        // console.log('inside successful route (last step)')
-        await dispatch(getSongsThunk())
-        //dispatch getSongs to get the updated song state
-        await dispatch(authenticate())
-        // dispatch user state to get updated user state including user songs which should include all of a user's music
-        closeModal()
-        // await dispatch(getPlaylistsThunk())
+        // do posting here
+        // console.log('inside if conditional for posting')
+        const res = await dispatch(postSongThunk(formData))
+        if (res.errors) {
+          setSubmitted(false)
+          setErrors(true)
+          return
+        } else {
+          // console.log('inside successful route (last step)')
+          await dispatch(getSongsThunk())
+          //dispatch getSongs to get the updated song state
+          await dispatch(authenticate())
+          // dispatch user state to get updated user state including user songs which should include all of a user's music
+          closeModal()
+          // await dispatch(getPlaylistsThunk())
+        }
       }
     }
   }
-  //webkit <-- 
 
   return (
     <div className='song-modal-form-container'>
@@ -213,7 +219,7 @@ function PostSongModal({ formType, song }) {
             className='file-field'
             placeholder='insert file'
             type="file"
-            accept='audio/*'
+            accept='.mp3, .wav'
             filename={audioFile && audioFile.name}
             onChange={(e) => setAudioFile(e.target.files[0])}
           />

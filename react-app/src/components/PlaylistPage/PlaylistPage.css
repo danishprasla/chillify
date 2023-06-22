@@ -69,13 +69,18 @@
 }
 
 .playlist-name {
-  font-size: 50pt;
+  font-size: 30pt;
   margin: 20px 0px;
-  margin-bottom: 70px;
+  margin-bottom: 60px;
+  /* hyphens: auto; */
+  word-wrap: break-word;
+  width: 100%;
+
 }
 
 .playlist-detail-tile {
   margin-bottom: 8px;
+  width: 50%;
 }
 
 .song-drop-down {
@@ -190,4 +195,11 @@
 .edit-playlist-modal-text {
   padding: 5px 10px;
   cursor: pointer;
+}
+.playlist-drop-down-name{
+  word-wrap: break-word;
+}
+
+.edit-dropdown-container {
+  width: 30px;
 }
