@@ -199,3 +199,7 @@
 .playlist-drop-down-name{
   word-wrap: break-word;
 }
+
+.edit-dropdown-container {
+  width: 30px;
+}

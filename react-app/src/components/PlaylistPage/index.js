@@ -116,7 +116,7 @@ function PlaylistPage() {
               {playlist.playlistOwner} · {playlistLength === 0 ? ("No songs") : playlistLength > 1 ? (`${playlistLength} songs`) : (`${playlistLength} song`)}
 
               {user.id === playlist.user && (
-                <div className="edit-dropdown-container" onClick={openEditMenu}>
+                <div onMouseLeave={closeEditMenu} className="edit-dropdown-container" onClick={openEditMenu}>
                   <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
                   <div className={editDropDown} ref={editRef}>
                     <div className='edit-playlist-modal-text'>

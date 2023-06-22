@@ -57,7 +57,7 @@ const MyMusic = () => {
     <div>
       <div>
         <h1>
-          Your Music
+          Your Published Music
         </h1>
         <div>
           {user.username} · {mySongIds.length === 0 ? ("No songs") : mySongIds.length > 1 ? (`${mySongIds.length} songs`) : (`${mySongIds.length} song`)}
@@ -79,7 +79,7 @@ const MyMusic = () => {
                 <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
               </div>) :
               (<div className='song-list-num'>
-                {idx + 1}
+                {mySongIds.length - idx}
               </div>)
             }
             <div>

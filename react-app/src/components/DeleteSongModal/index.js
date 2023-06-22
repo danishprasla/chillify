@@ -4,6 +4,7 @@ import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { deleteSongThunk, getSongsThunk } from "../../store/songs";
 import { authenticate } from "../../store/session";
+import './DeleteSong.css'
 
 const DeleteSongModal = ({ songId }) => {
   // console.log('song id inside modal --->',songId)
@@ -24,12 +25,14 @@ const DeleteSongModal = ({ songId }) => {
   return (
 
 
-    <div>
-      Deleting a song is permanent! Please confirm below.
-      <button onClick={(e) => handleDeleteClick(e)}>
+    <div className="delete-modal">
+      <h2>
+        Deleting a song is permanent! Please confirm below.
+      </h2>
+      <button className="confirm-delete-button" onClick={(e) => handleDeleteClick(e)}>
         Confirm
       </button>
-      <button onClick={(e) => handleExitClick(e)}>
+      <button className='exit-delete-button' onClick={(e) => handleExitClick(e)}>
         Exit
       </button>
     </div>
