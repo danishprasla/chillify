@@ -40,6 +40,7 @@ function LandingPage() {
             Demo User Login
           </button>
         </div>
+        <h2 className='disclaimer'>A Spotify inspired project</h2>
         <h3 className='disclaimer'>
           For Educational Purposes Only
         </h3>
