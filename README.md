@@ -13,13 +13,22 @@
    * HTML
    * CSS
    * AWS
+
 ## Landing Page
+![image](https://github.com/danishprasla/chillify/assets/116976633/761dd7c0-733b-45e5-b600-cb88a7d10d0b)
 
 ## Home Page
+![image](https://github.com/danishprasla/chillify/assets/116976633/9aee97b3-4155-40a9-a38e-fff817590fca)
 
 ## Genre Page
+![image](https://github.com/danishprasla/chillify/assets/116976633/d3390353-1dfa-4223-a6c2-41161429e87d)
+
+## Playlist Page
+![image](https://github.com/danishprasla/chillify/assets/116976633/b1f3fa3a-97f2-4bce-88e9-19a97d674eba)
 
 ## Liked Songs Page
+![image](https://github.com/danishprasla/chillify/assets/116976633/14e514c8-ead0-4eec-95e2-b8a4e2e84ce5)
+
 
 
 ## To run this project locally
