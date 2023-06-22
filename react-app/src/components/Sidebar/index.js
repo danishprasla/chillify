@@ -131,7 +131,7 @@ function Sidebar() {
 									<i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
 								</div>
 								<div className='liked-songs-details'>
-									<div className="side-bar-playlist-title">
+									<div className="side-bar-playlist-title-like">
 										Liked Songs
 									</div>
 									<div className='side-bar-playlist-owner'>
@@ -150,7 +150,7 @@ function Sidebar() {
 									<i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
 								</div>
 								<div className='liked-songs-details'>
-									<div className="side-bar-playlist-title">
+									<div className="side-bar-playlist-title-like">
 										Liked Songs
 									</div>
 									<div className='side-bar-playlist-owner'>
