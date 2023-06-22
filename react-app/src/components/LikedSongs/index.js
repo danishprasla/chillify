@@ -67,8 +67,23 @@ function LikedSongs() {
 
         </div>
         <div className='songs-container-labels'>
-          <div>
+          <div className='songs-container-labels'>
+            <div className='song-column-names'>
+              <div className='track-num-title'>
+                <div>
+                  #
+                </div>
+                <div>
+                  Title
+                </div>
+              </div>
+              <div>
+                Album
+              </div>
+              <div>
 
+              </div>
+            </div>
           </div>
         </div>
         <div className='songs-container'>

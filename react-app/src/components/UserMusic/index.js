@@ -63,6 +63,24 @@ const MyMusic = () => {
           {user.username} · {mySongIds.length === 0 ? ("No songs") : mySongIds.length > 1 ? (`${mySongIds.length} songs`) : (`${mySongIds.length} song`)}
         </div>
       </div>
+      <div className='songs-container-labels'>
+        <div className='song-column-names'>
+          <div className='track-num-title'>
+            <div>
+              #
+            </div>
+            <div>
+              Title
+            </div>
+          </div>
+          <div>
+            Album
+          </div>
+          <div>
+
+          </div>
+        </div>
+      </div>
       <div className="songs-container">
         {mySongIds.map((songId, idx) => (
           <div
