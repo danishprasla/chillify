@@ -18,16 +18,16 @@
 ![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121570328531972116/image.png)
 
 ## Home Page
-![image](https://github.com/danishprasla/chillify/assets/116976633/9aee97b3-4155-40a9-a38e-fff817590fca)
+![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121571409471213639/image.png)
 
 ## Genre Page
-![image](https://github.com/danishprasla/chillify/assets/116976633/d3390353-1dfa-4223-a6c2-41161429e87d)
+![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121571665655119984/image.png)
 
 ## Playlist Page
-![image](https://github.com/danishprasla/chillify/assets/116976633/b1f3fa3a-97f2-4bce-88e9-19a97d674eba)
+![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121571575553073302/image.png)
 
 ## Liked Songs Page
-![image](https://github.com/danishprasla/chillify/assets/116976633/14e514c8-ead0-4eec-95e2-b8a4e2e84ce5)
+![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121572089799917658/image.png)
 
 
 
