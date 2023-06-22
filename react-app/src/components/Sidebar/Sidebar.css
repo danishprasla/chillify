@@ -1,3 +1,6 @@
+.liked-songs-details {
+  width: 80%;
+}
 .side-bar-home-link {
   text-decoration: none;
   color: white;
@@ -182,7 +185,6 @@
   width: 100%;
   padding: 0px 8px;
   box-sizing: border-box;
-  hyphens: auto;
   /* margin-left: -5px; */
 }
 
@@ -196,4 +198,15 @@
   overflow-y: scroll;
   padding: 0px 7px;
   height: 73%;
+}
+.side-bar-playlist-title {
+  width: 100%;
+  max-width: 108px;
+  word-wrap: break-word;
+  height: 30px;
+  overflow-y: scroll;
+  font-size: 12pt;
+}
+.side-bar-playlist-detail {
+  width: 100%;
 }

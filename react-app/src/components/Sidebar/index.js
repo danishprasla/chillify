@@ -130,7 +130,7 @@ function Sidebar() {
 								<div className='liked-songs-square'>
 									<i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
 								</div>
-								<div>
+								<div className='liked-songs-details'>
 									<div className="side-bar-playlist-title">
 										Liked Songs
 									</div>
@@ -149,7 +149,7 @@ function Sidebar() {
 								<div className='liked-songs-square'>
 									<i className="fa-solid fa-heart" style={{ color: "#ffffff" }}></i>
 								</div>
-								<div>
+								<div className='liked-songs-details'>
 									<div className="side-bar-playlist-title">
 										Liked Songs
 									</div>
@@ -162,7 +162,7 @@ function Sidebar() {
 							{userPlaylists.map((playlist) => (
 								<div className='side-bar-playlist-tile' key={`side-bar-${playlist.id}`} onClick={() => history.push(`/playlists/${playlist.id}`)}>
 									<img className='side-bar-playlist-image' src={playlist.coverImage} />
-									<div>
+									<div className='side-bar-playlist-detail'>
 										<div className="side-bar-playlist-title"> {playlist.name}
 										</div>
 										<div className='side-bar-playlist-owner'>
