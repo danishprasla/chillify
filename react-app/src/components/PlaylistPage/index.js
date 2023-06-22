@@ -10,6 +10,7 @@ import PostPlaylistModal from '../PostPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
 import './PlaylistPage.css'
 import { selectSong } from '../../store/selectedSong';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
 // const audioLength = async (url) => {
 //   let audio = new Audio();
@@ -32,11 +33,20 @@ function PlaylistPage() {
 
   //drop down code ->
   const [showMenu, setShowMenu] = useState(false)
+  const [editMenu, setEditMenu] = useState(false)
+
   const ulRef = useRef()
+  const editRef = useRef()
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
+
+  const openEditMenu = () => {
+    if (editMenu) return;
+    setEditMenu(true)
+  }
 
   useEffect(() => {
     if (!showMenu) return;
@@ -49,12 +59,33 @@ function PlaylistPage() {
 
     document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => {
+      document.removeEventListener("click", closeMenu);
+    };
   }, [showMenu]);
 
+  useEffect(() => {
+    if (!editMenu) return;
+
+    const closeEditMenu = (e) => {
+      if (!editRef.current.contains(e.target)) {
+        setEditMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeEditMenu);
+
+    return () => {
+      document.removeEventListener("click", closeEditMenu);
+    };
+  }, [editMenu]);
+
   const closeMenu = () => setShowMenu(false);
+  const closeEditMenu = () => setEditMenu(false)
 
   const dropDown = "song-dropdown-button" + (showMenu ? "" : " hidden");
+
+  const editDropDown = "edit-menu-dropdown-button" + (editMenu ? "" : " hidden")
 
 
 
@@ -80,25 +111,36 @@ function PlaylistPage() {
           <div>Playlist</div>
           <h1 className='playlist-name'>{playlist.name}</h1>
           <div>
-            {playlist.playlistOwner} · {playlistLength} songs
+
+            <div className='playlist-spec-details'>
+              {playlist.playlistOwner} · {playlistLength === 0 ? ("No songs") : playlistLength > 1 ? (`${playlistLength} songs`) : (`${playlistLength} song`)}
+
+              {user.id === playlist.user && (
+                <div className="edit-dropdown-container" onClick={openEditMenu}>
+                  <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
+                  <div className={editDropDown} ref={editRef}>
+                    <div className='edit-playlist-modal-text'>
+                      <OpenModalMenuItem
+                        className='edit-playlist-button'
+                        itemText='Edit this playlist'
+                        modalComponent={<PostPlaylistModal formType={'edit'} playlist={playlist} />}
+                      />
+                    </div>
+                    <div className='delete-playlist-modal-text'>
+                      <OpenModalMenuItem
+                        className='delete-playlist-button'
+                        itemText="Delete this playlist"
+                        modalComponent={<DeletePlaylistModal playlistId={playlistId} />}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
           </div>
         </div>
-
       </div>
-      {user.id === playlist.user && (
-        <div className='playlist-page-buttons'>
-          <OpenModalButton
-            className='delete-playlist-button'
-            buttonText="Delete this playlist"
-            modalComponent={<DeletePlaylistModal playlistId={playlistId} />}
-          />
-          <OpenModalButton
-            className='edit-playlist-button'
-            buttonText='Edit this playlist'
-            modalComponent={<PostPlaylistModal formType={'edit'} playlist={playlist} />}
-          />
-        </div>
-      )}
       <div className='songs-container-labels'>
         <div>
 

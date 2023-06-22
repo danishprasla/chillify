@@ -94,7 +94,7 @@
   border-radius: 3px;
   width: 200px;
   /* height: 100px; */
-  padding: 3px;
+  padding: 5px;
   right: 10%;
   top: 5px;
   align-items: flex-end;
@@ -146,5 +146,47 @@
 }
 
 .liked-song {
+  cursor: pointer;
+}
+
+.edit-menu-dropdown-button {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: rgb(63, 63, 63);
+  border-radius: 3px;
+  width: 150px;
+  padding: 5px;
+  align-items: flex-end;
+}
+
+.playlist-spec-details {
+  display: flex;
+  gap: 10px;
+}
+
+.edit-dropdown-container {
+  position: relative;
+}
+
+.delete-playlist-modal-text:hover {
+  background-color: rgb(83, 83, 83);
+  color: red;
+  border-radius: 5px;
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
+  transition: color 100ms ease;
+}
+.edit-playlist-modal-text:hover {
+  background-color: rgb(83, 83, 83);
+  border-radius: 5px;
+  transition-delay: 300ms ease;
+  transition: background-color 300ms ease;
+  transition: color 100ms ease;
+}
+
+.delete-playlist-modal-text,
+.edit-playlist-modal-text {
+  padding: 5px 10px;
   cursor: pointer;
 }

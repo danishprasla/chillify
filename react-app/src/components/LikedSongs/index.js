@@ -61,7 +61,7 @@ function LikedSongs() {
             <div>Playlist</div>
             <h1 className='playlist-name'>Liked Songs</h1>
             <div>
-              {user.username} · {likedSongIds.length} songs
+              {user.username} · {likedSongIds.length === 0 ? ("No songs") : likedSongIds.length > 1 ? (`${likedSongIds.length} songs`) : (`${likedSongIds.length} song`)}
             </div>
           </div>
 

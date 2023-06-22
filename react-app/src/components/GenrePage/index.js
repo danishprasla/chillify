@@ -76,7 +76,9 @@ function GenrePage() {
 
           </div>
           <div className='songs-container-labels'>
-            <div></div>
+            <div>
+              
+            </div>
           </div>
           <div className='songs-container'>
             {genreMusicIds.map((songId, idx) => (
