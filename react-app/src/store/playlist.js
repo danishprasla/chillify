@@ -3,6 +3,7 @@ const POST_PLAYLIST = 'playlist/postPlaylist'
 const DELETE_PLAYLIST = 'playlist/deletePlaylist'
 const EDIT_PLAYLIST = 'playlist/editPlaylist'
 const POST_SONG_TO_PLAYLIST = 'playlist/addSong'
+const DELETE_SONG_FROM_PLAYLIST = 'playlist/deleteSong'
 
 const getPlaylists = (playlists) => {
   return {
@@ -93,6 +94,20 @@ export const addSongToPlaylistThunk = (playlistId, songId) => async (dispatch) =
   const data = await res.json()
   if (res.ok) {
     dispatch(getPlaylistsThunk())
+    return data
+  } else {
+    return data
+  }
+}
+export const deleteSongFromPlaylistThunk = (playlistId, songId) => async (dispatch) => {
+  const res = await fetch(`/api/playlists/${playlistId}/song/${songId}/delete`, {
+    method: 'DELETE'
+  })
+  const data = await res.json()
+  if (res.ok) {
+    dispatch(getPlaylistsThunk())
+    return data
+  } else {
     return data
   }
 }

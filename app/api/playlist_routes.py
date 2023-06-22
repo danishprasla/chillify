@@ -99,6 +99,7 @@ def edit_playlist(playlist_id):
 @playlist_routes.route('/<int:playlist_id>/song/<int:song_id>/add', methods = ['POST'])
 @login_required
 def add_song_to_playlist(playlist_id, song_id):
+    """Route to add a song to a user's playlist"""
     playlist = Playlist.query.get(playlist_id)
     user_id = current_user.id
     if playlist.user_id != user_id:
@@ -106,6 +107,21 @@ def add_song_to_playlist(playlist_id, song_id):
 
     song = Song.query.get(song_id)
     playlist.playlist_songs.append(song)
+    db.session.commit()
+    return playlist.to_dict()
+
+@playlist_routes.route('/<int:playlist_id>/song/<int:song_id>/delete', methods = ['DELETE'])
+@login_required
+def remove_song_from_playlist(playlist_id, song_id):
+    """Route to remove a song from a user's playlist"""
+    playlist = Playlist.query.get(playlist_id)
+    user_id = current_user.id
+    if playlist.user_id != user_id:
+        return {"message": 'Forbidden: You are not the owner of this playlist'}, 403
+
+    song = Song.query.get(song_id)
+    playlist.playlist_songs.remove(song)
+    
     db.session.commit()
     return playlist.to_dict()
 

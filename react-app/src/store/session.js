@@ -1,6 +1,8 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const ADD_SONG_LIKE = 'session/addSongLike'
+const REMOVE_SONG_LIKE = 'session/removeSongLike'
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -93,6 +95,29 @@ export const signUp = (username, email, password) => async (dispatch) => {
 		return ["An error occurred. Please try again."];
 	}
 };
+export const addSongLike = (songId) => async (dispatch) => {
+	const res = await fetch(`/api/users/liked-songs/${songId}/add`, {
+		method: 'POST'
+	})
+	const data = await res.json()
+	if (res.ok) {
+		dispatch(authenticate())
+		return data
+	}
+	else return data
+}
+
+export const removeSongLike = (songId) => async (dispatch) => {
+	const res = await fetch(`/api/users/liked-songs/${songId}/delete`, {
+		method: 'DELETE'
+	})
+	const data = await res.json()
+	if (res.ok) {
+		dispatch(authenticate())
+		return data
+	}
+	else return data
+}
 
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
