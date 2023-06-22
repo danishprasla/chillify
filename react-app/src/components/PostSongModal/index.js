@@ -60,11 +60,11 @@ function PostSongModal({ formType, song }) {
 
   useEffect(() => {
     let err = {}
-    if (name > 100) {
-      err.name = 'Name must be less than 100 characters'
+    if (name.length > 60) {
+      err.name = 'Name must be less than 60 characters'
     }
-    if (name < 5) {
-      err.name = 'Name must be greater than 5 characters'
+    if (name.length < 4) {
+      err.name = 'Name must be greater than 4 characters'
     }
     if (!audioFile && formType !== 'edit') {
       err.audio = 'You must attach an audio file'

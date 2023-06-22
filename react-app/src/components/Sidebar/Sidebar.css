@@ -182,6 +182,7 @@
   width: 100%;
   padding: 0px 8px;
   box-sizing: border-box;
+  hyphens: auto;
   /* margin-left: -5px; */
 }
 
