@@ -167,6 +167,7 @@
 
 .edit-dropdown-container {
   position: relative;
+  cursor: pointer;
 }
 
 .delete-playlist-modal-text:hover {
