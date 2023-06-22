@@ -15,7 +15,7 @@
    * AWS
 
 ## Landing Page
-![image](https://github.com/danishprasla/chillify/assets/116976633/761dd7c0-733b-45e5-b600-cb88a7d10d0b)
+![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121570328531972116/image.png)
 
 ## Home Page
 ![image](https://github.com/danishprasla/chillify/assets/116976633/9aee97b3-4155-40a9-a38e-fff817590fca)

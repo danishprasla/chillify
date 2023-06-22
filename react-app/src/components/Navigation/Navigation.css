@@ -15,8 +15,14 @@
 .nav-bar {
   /* border: 1px solid yellow; */
   min-width: 100%;
+  /* width: 76%; */
   /* right: 0 */
   text-align: end;
+  position:static
+  /* position: fixed;
+  z-index: 1; */
+  /* background-color: black; */
+  /* width: 50px */
 }
 
 .profile-button-nav {
