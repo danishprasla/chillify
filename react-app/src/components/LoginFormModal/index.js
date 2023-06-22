@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
@@ -9,7 +9,12 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  // const [errObj, setErrObj] = useState({})
   const { closeModal } = useModal();
+
+  useEffect(() => {
+
+  }, [email, password])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +32,7 @@ function LoginFormModal() {
       <form className='login-form' onSubmit={handleSubmit}>
         <div>
           {errors.map((error, idx) => (
-            <div className='form-error-message' key={idx}>{error}</div>
+            <div className='form-error-message' key={idx}>{error.split(': ')[1]}</div>
           ))}
         </div>
         <label>
