@@ -15,7 +15,7 @@ function Player() {
   const [songIndex, setSongIndex] = useState(0)
   const [loop, setLoop] = useState(false)
   const [shuffle, setShuffle] = useState(false)
-  const [volume, setVolume] = useState(100)
+  const [volume, setVolume] = useState(50)
 
   const dispatch = useDispatch()
   const selected = useSelector((state) => state.selected)
@@ -179,6 +179,7 @@ function Player() {
     //this fx will be hit whenever audio is playing
     const length = Math.floor(player.current.duration)
     const currentTime = Math.floor(player.current.currentTime)
+    player.current.volume = volume / 100
     //current time includes ms math.floor messing it up
     // const currentTimeString = `${currentTime}`
     // // console.log(currentTimeString)
