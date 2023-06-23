@@ -10,7 +10,7 @@ function PageNotFound() {
       <h3> - J. R. R. Tolkien</h3>
       <h4> "...But you seem to be..."</h4>
       <h4> - Danish Prasla </h4>
-      <img src="https://cdn.discordapp.com/attachments/1118303754714886259/1121872842737336425/iroh.gif" />
+      <img className='lost-img' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121872842737336425/iroh.gif" />
       <h4>Click the home button on the side bar to be returned to paradise! Thank you for visiting!</h4>
     </div>
 
