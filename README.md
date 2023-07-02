@@ -14,6 +14,21 @@
    * CSS
    * AWS
 
+## Current Features:
+   * Users can create new user credentials, use existing credentials, or login with a demo-user credentials
+   * Users can view their own playlists, public playlists made by other users, and view genres.
+   * Users can create a new playlist and add songs to the new playlist by clicking on the "three-menu-dots" on a song tile (present on a populated genre page or an existing playlist page).
+   * Users can edit their playlist (name and cover picture) along with removing songs from their playlist.
+   * Users can delete their playlist
+   * Users can upload a song.
+   * Users can edit the content of the song (song file and cover image)
+   * Users can delete their published song(s)
+   * Users can like/dislike a song which will appear on the liked list or be removed from their liked list
+## Planned features:
+   * Albums - a user can create an album and add THEIR published songs to an album. A user can view albums which will display songs associated with the album
+   * Users can edit the album
+   * Users can delete an album
+
 ## Landing Page
 ![image](https://cdn.discordapp.com/attachments/1118303754714886259/1121570328531972116/image.png)
 
