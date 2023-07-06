@@ -4,7 +4,7 @@
 
 * This project is a soft-clone of Spotify featuring music I typically listen to while studying or working
 ## Index:
-<a href="https://github.com/danishprasla/chillify/wiki/Basic-wireframes">Simple Wireframe</a> | <a href="https://github.com/danishprasla/chillify/wiki/Chillify-DB-Schema">Schema</a> | <a href="[https://github.com/danishprasla/chillify/wiki/Basic-wireframes](https://github.com/danishprasla/chillify/wiki/Features-List)">Features List</a> | <a href="[https://github.com/danishprasla/chillify/wiki/Basic-wireframes](https://github.com/danishprasla/chillify/wiki/User-Stories)">User Stories</a> 
+<a href="https://github.com/danishprasla/chillify/wiki/Basic-wireframes">Simple Wireframe</a> | <a href="https://github.com/danishprasla/chillify/wiki/Chillify-DB-Schema">Schema</a> | <a href="https://github.com/danishprasla/chillify/wiki/Features-List">Features List</a> | <a href="https://github.com/danishprasla/chillify/wiki/User-Stories">User Stories</a> 
 
 ## Technologies used:
 <div>
