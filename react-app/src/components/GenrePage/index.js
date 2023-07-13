@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { getGenreThunk } from "../../store/genre";
 import { selectSong } from "../../store/selectedSong";
 import { addSongToPlaylistThunk } from "../../store/playlist";
@@ -10,11 +10,13 @@ import { addSongLike, removeSongLike } from "../../store/session";
 function GenrePage() {
   const { genreId } = useParams();
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const genres = useSelector((state) => state.genres)
   const songs = useSelector((state) => state.songs)
   const user = useSelector((state) => state.session.user)
   const playlists = useSelector((state) => state.playlists)
+  const albums = useSelector((state) => state.albums)
 
   const [hoverPlay, setHoverPlay] = useState(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -125,6 +127,9 @@ function GenrePage() {
                     <div className='song-description-author'>
                       {songs[songId].authorInfo.username}
                     </div>
+                  </div>
+                  <div className='album-title'>
+                    {songs[songId].albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId].albumId}`)}> {albums[songs[songId].albumId].name}</div> : '-'}
                   </div>
                   <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                     <div className='liked-song'>

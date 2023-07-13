@@ -5,13 +5,15 @@ import genreReducer from './genre';
 import playlistReducer from './playlist';
 import songReducer from './songs';
 import selectedSongReducer from './selectedSong';
+import albumReducer from './album';
 
 const rootReducer = combineReducers({
   session,
   genres: genreReducer,
   playlists: playlistReducer,
   songs: songReducer,
-  selected: selectedSongReducer
+  selected: selectedSongReducer,
+  albums: albumReducer
 });
 
 

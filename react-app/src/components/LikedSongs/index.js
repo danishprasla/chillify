@@ -4,13 +4,16 @@ import { selectSong } from "../../store/selectedSong";
 import './LikedSongs.css'
 import { addSongToPlaylistThunk } from "../../store/playlist";
 import { addSongLike, removeSongLike } from "../../store/session";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 function LikedSongs() {
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const user = useSelector((state) => state.session.user)
   const songs = useSelector((state) => state.songs)
   const playlists = useSelector((state) => state.playlists)
+  const albums = useSelector((state) => state.albums)
 
   const [hoverPlay, setHoverPlay] = useState(null)
   const [showMenu, setShowMenu] = useState(false)
@@ -116,6 +119,9 @@ function LikedSongs() {
                   <div className='song-description-author'>
                     {songs[songId].authorInfo.username}
                   </div>
+                </div>
+                <div className='album-title'>
+                  {songs[songId].albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId].albumId}`)}> {albums[songs[songId].albumId].name}</div> : '-'}
                 </div>
                 <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                   <div className='liked-song'>

@@ -18,6 +18,8 @@ import MyMusic from "./components/UserMusic";
 import LoadingComp from "./components/Loading";
 import LikedSongs from "./components/LikedSongs";
 import PageNotFound from "./components/PageNotFound";
+import { getAlbumsThunk } from "./store/album";
+import AlbumPage from "./components/AlbumPage";
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const sessionUser = useSelector(state => state.session.user)
   const playlists = useSelector((state) => state.playlists)
+  const albums = useSelector((state) => state.albums)
   const songs = useSelector((state) => state.songs)
   const genres = useSelector((state) => state.genres)
   useEffect(() => {
@@ -42,6 +45,9 @@ function App() {
 
         if (Object.values(genres).length === 0) {
           promiseArr.push(dispatch(getGenreThunk()));
+        }
+        if (Object.values(albums).length === 0) {
+          promiseArr.push(dispatch(getAlbumsThunk()));
         }
 
         return Promise.all(promiseArr);
@@ -79,6 +85,9 @@ function App() {
                     </Route>
                     <Route exact path='/playlists/:playlistId'>
                       <PlaylistPage />
+                    </Route>
+                    <Route exact path='/albums/:albumId'>
+                      <AlbumPage />
                     </Route>
                     <Route exact path='/my-music'>
                       <MyMusic />

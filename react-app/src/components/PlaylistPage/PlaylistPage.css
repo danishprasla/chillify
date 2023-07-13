@@ -24,8 +24,10 @@
 
 .song-tile:hover {
   background-color: rgb(83, 83, 83);
+  color: white;
   border-radius: 10px;
   transition-delay: 300ms ease;
+  transition: color 300ms ease;
   transition: background-color 300ms ease;
 }
 
@@ -221,4 +223,34 @@
   display: flex;
   /* margin-left: 30px; */
   gap: 20px;
+}
+
+.song-description-name-artist {
+  width: 430px;
+}
+.song-description-author {
+  font-size: 10pt;
+}
+.album-title {
+  margin-left: -180px;
+  text-align: left;
+  width: 284px;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+.valid-album {
+  cursor: pointer;
+  
+}
+
+.valid-album:hover {
+  text-decoration: underline;
+  
+}
+.song-tile{
+  color: rgb(200, 200, 200);
+}
+.song-description-name {
+  color: white;
 }

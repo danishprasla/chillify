@@ -139,6 +139,14 @@ function Player() {
   const handleForwardClick = (e) => {
     e.preventDefault()
     let nextIdx = -1
+    if (shuffle) {
+      let randomIndex = Math.floor(Math.random() * selectedPlaylist.length)
+      setSongIndex(randomIndex)
+      let songId = selectedPlaylist[randomIndex]
+      dispatch(selectSongChange(songs[songId]))
+      return
+    }
+    
     if (songIndex == (selectedPlaylist.length - 1)) {
       nextIdx = 0
     } else {
@@ -180,24 +188,6 @@ function Player() {
     const length = Math.floor(player.current.duration)
     const currentTime = Math.floor(player.current.currentTime)
     player.current.volume = volume / 100
-    //current time includes ms math.floor messing it up
-    // const currentTimeString = `${currentTime}`
-    // // console.log(currentTimeString)
-    // const currentTimeFormated = currentTimeString.split('.')[0]
-    // console.log(currentTimeFormated)
-
-
-    // console.log(totalSecondsCurrent)
-
-    // const currentMinutes = Math.floor(totalSecondsCurrent / 60)
-    // const currentSeconds = Math.floor(totalSecondsCurrent % 60)
-    // let currentSecondsFormated = currentSeconds
-    // if (currentSeconds < 10) {
-    //   // console.log('inside current second?!')
-    //   currentSecondsFormated = `0${currentSeconds}`
-    //   console.log(currentSecondsFormated)
-    // }
-    // const currentTimeFormated = `${currentMinutes}:${currentSecondsFormated}`
     setSeekerBar(currentTime)
     setSongLength(length)
     setSongSpotTime(parseInt(currentTime))
