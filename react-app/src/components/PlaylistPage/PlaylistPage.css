@@ -24,8 +24,10 @@
 
 .song-tile:hover {
   background-color: rgb(83, 83, 83);
+  color: white;
   border-radius: 10px;
   transition-delay: 300ms ease;
+  transition: color 300ms ease;
   transition: background-color 300ms ease;
 }
 
@@ -227,7 +229,6 @@
   width: 430px;
 }
 .song-description-author {
-  color: rgb(208, 208, 208);
   font-size: 10pt;
 }
 .album-title {
@@ -237,4 +238,19 @@
   text-overflow: ellipsis;
   display: flex;
   align-items: center;
+}
+.valid-album {
+  cursor: pointer;
+  
+}
+
+.valid-album:hover {
+  text-decoration: underline;
+  
+}
+.song-tile{
+  color: rgb(200, 200, 200);
+}
+.song-description-name {
+  color: white;
 }

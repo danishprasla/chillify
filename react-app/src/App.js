@@ -19,6 +19,7 @@ import LoadingComp from "./components/Loading";
 import LikedSongs from "./components/LikedSongs";
 import PageNotFound from "./components/PageNotFound";
 import { getAlbumsThunk } from "./store/album";
+import AlbumPage from "./components/AlbumPage";
 
 
 function App() {
@@ -84,6 +85,9 @@ function App() {
                     </Route>
                     <Route exact path='/playlists/:playlistId'>
                       <PlaylistPage />
+                    </Route>
+                    <Route exact path='/albums/:albumId'>
+                      <AlbumPage />
                     </Route>
                     <Route exact path='/my-music'>
                       <MyMusic />

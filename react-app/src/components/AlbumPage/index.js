@@ -8,7 +8,6 @@ import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min
 import { addSongToPlaylistThunk, deleteSongFromPlaylistThunk, getPlaylistsThunk } from '../../store/playlist';
 import PostPlaylistModal from '../PostPlaylistModal';
 import DeletePlaylistModal from '../DeletePlaylistModal';
-import './PlaylistPage.css'
 import { selectSong } from '../../store/selectedSong';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addSongLike, removeSongLike } from "../../store/session";
@@ -21,16 +20,17 @@ import { addSongLike, removeSongLike } from "../../store/session";
 //   return audio.duration;
 // }
 
-function PlaylistPage() {
+function AlbumPage() {
 
   const dispatch = useDispatch()
   const history = useHistory()
 
-  const { playlistId } = useParams()
+  const { albumId } = useParams()
   // console.log(playlistId)
   const user = useSelector((state) => state.session.user)
-  const playlists = useSelector((state) => state.playlists)
   const albums = useSelector((state) => state.albums)
+  const album = albums[albumId]
+  const playlists = useSelector((state) => state.playlists)
   // console.log('ALBUMS !!@#!@#!@#',albums)
   const songs = useSelector((state) => state.songs)
 
@@ -92,50 +92,44 @@ function PlaylistPage() {
 
   const editDropDown = "edit-menu-dropdown-button" + (editMenu ? "" : " hidden")
 
-
-
-  if (Object.values(playlists).length == 0 || Object.values(songs).length == 0) {
-    return (<h1>Loading...</h1>)
-  }
   // console.log(playlistId)
-  const playlist = playlists[parseInt(playlistId)]
   // console.log('playlist ----<',playlist.songs)
-  const playlistSongs = playlist.songs
-  const playlistLength = playlistSongs.length
+  const albumSongs = album.songIds
+  const albumLength = albumSongs.length
   const userPlaylists = user.playlistIds
   // console.log('user playlist ids', userPlaylists)
 
-  // console.log('PLAYLIST SONGS!!!', playlistSongs)
+  // console.log('PLAYLIST SONGS!!!', albumSongs)
 
 
   return (
     <div>
       <div className='playlist-page-playlist-detail'>
-        <img className='playlist-page-cover-img' src={playlist.coverImage} />
+        <img className='playlist-page-cover-img' src={album.coverPhoto} />
         <div className='playlist-detail-tile'>
-          <div>Playlist</div>
-          <h1 className='playlist-name'>{playlist.name}</h1>
+          <div>Album</div>
+          <h1 className='playlist-name'>{album.name}</h1>
           <div>
 
             <div className='playlist-spec-details'>
-              {playlist.playlistOwner} · {playlistLength === 0 ? ("No songs") : playlistLength > 1 ? (`${playlistLength} songs`) : (`${playlistLength} song`)}
+              {album.authorName} · {albumLength === 0 ? ("No songs") : albumLength > 1 ? (`${albumLength} songs`) : (`${albumLength} song`)}
 
-              {user.id === playlist.user && (
+              {user.id === album.authorName && (
                 <div onMouseLeave={closeEditMenu} className="edit-dropdown-container" onClick={openEditMenu}>
                   <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
                   <div className={editDropDown} ref={editRef}>
                     <div className='edit-playlist-modal-text'>
                       <OpenModalMenuItem
                         className='edit-playlist-button'
-                        itemText='Edit this playlist'
-                        modalComponent={<PostPlaylistModal formType={'edit'} playlist={playlist} />}
+                        itemText='Edit this album'
+                        modalComponent={<PostPlaylistModal formType={'edit'} playlist={album} />}
                       />
                     </div>
                     <div className='delete-playlist-modal-text'>
                       <OpenModalMenuItem
                         className='delete-playlist-button'
-                        itemText="Delete this playlist"
-                        modalComponent={<DeletePlaylistModal playlistId={playlistId} />}
+                        itemText="Delete this album"
+                        modalComponent={<DeletePlaylistModal playlistId={album} />}
                       />
                     </div>
                   </div>
@@ -165,7 +159,7 @@ function PlaylistPage() {
         </div>
       </div>
       <div className='songs-container'>
-        {playlistSongs.map((songId, idx) => (
+        {albumSongs.map((songId, idx) => (
           <div
             key={`playlist-${songId}`}
             className='song-tile'
@@ -175,7 +169,7 @@ function PlaylistPage() {
             {hoverPlay === idx ? (
               <div
                 className='song-play-button'
-                onClick={() => dispatch(selectSong(songs[songId], playlistSongs))}
+                onClick={() => dispatch(selectSong(songs[songId], albumSongs))}
               >
                 <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
               </div>) :
@@ -217,17 +211,6 @@ function PlaylistPage() {
                 <div className='drop-down-wrapper-songs'>
                   {hoverPlay === idx && (
                     <div className={dropDown} ref={ulRef}>
-                      {playlists[playlistId].user === user.id && (
-                        <div
-                          className='remove-from-playlist'
-                          onClick={() => {
-                            dispatch(deleteSongFromPlaylistThunk(playlistId, songId))
-                            closeMenu()
-                          }}
-                        >
-                          Remove from this playlist
-                        </div>
-                      )}
                       <div className='add-to-playlist-dropdown'>
                         Add to playlist:
                       </div>
@@ -235,7 +218,7 @@ function PlaylistPage() {
                         {userPlaylists.map(playlistIds => (
                           <div
                             className='playlist-drop-down-name'
-                            key={`drop-down-playlist-${playlistIds}`}
+                            key={`drop-down-album-${playlistIds}`}
                             onClick={() => {
                               dispatch(addSongToPlaylistThunk(playlistIds, songId))
                               closeMenu()
@@ -263,4 +246,4 @@ function PlaylistPage() {
   )
 }
 
-export default PlaylistPage
+export default AlbumPage
