@@ -5,6 +5,7 @@ import { getGenreThunk } from "../../store/genre";
 import { selectSong } from "../../store/selectedSong";
 import { addSongToPlaylistThunk } from "../../store/playlist";
 import { addSongLike, removeSongLike } from "../../store/session";
+import PageNotFound from "../PageNotFound";
 
 
 function GenrePage() {
@@ -49,9 +50,14 @@ function GenrePage() {
   // }, [dispatch])
 
   // console.log('---->',genres)
-  if (Object.values(genres).length == 0 || Object.values(songs).length == 0) {
+  if (Object.values(genres).length === 0 || Object.values(songs).length === 0) {
     return (
       <h1>Loading...</h1>
+    )
+  }
+  if (!genres[genreId]) {
+    return (
+      <PageNotFound />
     )
   }
   const selectedGenre = genres[genreId]
