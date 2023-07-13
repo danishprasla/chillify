@@ -29,6 +29,8 @@ function PlaylistPage() {
   // console.log(playlistId)
   const user = useSelector((state) => state.session.user)
   const playlists = useSelector((state) => state.playlists)
+  const albums = useSelector((state) => state.albums)
+  // console.log('ALBUMS !!@#!@#!@#',albums)
   const songs = useSelector((state) => state.songs)
 
   const [hoverPlay, setHoverPlay] = useState(null)
@@ -191,6 +193,9 @@ function PlaylistPage() {
                 <div className='song-description-author'>
                   {songs[songId].authorInfo.username}
                 </div>
+              </div>
+              <div className='album-title'>
+                {songs[songId].albumId ? <div> {albums[songs[songId].albumId].name}</div>: '-'}
               </div>
               <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                 <div className='liked-song'>

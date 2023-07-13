@@ -11,7 +11,7 @@ def seed_users():
     user3 = User(
         username='Ilan Eshkeri', email='got2@aa.io', password='password')
     user4 = User(
-        username='Bethesda', email='skyrim@aa.io', password='password')
+        username='Jeremy Soule', email='skyrim@aa.io', password='password')
     user5 = User(
         username='Motoi Sakuraba', email='darksouls@aa.io', password='password')
     user6 = User(

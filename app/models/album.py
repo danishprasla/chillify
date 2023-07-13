@@ -24,7 +24,7 @@ class Album(db.Model):
         
         return {
             'id': self.id,
-            'authorId': self.user,
+            'authorName': self.user.to_dict()['username'],
             'genreId': self.genre_id,
             'name': self.name,
             'songIds': song_ids,

@@ -4,37 +4,38 @@ from sqlalchemy.sql import text
 
 
 def seed_songs():
-    song1 = Song(author_id= 2, genre_id= 2, song_name ='Tsushima Suite: I. Seion',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+I.+Seion.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song1 = Song(author_id= 2, genre_id= 2, album_id= 1, song_name ='Tsushima Suite: I. Seion',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+I.+Seion.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
     
-    song2 = Song(author_id= 2, genre_id= 2, song_name ='Tsushima Suite: II. Shurai',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+II.+Shurai.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song2 = Song(author_id= 2, genre_id= 2, album_id= 1, song_name ='Tsushima Suite: II. Shurai',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+II.+Shurai.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
 
-    song3 = Song(author_id= 2, genre_id= 2, song_name ='Tsushima Suite: III. Bushido',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+III.+Bushido.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song3 = Song(author_id= 2, genre_id= 2, album_id= 1, song_name ='Tsushima Suite: III. Bushido',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+III.+Bushido.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
 
-    song4 = Song(author_id= 2, genre_id= 2, song_name ='Tsushima Suite: IV. Kodoku',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+IV.+Kodoku.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song4 = Song(author_id= 2, genre_id= 2, album_id= 1, song_name ='Tsushima Suite: IV. Kodoku',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+IV.+Kodoku.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
 
-    song5 = Song(author_id= 2, genre_id= 2, song_name ='Tsushima Suite: V. Seiiki',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+V.+Seiiki.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song5 = Song(author_id= 2, genre_id= 2, album_id= 1, song_name ='Tsushima Suite: V. Seiiki',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Tsushima+Suite_+V.+Seiiki.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
 
-    song6 = Song(author_id= 3, genre_id= 2, song_name ='Jin Sakai',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Jin+Sakai.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
+    song6 = Song(author_id= 3, genre_id= 2, album_id= 1, song_name ='Jin Sakai',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Jin+Sakai.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118303964887265420/Ghost_of_Tsushima.png')
 
-    song6 = Song(author_id= 4, genre_id= 2, song_name ='From Past to Present',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/TES+V+Skyrim+Soundtrack+-+From+Past+to+Present.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118305986151718963/ab67616d0000b273ccc3b356646cd2d89d880a0a.png')
+    song6 = Song(author_id= 4, genre_id= 2, album_id= 2,song_name ='From Past to Present',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/TES+V+Skyrim+Soundtrack+-+From+Past+to+Present.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118305986151718963/ab67616d0000b273ccc3b356646cd2d89d880a0a.png')
 
-    song7 = Song(author_id= 4, genre_id= 2, song_name ='Secunda',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Secunda.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118305986151718963/ab67616d0000b273ccc3b356646cd2d89d880a0a.png')
-    song8 = Song(author_id= 5, genre_id= 2, song_name ='Majula',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Dark+Souls+2+OST+-+Majula+%5BHQ%5D+(Remastered).mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118307540825026620/oSOVmvoekCf9ASaAItqfKvpP.png')
+    song7 = Song(author_id= 4, genre_id= 2, album_id= 2,song_name ='Secunda',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Secunda.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118305986151718963/ab67616d0000b273ccc3b356646cd2d89d880a0a.png')
 
-    song9 = Song(author_id= 5, genre_id= 2, song_name ='Sorrow',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Sorrow.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118308061069717554/ab67616d0000b273a9b9a9b870c117c9cfbb0f65.png')
+    song8 = Song(author_id= 5, genre_id= 2, album_id= 3, song_name ='Majula',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Dark+Souls+2+OST+-+Majula+%5BHQ%5D+(Remastered).mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118307540825026620/oSOVmvoekCf9ASaAItqfKvpP.png')
 
-    song10 = Song(author_id= 5, genre_id= 2, song_name ='Fire Keepers',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Dark+Souls+2+OST+-+Fire+Keepers+%5BHQ%5D.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118307540825026620/oSOVmvoekCf9ASaAItqfKvpP.png')
+    song9 = Song(author_id= 5, genre_id= 2, album_id= 4, song_name ='Sorrow',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Sorrow.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118308061069717554/ab67616d0000b273a9b9a9b870c117c9cfbb0f65.png')
 
-    song11 = Song(author_id= 5, genre_id= 2, song_name ='Gwyn, Lord of Cinder',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Gwyn%2C+Lord+of+Cinder+-+Dark+Souls+Soundtrack.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118308738374311956/latest.png')
+    song10 = Song(author_id= 5, genre_id= 2, album_id= 3, song_name ='Fire Keepers',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Dark+Souls+2+OST+-+Fire+Keepers+%5BHQ%5D.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118307540825026620/oSOVmvoekCf9ASaAItqfKvpP.png')
+
+    song11 = Song(author_id= 5, genre_id= 2, album_id= 4, song_name ='Gwyn, Lord of Cinder',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/video-game-soundtracks/Gwyn%2C+Lord+of+Cinder+-+Dark+Souls+Soundtrack.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118308738374311956/latest.png')
 
     #-------------------Video Game ST ^^--------
-    song12 = Song(author_id= 6, genre_id= 5, song_name ='Gladiator',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/DOOM+Eternal+OST+++Gladiator.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
+    song12 = Song(author_id= 6, genre_id= 5, album_id= 5, song_name ='Gladiator',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/DOOM+Eternal+OST+++Gladiator.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
 
-    song13 = Song(author_id= 6, genre_id= 5, song_name ='Rip & Tear',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+02.+Rip+%26+Tear.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
+    song13 = Song(author_id= 6, genre_id= 5, album_id= 5, song_name ='Rip & Tear',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+02.+Rip+%26+Tear.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
 
-    song14 = Song(author_id= 6, genre_id= 5, song_name ='Flesh & Metal',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+08.+Flesh+%26+Metal.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
+    song14 = Song(author_id= 6, genre_id= 5, album_id= 5, song_name ='Flesh & Metal',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+08.+Flesh+%26+Metal.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
 
-    song15 = Song(author_id= 6, genre_id= 5, song_name ='BFG Division',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+11.+BFG+Division.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
+    song15 = Song(author_id= 6, genre_id= 5, album_id= 5, song_name ='BFG Division',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/doom/Mick+Gordon+-+11.+BFG+Division.mp3',song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118311329061675090/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
 
 
     #-----------^^DOOM^^-----------------------------
