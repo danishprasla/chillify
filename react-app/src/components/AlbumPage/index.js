@@ -11,6 +11,7 @@ import DeletePlaylistModal from '../DeletePlaylistModal';
 import { selectSong } from '../../store/selectedSong';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addSongLike, removeSongLike } from "../../store/session";
+import PageNotFound from '../PageNotFound';
 
 
 // const audioLength = async (url) => {
@@ -43,55 +44,61 @@ function AlbumPage() {
   const ulRef = useRef()
   const editRef = useRef()
 
+  
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-
+  
   const openEditMenu = () => {
     if (editMenu) return;
     setEditMenu(true)
   }
-
+  
   useEffect(() => {
     if (!showMenu) return;
-
+    
     const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
-
+    
     document.addEventListener("click", closeMenu);
-
+    
     return () => {
       document.removeEventListener("click", closeMenu);
     };
   }, [showMenu]);
-
+  
   useEffect(() => {
     if (!editMenu) return;
-
+    
     const closeEditMenu = (e) => {
       if (!editRef.current.contains(e.target)) {
         setEditMenu(false);
       }
     };
-
+    
     document.addEventListener("click", closeEditMenu);
-
+    
     return () => {
       document.removeEventListener("click", closeEditMenu);
     };
   }, [editMenu]);
-
+  
   const closeMenu = () => setShowMenu(false);
   const closeEditMenu = () => setEditMenu(false)
-
+  
+  if (!albums[albumId]) {
+    return (
+      <PageNotFound />
+    )
+  }
   const dropDown = "song-dropdown-button" + (showMenu ? "" : " hidden");
-
+  
   const editDropDown = "edit-menu-dropdown-button" + (editMenu ? "" : " hidden")
-
+  
   // console.log(playlistId)
   // console.log('playlist ----<',playlist.songs)
   const albumSongs = album.songIds
@@ -114,7 +121,7 @@ function AlbumPage() {
             <div className='playlist-spec-details'>
               {album.authorName} · {albumLength === 0 ? ("No songs") : albumLength > 1 ? (`${albumLength} songs`) : (`${albumLength} song`)}
 
-              {user.id === album.authorName && (
+              {user.username === album.authorName && (
                 <div onMouseLeave={closeEditMenu} className="edit-dropdown-container" onClick={openEditMenu}>
                   <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
                   <div className={editDropDown} ref={editRef}>

@@ -63,8 +63,8 @@ function PostSongModal({ formType, song }) {
     if (name.length > 60) {
       err.name = 'Name must be less than 60 characters'
     }
-    if (name.length < 4) {
-      err.name = 'Name must be greater than 4 characters'
+    if (name.length < 3) {
+      err.name = 'Name must be greater than 3 characters'
     }
     if (!audioFile && formType !== 'edit') {
       err.audio = 'You must attach an audio file'
@@ -124,7 +124,6 @@ function PostSongModal({ formType, song }) {
           return
         } else {
           await dispatch(authenticate())
-          dispatch(getSongsThunk())
           closeModal()
         }
 

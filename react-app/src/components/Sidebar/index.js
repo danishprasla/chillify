@@ -7,6 +7,7 @@ import PostPlaylistModal from '../PostPlaylistModal';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import PostSongModal from '../PostSongModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import PostAlbumModal from '../CreateAlbum';
 
 function Sidebar() {
 	const history = useHistory()
@@ -97,6 +98,16 @@ function Sidebar() {
 									itemText="Upload Music"
 									modalComponent={<PostSongModal />}
 								/>
+							</div>
+							<div className='side-bar-upload-song-div'>
+								<i className="fa-solid fa-record-vinyl fa-lg" />
+								<OpenModalMenuItem
+									className='side-bar-upload-song-button'
+									onItemClick={closeMenu}
+									itemText="Create Album"
+									modalComponent={<PostAlbumModal />}
+								/>
+
 							</div>
 							<div className='side-bar-upload-playlist-div'>
 								<i className="fa-solid fa-headphones-simple fa-lg" />

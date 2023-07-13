@@ -12,6 +12,7 @@ import './PlaylistPage.css'
 import { selectSong } from '../../store/selectedSong';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addSongLike, removeSongLike } from "../../store/session";
+import PageNotFound from '../PageNotFound';
 
 
 // const audioLength = async (url) => {
@@ -98,6 +99,11 @@ function PlaylistPage() {
     return (<h1>Loading...</h1>)
   }
   // console.log(playlistId)
+  if (!playlists[playlistId]) {
+    return (
+      <PageNotFound />
+    )
+  }
   const playlist = playlists[parseInt(playlistId)]
   // console.log('playlist ----<',playlist.songs)
   const playlistSongs = playlist.songs
