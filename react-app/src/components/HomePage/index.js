@@ -35,7 +35,9 @@ function HomePage() {
 
   const publicPlaylists = playlistArr.filter(playlist => playlist.public === true && playlist.user !== user.id)
 
-  console.log('PUBLIC PLAYLISTS ~~~~>', publicPlaylists)
+  // console.log('PUBLIC PLAYLISTS ~~~~>', publicPlaylists)
+  const likedSongIds = user.likedSongsIds
+  // console.log(likedSongsIds)
 
 
 
@@ -44,17 +46,31 @@ function HomePage() {
       <div>
         <h1>Welcome back, {user.username}</h1>
         <h2>Your playlists:</h2>
-        {/* <OpenModalButton
-          className='create-playlist-button'
-          buttonText="Create a Playlist"
-          modalComponent={<PostPlaylistModal />} /> */}
         {(!user.playlistIds.length) ? (
-          <div>
-            Looks like you currently have no playlists!
+          <div className='home-playlist-tile' onClick={() => history.push(`/liked-songs`)}>
+            <div className="home-liked-songs">
+              <i className="fa-solid fa-heart fa-2xl" style={{ color: "#ffffff" }}></i>
+
+            </div>
+            <h3 className="home-playlist-title"> Liked Songs </h3>
+            <div className="home-song-length">
+              {likedSongIds.length === 0 ? ("No songs") : likedSongIds.length > 1 ? (`${likedSongIds.length} songs`) : (`${likedSongIds.length} song`)}
+            </div>
           </div>
 
         ) : (
           <div className="home-playlist-container">
+            <div className='home-playlist-tile' onClick={() => history.push(`/liked-songs`)}>
+              <div className="home-liked-songs">
+                <i className="fa-solid fa-heart fa-2xl" style={{ color: "#ffffff" }}></i>
+
+              </div>
+              <h3 className="home-playlist-title"> Liked Songs </h3>
+              <div className="home-song-length">
+                {likedSongIds.length === 0 ? ("No songs") : likedSongIds.length > 1 ? (`${likedSongIds.length} songs`) : (`${likedSongIds.length} song`)}
+
+              </div>
+            </div>
             {userPlaylists.map((playlist) => (
               <div className='home-playlist-tile' key={playlist.id} onClick={() => history.push(`/playlists/${playlist.id}`)}>
                 <img className='home-playlist-image' src={playlist.coverImage} />

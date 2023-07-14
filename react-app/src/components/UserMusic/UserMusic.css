@@ -21,15 +21,6 @@
   transition: color 100ms ease;
 }
 
-.home-playlist-image {
-  object-fit: cover;
-  width: 270px;
-  height: 270px;
-  border-radius: 10px;
-  text-align: center;
-  align-items: center;
-
-}
 
 .user-album-tile {
   cursor: pointer;
