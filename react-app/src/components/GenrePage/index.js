@@ -122,7 +122,7 @@ function GenrePage() {
                     {idx + 1}
                   </div>)
                 }
-                <div>
+                <div className="song-image-container">
                   <img className='song-image' src={songs[songId].coverPicture} />
                 </div>
                 <div className='song-description-container'>

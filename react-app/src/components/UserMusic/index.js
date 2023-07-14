@@ -9,6 +9,7 @@ import OpenModalMenuItem from "../Navigation/OpenModalMenuItem";
 import { selectSong } from "../../store/selectedSong";
 import './UserMusic.css'
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import PostAlbumModal from "../CreateAlbum";
 
 const MyMusic = () => {
 
@@ -54,14 +55,36 @@ const MyMusic = () => {
 
   const mySongIds = user.mySongs
   const userPlaylists = user.playlistIds
+  const userAlbums = user.albumIds
   // console.log('SONG IDS FOR MINE!',mySongIds)
 
   return (
     <div>
       <div>
         <h1>
-          Your Published Music
+          Your Artist Page
         </h1>
+        <h2> Your Published Albums</h2>
+        {(!userAlbums.length) ? (
+          <div className='user-album-tile'>
+            <img className='album-image' src={'https://cdn.discordapp.com/attachments/1118303754714886259/1129447025285541939/HlHy9Yx.png'} />
+            <h3 className="home-playlist-title"> No Albums </h3>
+          </div>
+
+        ) : (
+          <div className="album-container">
+            {userAlbums.map((album) => (
+              <div className='user-album-tile' key={`album-${album}`} onClick={() => history.push(`/albums/${album}`)}>
+                <img className='album-image' src={albums[album].coverPhoto} />
+                <h3 className="home-playlist-title"> {albums[album].name} </h3>
+              </div>
+            ))}
+          </div>
+
+        )}
+        <h2>
+          Your Published Music
+        </h2>
         <div>
           {user.username} · {mySongIds.length === 0 ? ("No songs") : mySongIds.length > 1 ? (`${mySongIds.length} songs`) : (`${mySongIds.length} song`)}
         </div>
@@ -103,7 +126,7 @@ const MyMusic = () => {
                 {mySongIds.length - idx}
               </div>)
             }
-            <div>
+            <div className="song-image-container">
               <img className='song-image' src={songs[songId]?.coverPicture} />
             </div>
             <div className='song-description-container'>

@@ -90,6 +90,15 @@ function Sidebar() {
 					<div className='drop-down-wrapper'>
 
 						<div className={dropDown} ref={ulRef}>
+							<div className='side-bar-upload-playlist-div'>
+								<i className="fa-solid fa-headphones-simple fa-lg" />
+								<OpenModalMenuItem
+									className='side-bar-upload-playlist-button'
+									onItemClick={closeMenu}
+									itemText="Create Playlist"
+									modalComponent={<PostPlaylistModal />}
+								/>
+							</div>
 							<div className='side-bar-upload-song-div'>
 								<i className="fa-regular fa-file-audio fa-lg" />
 								<OpenModalMenuItem
@@ -108,15 +117,6 @@ function Sidebar() {
 									modalComponent={<PostAlbumModal />}
 								/>
 
-							</div>
-							<div className='side-bar-upload-playlist-div'>
-								<i className="fa-solid fa-headphones-simple fa-lg" />
-								<OpenModalMenuItem
-									className='side-bar-upload-playlist-button'
-									onItemClick={closeMenu}
-									itemText="Create Playlist"
-									modalComponent={<PostPlaylistModal />}
-								/>
 							</div>
 
 						</div>
