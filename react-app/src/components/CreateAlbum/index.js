@@ -8,7 +8,7 @@ import { useModal } from "../../context/Modal";
 function PostAlbumModal({ formType, album }) {
   const dispatch = useDispatch()
   const [submitted, setSubmitted] = useState(false)
-  const [genre, setGenre] = useState(album?.genreId || 1)
+  // const [genre, setGenre] = useState(album?.genreId || 1)
   const [name, setName] = useState(album?.name || '')
   const [albumPhoto, setAlbumPhoto] = useState(undefined)
   const [errors, setErrors] = useState(false)
@@ -28,7 +28,7 @@ function PostAlbumModal({ formType, album }) {
     }
     setErrObj(errors)
 
-  }, [name, genre, albumPhoto])
+  }, [name, albumPhoto])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -37,7 +37,7 @@ function PostAlbumModal({ formType, album }) {
     if (albumPhoto) {
       formData.append('album_cover_photo', albumPhoto)
     }
-    formData.append('genre_id', parseInt(genre))
+    // formData.append('genre_id', parseInt(genre))
     setSubmitted(true)
     if (Object.values(errObj).length > 0) {
       setErrors(true)
@@ -88,7 +88,7 @@ function PostAlbumModal({ formType, album }) {
           />
         </label>
 
-        <label>
+        {/* <label>
           Genre
           <select className='select-genre' value={genre} onChange={(e) => setGenre(e.target.value)}>
             <option value={1}>Classical</option>
@@ -97,7 +97,7 @@ function PostAlbumModal({ formType, album }) {
             <option value={4}>Lo-fi</option>
             <option value={5}>DOOM</option>
           </select>
-        </label>
+        </label> */}
         <label>
           Album Cover Image:
           {(errors && errObj.photo) && (
