@@ -2,7 +2,7 @@ const SELECT_SONG = 'selectSong/SelectSong'
 const CHANGE_SELECT_SONG = 'selectSong/changeSelectSong'
 
 export const selectSong = (song, songIds) => {
-  console.log('inside the action songIds:', songIds)
+  // console.log('inside the action songIds:', songIds)
   return {
     type: SELECT_SONG,
     song,

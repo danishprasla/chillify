@@ -9,11 +9,11 @@ const DeletePlaylistModal = ({ playlistId }) => {
   const dispatch = useDispatch()
   const history = useHistory()
   const { closeModal } = useModal()
-  console.log('playlist id inside modal --->', playlistId)
+  // console.log('playlist id inside modal --->', playlistId)
 
   const handleDeleteClick = async (e) => {
     e.preventDefault()
-    console.log('delete button pressed!!!!!')
+    // console.log('delete button pressed!!!!!')
     history.push('/')
     await dispatch(deletePlaylistThunk(playlistId))
     dispatch(getPlaylistsThunk())
