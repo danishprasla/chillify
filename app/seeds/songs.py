@@ -65,7 +65,7 @@ def seed_songs():
 
     song26 = Song(author_id= 8, genre_id= 3, album_id= 6, song_name ="Steven Universe",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/Steven+Universe.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129205948163047484/a2504890485_10.png')
 
-    song27 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Steven Universe",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/totoro.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206257719443466/ab67616d0000b27323fddaa6f83cd7b38585af3d.png')
+    song27 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Totoro",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/totoro.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206257719443466/ab67616d0000b27323fddaa6f83cd7b38585af3d.png')
 
     song28 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Levi's Choice",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/levi's+choice+-+'ThanksAT'+from+Attack+On+Titan+but+it's+lofi+hip+hop.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206854627631195/maxresdefault.png')
 
