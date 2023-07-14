@@ -69,6 +69,41 @@ def seed_songs():
 
     song28 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Levi's Choice",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/levi's+choice+-+'ThanksAT'+from+Attack+On+Titan+but+it's+lofi+hip+hop.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206854627631195/maxresdefault.png')
 
+    #-----
+
+    song29 = Song(author_id= 11, genre_id= 3, song_name ="One Day in Japan",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/aekasora+-+one+day+in+japan.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129523487283888168/artworks-000211644143-6j9cw7-t500x500.png')
+
+    song30 = Song(author_id= 12, genre_id= 3, album_id= 7, song_name ="BVG x møndberg x Spencer Hunt – Sunday Morning",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/BVG+x+m%C3%B8ndberg+x+Spencer+Hunt++Sunday+Morning.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129524747076653097/artworks-keScuGKOFyb3egT0-MmnEWw-t500x500.png')
+
+    song31 = Song(author_id= 12, genre_id= 3, album_id= 7, song_name ="Dontcry x Nokiaa - Mind Pool",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Dontcry+x+Nokiaa++Mind+Pool.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129525133632090275/a0363976365_10.png')
+
+    song32 = Song(author_id= 13, genre_id= 3, song_name ="F1 Lofi to Study/Get Pole Position",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/F1+-+Lofi+Beats+to+study-get+pole+position+to.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129525812337573918/ab67616d0000b273c9e2e14cb10d0335c120ad21.png')
+
+    song43 = Song(author_id= 14, genre_id= 3, song_name ="Lilac",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Kainbeats++Lilac.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129526569048739850/a3682428746_10.png')
+
+    song33 = Song(author_id= 15, genre_id= 3, song_name ="Teahouse Spirits",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/kalaido+-+teahouse+spirits.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129527856309993552/a3079493809_10.png')
+
+    song34 = Song(author_id= 14, genre_id= 3, song_name ="A Walk Through the Sky",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Kainbeats+-+A+Walk+Through+the+Sky.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129527175062749346/a0206655689_10.png')
+
+    song35 = Song(author_id= 12, genre_id= 3, album_id= 7, song_name ="Kanisan x Wishes and Dreams - morning moon",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Kanisan+x+Wishes+and+Dreams+-+morning+moon.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129528234707533865/ab67616d0000b27399e2e3caa437f55884b67a12.png')
+
+    song36 = Song(author_id= 16, genre_id= 3, song_name ="First Snow",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Kerusu+-+First+Snow.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129528768592089108/ab67616d0000b2736490d2ab481addde21bad69c.png')
+
+    song37 = Song(author_id= 12, genre_id= 3, album_id= 8, song_name ="Kupla – Lavender",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Lavender.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129529215314825286/a1484820853_10.png')
+
+    song38 = Song(author_id= 12, genre_id= 3, album_id= 8, song_name ="Phlocalyst x Living Room x Akīn – Old Friend",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Phlocalyst+x+Living+Room+x+Aki%CC%84n++Old+Friend.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129529666051518484/a2496345864_5.png')
+
+    song39 = Song(author_id= 17, genre_id= 3, song_name ="Eternal Youth",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/RUDE+-+Eternal+Youth.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129530192713494588/ab67616d0000b273097f3d06dd8726a91f526e21.png')
+
+    song40 = Song(author_id= 12, genre_id= 3, album_id= 8, song_name ="Rudy Raw x Sátyr x Phlocalyst Liquid Spots",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Rudy+Raw+x+Sa%CC%81tyr+x+Phlocalyst++Liquid+Spots.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129530374750482613/a2480970107_5.png')
+
+    song41 = Song(author_id= 18, genre_id= 3, song_name ="Shangri-La",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/Shangri-La.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129531581455929495/ab67616d0000b273a6e743f1d2d6289666403701.png')
+
+    song42 = Song(author_id= 19, genre_id= 3, song_name ="Sunday Vibes",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/lo-fi/wu%CC%88nsche+-+sunday+vibes.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129532136169406564/ab67616d0000b273c9849b4b776162478040ddf7.png')
+
+    
+
+
 
     db.session.add(song1)
     db.session.add(song2)
@@ -98,6 +133,21 @@ def seed_songs():
     db.session.add(song26)
     db.session.add(song27)
     db.session.add(song28)
+    db.session.add(song29)
+    db.session.add(song30)
+    db.session.add(song31)
+    db.session.add(song32)
+    db.session.add(song33)
+    db.session.add(song34)
+    db.session.add(song35)
+    db.session.add(song36)
+    db.session.add(song37)
+    db.session.add(song38)
+    db.session.add(song39)
+    db.session.add(song40)
+    db.session.add(song41)
+    db.session.add(song42)
+    db.session.add(song43)
     db.session.commit()
 
 

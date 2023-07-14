@@ -8,7 +8,7 @@ def seed_genres():
     genre2 = Genre(genre_name='Video Game Soundtrack',genre_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118922785184563230/cover.png')
     genre3 = Genre(genre_name='Lo-fi',genre_photo='https://cdn.discordapp.com/attachments/1117955975144538132/1118280366713733251/tumblr_p7b18oVqP01ravz9xo1_1280.png')
     genre4 = Genre(genre_name='Anime Lo-fi',genre_photo='https://cdn.discordapp.com/attachments/1117955975144538132/1118280542694166609/artworks-5IxtRzZy1ikZZb02-oSHt6A-t500x500.png')
-    genre5 = Genre(genre_name='DOOM?!',genre_photo='https://cdn.discordapp.com/attachments/1117955975144538132/1118278529344348200/DE_The_DOOM_Slayer_MOBILE_633x424.png')
+    genre5 = Genre(genre_name='DOOM',genre_photo='https://cdn.discordapp.com/attachments/1117955975144538132/1118278529344348200/DE_The_DOOM_Slayer_MOBILE_633x424.png')
 
     db.session.add(genre1)
     db.session.add(genre2)
