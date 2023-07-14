@@ -10,13 +10,13 @@
 }
 .home-song-length {
   text-align: left;
-  padding:  0px 8px;
+  padding:  0px 15px;
   color: rgb(200, 200, 200);
 }
 .home-liked-songs {
   width: 185px;
   height: 185px;
-  border-radius: 10px;
+  border-radius: 8px;
   text-align: center;
   align-items: center;
   display: flex;
