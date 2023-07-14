@@ -19,7 +19,7 @@ def get_genre_music(genre_id):
     """Route to get music for a genre"""
     genre_music = Song.query.filter(Song.genre_id == genre_id).all()
 
-    print('genre music ------>',genre_music)
+    # print('genre music ------>',genre_music)
     # print('to dict method --->',genre_music[0].to_dict())
 
     if len(genre_music):

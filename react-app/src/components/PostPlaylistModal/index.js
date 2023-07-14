@@ -14,7 +14,7 @@ function PostPlaylistModal({ formType, playlist }) {
     if (playlist.public === false) visibilityPlaylist = 'private'
     else visibilityPlaylist = 'public'
   }
-  console.log(visibilityPlaylist)
+  // console.log(visibilityPlaylist)
 
   const dispatch = useDispatch()
   const { closeModal } = useModal();

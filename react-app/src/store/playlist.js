@@ -59,16 +59,16 @@ export const postPlaylistThunk = (playlist) => async (dispatch) => {
 }
 
 export const deletePlaylistThunk = (playlistId) => async (dispatch) => {
-  console.log('INSiDE DELETE THUNK!!!!!!!!', playlistId)
+  // console.log('INSiDE DELETE THUNK!!!!!!!!', playlistId)
   const res = await fetch(`/api/playlists/${playlistId}`, {
     method: 'DELETE'
   })
   if (res.ok) {
-    console.log('SUCCESSFUL DELETE RESPONSE????')
+    // console.log('SUCCESSFUL DELETE RESPONSE????')
     dispatch(deletePlaylist(playlistId))
     return false
   } else {
-    console.log('UNSUCCESSFUL????!?!?!?!?')
+    // console.log('UNSUCCESSFUL????!?!?!?!?')
     return { 'errors': 'error deleting playlist' }
   }
 }
