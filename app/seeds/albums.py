@@ -9,6 +9,7 @@ def seed_albums():
     album3 = Album(author_id = 5, genre_id =2 , name= 'Dark Souls 2: Soundtrack', album_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129129561603444897/ab67616d0000b2738bb3df2a818f15c7b1309127.png')
     album4 = Album(author_id = 5, genre_id = 2, name= 'Dark Souls: Soundtrack', album_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129129455521112265/ab67616d0000b273a9b9a9b870c117c9cfbb0f65.png')
     album5 = Album(author_id = 6, genre_id = 5, name= 'Doom: Soundtrack', album_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129129856072958123/ab67616d0000b273aad36b64a1a78951b504bc4e.png')
+    album6 = Album(author_id = 8, genre_id = 4, name= 'Lo-Fi Toons', album_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129196638494269511/Lofitoonsart_320x.png')
     
     # album6 = Album(author_id = , genre_id = , name= '', album_cover_photo='')
 
@@ -17,6 +18,7 @@ def seed_albums():
     db.session.add(album3)
     db.session.add(album4)
     db.session.add(album5)
+    db.session.add(album6)
     db.session.commit()
 
 

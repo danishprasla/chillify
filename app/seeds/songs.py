@@ -41,11 +41,11 @@ def seed_songs():
     #-----------^^DOOM^^-----------------------------
     song16 = Song(author_id= 7, genre_id= 4, song_name ='Ashes on the Fire Lo-fi',song_url='https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Ashes+on+The+Fire+lofi+(attack+on+titan+season+4).mp3',song_cover_photo='https://media.discordapp.net/attachments/1118303754714886259/1118313433218154636/1200x1200bf-60.png?width=1146&height=1146')
 
-    song17 = Song(author_id= 8, genre_id= 4, song_name ='Dear Katara',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Dear+Katara+(Avatar's+Love+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318294571687987/artworks-SL47hFs8T2QwQLNw-xzpX4w-t500x500.png')
+    song17 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ='Dear Katara',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Dear+Katara+(Avatar's+Love+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318294571687987/artworks-SL47hFs8T2QwQLNw-xzpX4w-t500x500.png')
 
-    song18 = Song(author_id= 8, genre_id= 4, song_name ='For Lu Ten',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/for+lu+ten+(Leaves+from+the+vine+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318038257782866/artworks-ZyuBAxt2BewFZiR7-Qt1Wuw-t500x500.png')
+    song18 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ='For Lu Ten',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/for+lu+ten+(Leaves+from+the+vine+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318038257782866/artworks-ZyuBAxt2BewFZiR7-Qt1Wuw-t500x500.png')
 
-    song19 = Song(author_id= 8, genre_id= 4, song_name ='Korra',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Korra+(The+Legend+of+Korra+ending+theme+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318574302412840/artworks-O39Setsds9yiqjAw-6UtMHw-t500x500.png')
+    song19 = Song(author_id= 8, genre_id= 4,album_id= 6, song_name ='Korra',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Korra+(The+Legend+of+Korra+ending+theme+but+it's+lofi+hip+hop).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318574302412840/artworks-O39Setsds9yiqjAw-6UtMHw-t500x500.png')
 
     song20 = Song(author_id= 9, genre_id= 4, song_name ='My War Lo-fi',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/my+war+(Attack+on+Titan+but+is+it+okay+if+it's+lofi_).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118318965047951400/ab67616d0000b273c8f580e990ebfd45594ed696.png')
 
@@ -58,6 +58,16 @@ def seed_songs():
     song23 = Song(author_id= 10, genre_id= 4, song_name ="Guren's Theme Lo-fi",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/anime-lo-fi/Guren's+Theme++Naruto_+Shippuden+sad+lofi+ver..mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1118321403675037746/artworks-PvzrkHS2iiQJz8s0-pll3iQ-t500x500.png')
 
     #-----^ anime lo-fi--- need to add classical and lo-fi next
+    ## ---- down is lDre folder
+    song24 = Song(author_id= 8, genre_id= 3, album_id= 6, song_name ='Gravity Falls',song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/Gravity+Falls.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129205203468566628/1200x1200bf-60.png')
+    
+    song25 = Song(author_id= 8, genre_id= 3, album_id= 6, song_name ="Gymnopedies but it's lofi",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/Gymnopedies+but+it's+lofi+(visualizer).mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129205613222690937/ab67616d0000b273a8ce44e1d712a80005e68040.png')
+
+    song26 = Song(author_id= 8, genre_id= 3, album_id= 6, song_name ="Steven Universe",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/Steven+Universe.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129205948163047484/a2504890485_10.png')
+
+    song27 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Totoro",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/totoro.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206257719443466/ab67616d0000b27323fddaa6f83cd7b38585af3d.png')
+
+    song28 = Song(author_id= 8, genre_id= 4, album_id= 6, song_name ="Levi's Choice",song_url="https://chillify-capstone.s3.us-east-2.amazonaws.com/ldre/levi's+choice+-+'ThanksAT'+from+Attack+On+Titan+but+it's+lofi+hip+hop.mp3",song_cover_photo='https://cdn.discordapp.com/attachments/1118303754714886259/1129206854627631195/maxresdefault.png')
 
 
     db.session.add(song1)
@@ -83,6 +93,11 @@ def seed_songs():
     db.session.add(song21)
     db.session.add(song22)
     db.session.add(song23)
+    db.session.add(song24)
+    db.session.add(song25)
+    db.session.add(song26)
+    db.session.add(song27)
+    db.session.add(song28)
     db.session.commit()
 
 

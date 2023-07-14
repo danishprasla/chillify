@@ -32,7 +32,8 @@ def post_album():
 
         new_album = Album(
             author_id = int(user_id),
-            genre_id = int(form.data["genre_id"]),
+            # genre_id = int(form.data["genre_id"]),
+            genre_id = 1,
             name = form.data["name"],
             album_cover_photo = aws_pic_link
         )
