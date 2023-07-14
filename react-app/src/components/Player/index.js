@@ -46,6 +46,11 @@ function Player() {
       setSongUrl(selected.song.songUrl)
       setSongIndex(selectedPlaylist.indexOf(selected?.song?.id))
     }
+    else {
+      setSongUrl("")
+      setPlaying(false)
+      return
+    }
   }, [selected])
   // console.log('FINAL CHECK TO SEE IF SONG URL IS GOOD',songUrl)
   // useEffect(() => {
@@ -68,7 +73,7 @@ function Player() {
         return
       }
       let nextIdx = -1
-      if (songIndex == (selectedPlaylist.length - 1)) {
+      if (songIndex == (selectedPlaylist?.length - 1)) {
         nextIdx = 0
       } else {
         nextIdx = songIndex + 1
@@ -196,15 +201,15 @@ function Player() {
   return (
     <div className="audio-player">
       <div className="player-song-detail-wrapper">
-        {songUrl.length > 0 && (
+        {songUrl?.length > 0 && (
           <div className="player-song-detail">
-            <img className="player-song-image" src={selected.song.coverPicture} />
+            <img className="player-song-image" src={selected?.song?.coverPicture} />
             <div className="player-song-details">
               <div className="player-song-name">
-                {selected.song.songName}
+                {selected?.song?.songName}
               </div>
               <div className="player-song-author">
-                {selected.song.authorInfo.username}
+                {selected?.song?.authorInfo?.username}
               </div>
             </div>
           </div>

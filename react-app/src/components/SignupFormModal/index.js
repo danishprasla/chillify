@@ -25,9 +25,10 @@ function SignupFormModal() {
 				closeModal();
 			}
 		} else {
-			setErrors([
-				"Confirm Password field must be the same as the Password field",
-			]);
+			setErrObj({
+				"confPass": "Confirm Password field must be the same as the Password field",
+			}
+			);
 		}
 	};
 
@@ -42,6 +43,9 @@ function SignupFormModal() {
 						</div>
 					))}
 				</div>
+				{errObj.confPass && (
+					<div className="form-error-message-signup"> {errObj.confPass} </div>
+				)}
 				<label>
 					Email
 					<input
