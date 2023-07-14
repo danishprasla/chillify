@@ -117,7 +117,7 @@
   /* border: 1px solid red; */
   padding-top: 5px;
   height: 90px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .playlist-drop-down-name {
