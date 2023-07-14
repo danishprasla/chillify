@@ -1,18 +1,25 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { deleteSongThunk, getSongsThunk } from "../../store/songs";
 import { authenticate } from "../../store/session";
 import './DeleteSong.css'
+import { selectSong } from "../../store/selectedSong";
 
 const DeleteSongModal = ({ songId }) => {
   // console.log('song id inside modal --->',songId)
   const dispatch = useDispatch()
   const { closeModal } = useModal()
+  const selectedSongId = useSelector((state) => state.selected.song?.id)
+  // console.log(selectedSong)
 
   const handleDeleteClick = async (e) => {
     e.preventDefault()
+    if (songId == selectedSongId) {
+      // console.log('in here')
+      await dispatch(selectSong(undefined, undefined))
+    }
     await dispatch(deleteSongThunk(songId))
     dispatch(authenticate())
     dispatch(getSongsThunk())

@@ -1,5 +1,6 @@
 const SELECT_SONG = 'selectSong/SelectSong'
 const CHANGE_SELECT_SONG = 'selectSong/changeSelectSong'
+const CLEAR_SONG = 'selectSong/clearSong'
 
 export const selectSong = (song, songIds) => {
   // console.log('inside the action songIds:', songIds)
@@ -14,6 +15,12 @@ export const selectSongChange = (song) => {
   return {
     type: CHANGE_SELECT_SONG,
     song
+  }
+}
+
+export const clearSongAction = () => {
+  return {
+    type: CLEAR_SONG
   }
 }
 
@@ -32,6 +39,9 @@ const selectedSongReducer = (state = initialState, action) => {
       const song = action.song
       const newState = { ...state, song}
       return newState
+    }
+    case CLEAR_SONG: {
+      return initialState
     }
     default:
       return state;
