@@ -171,96 +171,97 @@ function PlaylistPage() {
         </div>
       </div>
       <div className='songs-container'>
-        {playlistSongs.map((songId, idx) => (
-          <div
-            key={`playlist-${songId}`}
-            className='song-tile'
-            onMouseEnter={() => setHoverPlay(idx)}
-            onMouseLeave={() => setHoverPlay(null)}
-          >
-            {hoverPlay === idx ? (
-              <div
-                className='song-play-button'
-                onClick={() => dispatch(selectSong(songs[songId], playlistSongs))}
-              >
-                <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
-              </div>) :
-              (<div className='song-list-num'>
-                {idx + 1}
-              </div>)
-            }
-            <div className='song-image-container'>
-              <img className='song-image' src={songs[songId].coverPicture} />
-            </div>
-            <div className='song-description-container'>
-              <div className='song-description-name-artist'>
-                <div className='song-description-name'>
-                  {songs[songId].songName}
-                </div>
-                <div className='song-description-author'>
-                  {songs[songId].authorInfo.username}
-                </div>
+        {playlistSongs.map((songId, idx) => {
+          return songs[songId] && (
+
+            <div
+              key={`playlist-${songId}`}
+              className='song-tile'
+              onMouseEnter={() => setHoverPlay(idx)}
+              onMouseLeave={() => setHoverPlay(null)}
+            >
+              {hoverPlay === idx ? (
+                <div
+                  className='song-play-button'
+                  onClick={() => dispatch(selectSong(songs[songId], playlistSongs))}
+                >
+                  <i className="fa-solid fa-play" style={{ color: "#7cd4fc" }} />
+                </div>) :
+                (<div className='song-list-num'>
+                  {idx + 1}
+                </div>)
+              }
+              <div className='song-image-container'>
+                <img className='song-image' src={songs[songId]?.coverPicture} />
               </div>
-              <div className='album-title'>
-                {songs[songId].albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId].albumId}`)}> {albums[songs[songId].albumId].name}</div> : '-'}
-              </div>
-              <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
-                <div className='liked-song'>
-                  {(user.likedSongsIds).includes(songId) ? (
-                    <i className="fa-solid fa-heart"
-                      style={{ color: "#7cd4fc" }}
-                      onClick={() => dispatch(removeSongLike(songId))} />
-                  ) : (
-                    <i className="fa-regular fa-heart"
-                      onClick={() => dispatch(addSongLike(songId))} />
-                  )}
+              <div className='song-description-container'>
+                <div className='song-description-name-artist'>
+                  <div className='song-description-name'>
+                    {songs[songId]?.songName}
+                  </div>
+                  <div className='song-description-author'>
+                    {songs[songId]?.authorInfo?.username}
+                  </div>
                 </div>
-                <div className='song-drop-down' onClick={openMenu}>
-                  {hoverPlay === idx && (
-                    <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
-                  )}
+                <div className='album-title'>
+                  {songs[songId]?.albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId]?.albumId}`)}> {albums[songs[songId]?.albumId]?.name}</div> : '-'}
                 </div>
-                <div className='drop-down-wrapper-songs'>
-                  {hoverPlay === idx && (
-                    <div className={dropDown} ref={ulRef}>
-                      {playlists[playlistId].user === user.id && (
-                        <div
-                          className='remove-from-playlist'
-                          onClick={() => {
-                            dispatch(deleteSongFromPlaylistThunk(playlistId, songId))
-                            closeMenu()
-                          }}
-                        >
-                          Remove from this playlist
-                        </div>
-                      )}
-                      <div className='add-to-playlist-dropdown'>
-                        Add to playlist:
-                      </div>
-                      <div className='drop-down-playlist-container'>
-                        {userPlaylists.map(playlistIds => (
+                <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
+                  <div className='liked-song'>
+                    {(user.likedSongsIds).includes(songId) ? (
+                      <i className="fa-solid fa-heart"
+                        style={{ color: "#7cd4fc" }}
+                        onClick={() => dispatch(removeSongLike(songId))} />
+                    ) : (
+                      <i className="fa-regular fa-heart"
+                        onClick={() => dispatch(addSongLike(songId))} />
+                    )}
+                  </div>
+                  <div className='song-drop-down' onClick={openMenu}>
+                    {hoverPlay === idx && (
+                      <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
+                    )}
+                  </div>
+                  <div className='drop-down-wrapper-songs'>
+                    {hoverPlay === idx && (
+                      <div className={dropDown} ref={ulRef}>
+                        {playlists[playlistId].user === user.id && (
                           <div
-                            className='playlist-drop-down-name'
-                            key={`drop-down-playlist-${playlistIds}`}
+                            className='remove-from-playlist'
                             onClick={() => {
-                              dispatch(addSongToPlaylistThunk(playlistIds, songId))
+                              dispatch(deleteSongFromPlaylistThunk(playlistId, songId))
                               closeMenu()
                             }}
                           >
-                            {playlists[playlistIds].name}
+                            Remove from this playlist
                           </div>
-                        ))}
-                      </div>
+                        )}
+                        <div className='add-to-playlist-dropdown'>
+                          Add to playlist:
+                        </div>
+                        <div className='drop-down-playlist-container'>
+                          {userPlaylists.map(playlistIds => (
+                            <div
+                              className='playlist-drop-down-name'
+                              key={`drop-down-playlist-${playlistIds}`}
+                              onClick={() => {
+                                dispatch(addSongToPlaylistThunk(playlistIds, songId))
+                                closeMenu()
+                              }}
+                            >
+                              {playlists[playlistIds].name}
+                            </div>
+                          ))}
+                        </div>
 
-                    </div>
-                  )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        )
-
-        )}
+          )
+        })}
 
 
       </div>

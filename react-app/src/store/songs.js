@@ -93,7 +93,7 @@ const initialState = {};
 const songReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SONGS: {
-      const newState = { ...state }
+      const newState = {}
       const songsArr = action.songs.songs
       songsArr.forEach((song) => {
         newState[song.id] = song

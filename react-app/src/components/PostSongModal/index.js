@@ -62,7 +62,7 @@ function PostSongModal({ formType, song }) {
   const userAlbums = useSelector(state => state.session.user.albumIds)
   // console.log(userAlbums)
   const allAlbums = useSelector(state => state.albums)
-  console.log(allAlbums)
+  // console.log(allAlbums)
 
   useEffect(() => {
     let err = {}
@@ -79,7 +79,7 @@ function PostSongModal({ formType, song }) {
       err.coverPicture = 'You must attach a cover picture for your song'
     }
     setErrObj(err)
-    console.log(albumId)
+    // console.log(albumId)
 
   }, [name, coverPicture, audioFile, genre, releaseDate, albumId])
 
@@ -115,7 +115,7 @@ function PostSongModal({ formType, song }) {
       formData.append('release_date', releaseDate)
     }
     if (albumId) {
-      console.log('album added')
+      // console.log('album added')
       formData.append('album_id', parseInt(albumId))
     }
     formData.append('genre_id', parseInt(genre))
