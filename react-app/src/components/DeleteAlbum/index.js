@@ -23,8 +23,9 @@ const DeleteAlbumModal = ({ albumId }) => {
       await dispatch(selectSong(undefined, undefined))
     }
     await dispatch(deleteAlbumThunk(albumId))
-    dispatch(getAlbumsThunk())
-    dispatch(authenticate())
+    await dispatch(getAlbumsThunk())
+    await dispatch(authenticate())
+    await dispatch(getSongsThunk())
     closeModal()
   }
   const handleExitClick = (e) => {

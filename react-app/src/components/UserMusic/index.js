@@ -142,7 +142,7 @@ const MyMusic = () => {
                 </div>
               </div>
               <div className='album-title'>
-                {songs[songId]?.albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId]?.albumId}`)}> {albums[songs[songId]?.albumId].name}</div> : '-'}
+                {songs[songId]?.albumId ? <div className='valid-album' onClick={() => history.push(`/albums/${songs[songId]?.albumId}`)}> {albums[songs[songId]?.albumId]?.name}</div> : '-'}
               </div>
               <div className='song-like-section' onMouseLeave={() => setShowMenu(false)}>
                 <div className='liked-song'>

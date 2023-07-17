@@ -50,7 +50,7 @@ function PostAlbumModal({ formType, album }) {
         if (res.errors) {
           setSubmitted(false)
           setErrors(true)
-          console.log(res.errors)
+          // console.log(res.errors)
           setErrObj({'serverError': 'Server Error. Please try again later'})
           return
         } else {
