@@ -78,8 +78,8 @@ const MyMusic = () => {
           <div className="album-container">
             {userAlbums.map((album) => (
               <div className='user-album-tile' key={`album-${album}`} onClick={() => history.push(`/albums/${album}`)}>
-                <img className='album-image' src={albums[album].coverPhoto} />
-                <h3 className="home-playlist-title"> {albums[album].name} </h3>
+                <img className='album-image' src={albums[album]?.coverPhoto} />
+                <h3 className="home-playlist-title"> {albums[album]?.name} </h3>
               </div>
             ))}
           </div>

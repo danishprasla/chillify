@@ -8,6 +8,7 @@ import { editSongThunk, getSongsThunk, postSongThunk } from '../../store/songs';
 import { authenticate } from '../../store/session';
 
 import './PostSong.css'
+import { getAlbumsThunk } from '../../store/album';
 
 const dateFormater = (date) => {
   const months = {
@@ -51,12 +52,17 @@ function PostSongModal({ formType, song }) {
   const [audioFile, setAudioFile] = useState(undefined)
   const [genre, setGenre] = useState(song?.genre || 1)
   const [releaseDate, setReleaseDate] = useState(editDate || '')
+  const [albumId, setAlbumId] = useState(song?.albumId || undefined)
   const [submitted, setSubmitted] = useState(false)
   const [errors, setErrors] = useState(false)
   const [errObj, setErrObj] = useState({})
 
 
   const history = useHistory()
+  const userAlbums = useSelector(state => state.session.user.albumIds)
+  // console.log(userAlbums)
+  const allAlbums = useSelector(state => state.albums)
+  console.log(allAlbums)
 
   useEffect(() => {
     let err = {}
@@ -73,8 +79,9 @@ function PostSongModal({ formType, song }) {
       err.coverPicture = 'You must attach a cover picture for your song'
     }
     setErrObj(err)
+    console.log(albumId)
 
-  }, [name, coverPicture, audioFile, genre, releaseDate])
+  }, [name, coverPicture, audioFile, genre, releaseDate, albumId])
 
   let today = new Date()
   let day = today.getDate()
@@ -107,6 +114,10 @@ function PostSongModal({ formType, song }) {
     } else {
       formData.append('release_date', releaseDate)
     }
+    if (albumId) {
+      console.log('album added')
+      formData.append('album_id', parseInt(albumId))
+    }
     formData.append('genre_id', parseInt(genre))
     setSubmitted(true)
     if (Object.values(errObj).length > 0) {
@@ -124,6 +135,7 @@ function PostSongModal({ formType, song }) {
           return
         } else {
           await dispatch(authenticate())
+          dispatch(getAlbumsThunk())
           closeModal()
         }
 
@@ -140,6 +152,7 @@ function PostSongModal({ formType, song }) {
           await dispatch(getSongsThunk())
           //dispatch getSongs to get the updated song state
           await dispatch(authenticate())
+          await dispatch(getAlbumsThunk())
           // dispatch user state to get updated user state including user songs which should include all of a user's music
           closeModal()
           // await dispatch(getPlaylistsThunk())
@@ -151,8 +164,8 @@ function PostSongModal({ formType, song }) {
   return (
     <div className='song-modal-form-container'>
       {
-        (formType === 'edit') ? <h1 className='formHeader'>Edit your Song </h1> :
-          <h1 className="formHeader">Post your Song</h1>
+        (formType === 'edit') ? <h1 className='form-header'>Edit your Song </h1> :
+          <h1 className="form-header">Post your Song</h1>
       }
       {(submitted && !errors) && (
         <div className='loading-field-submit'>
@@ -175,7 +188,16 @@ function PostSongModal({ formType, song }) {
           />
         </label>
         <label>
-          Genre
+          Add to album:
+          <select className='select-genre' value={albumId} onChange={(e) => setAlbumId(e.target.value)}>
+            <option value={undefined}>{userAlbums.length > 0 ? "Single - no album" : "No albums"}</option>
+            {userAlbums.map((id) => (
+              <option key={`album-dropdown-id-${id}`} value={id}>{allAlbums[id].name}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          Genre:
           <select className='select-genre' value={genre} onChange={(e) => setGenre(e.target.value)}>
             <option value={1}>Classical</option>
             <option value={2}>Video Game Soundtracks</option>
@@ -185,7 +207,7 @@ function PostSongModal({ formType, song }) {
           </select>
         </label>
         <label>
-          Release Date
+          Release Date:
           <input
             className='release-date-field'
             type="date"
