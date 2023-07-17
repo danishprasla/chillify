@@ -12,6 +12,7 @@ import { selectSong } from '../../store/selectedSong';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addSongLike, removeSongLike } from "../../store/session";
 import PageNotFound from '../PageNotFound';
+import DeleteAlbumModal from '../DeleteAlbum';
 
 
 // const audioLength = async (url) => {
@@ -121,7 +122,7 @@ function AlbumPage() {
             <div className='playlist-spec-details'>
               {album.authorName} · {albumLength === 0 ? ("No songs") : albumLength > 1 ? (`${albumLength} songs`) : (`${albumLength} song`)}
 
-              {/* {user.username === album.authorName && (
+              {user.username === album.authorName && (
                 <div onMouseLeave={closeEditMenu} className="edit-dropdown-container" onClick={openEditMenu}>
                   <i className="fa-solid fa-ellipsis" style={{ color: "#ffffff" }} />
                   <div className={editDropDown} ref={editRef}>
@@ -136,12 +137,12 @@ function AlbumPage() {
                       <OpenModalMenuItem
                         className='delete-playlist-button'
                         itemText="Delete this album"
-                        modalComponent={<DeletePlaylistModal playlistId={album} />}
+                        modalComponent={<DeleteAlbumModal albumId ={albumId} />}
                       />
                     </div>
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
 
           </div>

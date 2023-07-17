@@ -22,9 +22,12 @@ class Album(db.Model):
         for song in self.songs:
             song_ids.append(song.id)
         
+        author_info = self.user.to_dict()
+        
         return {
             'id': self.id,
-            'authorName': self.user.to_dict()['username'],
+            'authorName': author_info['username'],
+            'authorId': author_info['id'],
             'genreId': self.genre_id,
             'name': self.name,
             'songIds': song_ids,

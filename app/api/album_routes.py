@@ -44,3 +44,21 @@ def post_album():
     else:
         return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
+@album_routes.route('/<int:album_id>', methods = ['DELETE'])
+def delete_album(album_id):
+    """Route to delete an album"""
+
+    user_id = current_user.id
+
+    album_to_delete = Album.query.get(album_id)
+    if album_to_delete is None:
+        return {"message": "Album not found"}, 404
+    elif user_id != album_to_delete.user.id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    else:
+        picture_to_delete = remove_file_from_s3(album_to_delete.album_cover_photo)
+        if picture_to_delete:
+            db.session.delete(album_to_delete)
+            db.session.commit()
+            return {"success": "Album deleted"}
+
