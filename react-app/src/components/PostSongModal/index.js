@@ -137,6 +137,7 @@ function PostSongModal({ formType, song }) {
           await dispatch(authenticate())
           dispatch(getAlbumsThunk())
           closeModal()
+          history.push('/my-music')
         }
 
       } else {
@@ -155,6 +156,7 @@ function PostSongModal({ formType, song }) {
           await dispatch(getAlbumsThunk())
           // dispatch user state to get updated user state including user songs which should include all of a user's music
           closeModal()
+          history.push('/my-music')
           // await dispatch(getPlaylistsThunk())
         }
       }
@@ -169,7 +171,7 @@ function PostSongModal({ formType, song }) {
       }
       {(submitted && !errors) && (
         <div className='loading-field-submit'>
-          <h5>Submitting song. Please wait...</h5>
+          <h5>Posting song. Please wait...</h5>
           <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
         </div>
       )}
