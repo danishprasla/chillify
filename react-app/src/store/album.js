@@ -1,6 +1,7 @@
 const GET_ALBUMS = 'albums/getAllAlbums'
 const POST_ALBUM = 'albums/postAlbum'
 const DELETE_ALBUM = 'albums/deleteAlbum'
+const EDIT_ALBUM = 'albums/editAlbum'
 
 const getAlbums = (albums) => {
   return {
@@ -20,6 +21,28 @@ const deleteAlbum = (albumId) => {
   return {
     type: DELETE_ALBUM,
     albumId
+  }
+}
+
+const editAlbum = (album) => {
+  return {
+    type: EDIT_ALBUM,
+    album
+  }
+}
+
+export const editAlbumThunk = (albumId, albumData) => async (dispatch) => {
+  const res = await fetch(`/api/albums/${albumId}/edit`, {
+    method: "PUT",
+    body: albumData
+  })
+  const data = await res.json()
+  if (res.ok){
+    dispatch(editAlbum(data))
+    return data
+  }
+  else {
+    return data
   }
 }
 
@@ -82,6 +105,11 @@ const albumReducer = (state = initialState, action) => {
     case DELETE_ALBUM: {
       const newState = {...state}
       delete newState[action.albumId]
+      return newState
+    }
+    case EDIT_ALBUM: {
+      const newState = {...state}
+      newState[action.album.id] = action.album
       return newState
     }
     default:

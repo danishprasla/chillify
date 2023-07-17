@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { getAlbumsThunk, postAlbumThunk } from "../../store/album";
+import { editAlbumThunk, getAlbumsThunk, postAlbumThunk } from "../../store/album";
 import { authenticate } from "../../store/session";
 import { useModal } from "../../context/Modal";
 
@@ -45,6 +45,16 @@ function PostAlbumModal({ formType, album }) {
       return
     } else {
       if (formType === 'edit') {
+        const res = await dispatch(editAlbumThunk(album.id, formData))
+        if (res.errors) {
+          setSubmitted(false)
+          setErrors(true)
+          console.log(res.errors)
+          setErrObj({'serverError': 'Server Error. Please try again later'})
+          return
+        } else {
+          closeModal()
+        }
 
       } else {
         const res = await dispatch(postAlbumThunk(formData))

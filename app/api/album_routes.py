@@ -2,10 +2,10 @@ from flask import Blueprint, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app.api.aws_helpers import get_unique_filename,upload_file_to_s3,remove_file_from_s3
 from app.api.auth_routes import validation_errors_to_error_messages
-from app.models.genre import Genre
 from app.models.album import Album
 from app.models.db import db
 from app.forms.album_form import AlbumForm
+from app.forms.edit_album_form import EditAlbumForm
 
 album_routes = Blueprint("album", __name__)
 
@@ -61,4 +61,33 @@ def delete_album(album_id):
             db.session.delete(album_to_delete)
             db.session.commit()
             return {"success": "Album deleted"}
+@album_routes.route('/<int:album_id>/edit', methods = ['PUT'])
+def edit_album(album_id):
+    """Route to edit an album"""
+    user_id = current_user.id
+    form = EditAlbumForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    
+    album_to_edit = Album.query.get(album_id)
 
+    if album_to_edit is None:
+        return {"message": "Album not found"}, 404
+    elif user_id != album_to_edit.user.id:
+        return {"message": 'Forbidden: You are not the owner'}, 403
+    elif form.validate_on_submit():
+        aws_link = ''
+        if form.data['album_cover_photo']:
+            old_aws_link_remove = remove_file_from_s3(album_to_edit.album_cover_photo)
+
+            picture = form.data['album_cover_photo']
+            picture.filename = get_unique_filename(picture.filename)
+            uploaded_picture = upload_file_to_s3(picture)
+            aws_link = uploaded_picture['url']
+
+        album_to_edit.name = form.data['name']
+        if len(aws_link) > 0:
+            album_to_edit.album_cover_photo = aws_link
+        db.session.commit()
+        return album_to_edit.to_dict()
+    else:
+        return {'errors': validation_errors_to_error_messages(form.errors)}

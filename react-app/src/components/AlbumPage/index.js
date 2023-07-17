@@ -6,13 +6,12 @@ import * as sessionActions from "../../store/session";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom/cjs/react-router-dom.min';
 import { addSongToPlaylistThunk, deleteSongFromPlaylistThunk, getPlaylistsThunk } from '../../store/playlist';
-import PostPlaylistModal from '../PostPlaylistModal';
-import DeletePlaylistModal from '../DeletePlaylistModal';
 import { selectSong } from '../../store/selectedSong';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { addSongLike, removeSongLike } from "../../store/session";
 import PageNotFound from '../PageNotFound';
 import DeleteAlbumModal from '../DeleteAlbum';
+import PostAlbumModal from '../CreateAlbum';
 
 
 // const audioLength = async (url) => {
@@ -130,7 +129,7 @@ function AlbumPage() {
                       <OpenModalMenuItem
                         className='edit-playlist-button'
                         itemText='Edit this album'
-                        modalComponent={<PostPlaylistModal formType={'edit'} playlist={album} />}
+                        modalComponent={<PostAlbumModal formType={'edit'} album={album} />}
                       />
                     </div>
                     <div className='delete-playlist-modal-text'>
