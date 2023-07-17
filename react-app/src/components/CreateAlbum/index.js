@@ -4,6 +4,7 @@ import { editAlbumThunk, getAlbumsThunk, postAlbumThunk } from "../../store/albu
 import { authenticate } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import './CreateAlbum.css'
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 function PostAlbumModal({ formType, album }) {
@@ -15,6 +16,7 @@ function PostAlbumModal({ formType, album }) {
   const [errors, setErrors] = useState(false)
   const [errObj, setErrObj] = useState({})
   const { closeModal } = useModal()
+  const history = useHistory()
 
   useEffect(() => {
     let errors = {}
@@ -55,6 +57,7 @@ function PostAlbumModal({ formType, album }) {
           return
         } else {
           closeModal()
+          history.push(`/albums/${album.id}`)
         }
 
       } else {
@@ -67,6 +70,7 @@ function PostAlbumModal({ formType, album }) {
         } else {
           await dispatch(authenticate())
           closeModal()
+          history.push(`/albums/${res.id}`)
         }
       }
     }
@@ -80,7 +84,7 @@ function PostAlbumModal({ formType, album }) {
       }
       {(submitted && !errors) && (
         <div className='loading-field-submit'>
-          <h5>Submitting playlist. Please wait...</h5>
+          <h5>Posting album. Please wait...</h5>
           <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
         </div>
       )}
