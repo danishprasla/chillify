@@ -1,4 +1,4 @@
-.song-modal-form-container {
+.submit-album-modal {
   display: flex;
   flex-direction: column;
   width: 400px;
@@ -8,16 +8,14 @@
   padding: 30px;
 }
 
-.song-form {
+.album-form {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  /* align-items: flex-start; */
   gap: 20px;
   width: 95%;
 }
-
-.select-genre,
-.release-date-field,
-.file-field {
-  width: 100%;
+.form-header{
+  margin-top: 0px;
 }

@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { editAlbumThunk, getAlbumsThunk, postAlbumThunk } from "../../store/album";
 import { authenticate } from "../../store/session";
 import { useModal } from "../../context/Modal";
+import './CreateAlbum.css'
 
 
 function PostAlbumModal({ formType, album }) {
@@ -77,6 +78,12 @@ function PostAlbumModal({ formType, album }) {
         (formType === 'edit') ? <h1 className='form-header'>Edit your Album </h1> :
           <h1 className="form-header">Create an Album</h1>
       }
+      {(submitted && !errors) && (
+        <div className='loading-field-submit'>
+          <h5>Submitting playlist. Please wait...</h5>
+          <img className='form-loading-gif' src="https://cdn.discordapp.com/attachments/1118303754714886259/1120728549461082173/Pulse-1s-201px.gif" />
+        </div>
+      )}
       {(errors && errObj.serverError) && (
             <p className='form-error-message'>{errObj.serverError}</p>
           )}
@@ -98,16 +105,6 @@ function PostAlbumModal({ formType, album }) {
           />
         </label>
 
-        {/* <label>
-          Genre
-          <select className='select-genre' value={genre} onChange={(e) => setGenre(e.target.value)}>
-            <option value={1}>Classical</option>
-            <option value={2}>Video Game Soundtracks</option>
-            <option value={3}>Anime Lo-fi</option>
-            <option value={4}>Lo-fi</option>
-            <option value={5}>DOOM</option>
-          </select>
-        </label> */}
         <label>
           Album Cover Image:
           {(errors && errObj.photo) && (

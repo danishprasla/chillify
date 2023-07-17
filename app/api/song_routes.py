@@ -46,10 +46,14 @@ def post_song():
           [year, month, day] = release_date_string.split("-")
           release_date_val = date(int(year), int(month), int(day))
 
+        album_id = None
+        if form.data["album_id"]:
+            album_id = form.data["album_id"]
         new_song = Song(
             author_id=int(user_id),
             genre_id = int(form.data["genre_id"]),
             song_name = form.data["song_name"],
+            album_id = album_id,
             release_date = release_date_val,
             song_url = aws_audio_link,
             song_cover_photo = aws_pic_link 
@@ -123,6 +127,12 @@ def update_song(song_id):
             song_to_update.song_url = aws_song_link
         if len(aws_song_photo) > 0:
             song_to_update.song_cover_photo = aws_song_photo
+        
+        if form.data["album_id"]:
+            song_to_update.album_id = form.data["album_id"]
+        elif form.data["album_id"] is None:
+            song_to_update.album_id = None
+        
         db.session.commit()
         return song_to_update.to_dict()
     else:
