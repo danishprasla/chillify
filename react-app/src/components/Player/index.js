@@ -21,25 +21,10 @@ function Player() {
   const selected = useSelector((state) => state.selected)
   const songs = useSelector((state) => state.songs)
   const selectedPlaylist = selected.songIds
-  // console.log('selected playlist!',selectedPlaylist)
-  // console.log('INSIDE PLAYER COMPONENT - SELECTED --->', selected)
-  // if (selected) {
-  //   setSongUrl(selected.song)
-  // }
-  // console.log('CURRENT SONG INDEX!', currentSongIndex)
-
-  //I can sset up a store that will have the song id of the selected song which I can use to key into the song store and get the relevant info
-  // I will also need to set up another store(?) which will include a list of id's for the songs belonging to that playlist/genre from which the above song was selected
-  // console.log('SONG URL !!#!@#!@#!@#', songUrl)
+ 
 
   const player = useRef()
 
-  // useEffect(() => {
-  //   player.current.addEventListener('loadedmetadata', loaded);
-  //   return () => {
-  //     player.current.removeEventListener('loadedmetadata', loaded);
-  //   };
-  // }, []);
 
   useEffect(() => {
     if (selected.song) {
@@ -52,15 +37,10 @@ function Player() {
       return
     }
   }, [selected])
-  // console.log('FINAL CHECK TO SEE IF SONG URL IS GOOD',songUrl)
-  // useEffect(() => {
-  //   console.log('spot time test')
 
-  // }, [songSpotTime])
-  // console.log('SONG INDEX ---->',songIndex)
+
   useEffect(() => {
     if (songSpotTime == songLength) {
-      // console.log('end of song!')
       if (shuffle) {
         let randomIndex = Math.floor(Math.random() * selectedPlaylist.length)
         setSongIndex(randomIndex)
@@ -92,9 +72,6 @@ function Player() {
     }
   }, [songUrl])
 
-  // const loaded = () => {
-  //   setSongLength(Math.floor(player.current.duration));
-  // };
 
 
   const handlePlayPause = (e) => {
@@ -166,13 +143,11 @@ function Player() {
 
   const handleSeekerChange = (e) => {
     e.preventDefault()
-    // console.log(e.target.value)
     setSeekerBar(e.target.value)
     player.current.currentTime = e.target.value
   }
   const handleVolumeSeekerChange = (e) => {
     e.preventDefault()
-    // console.log(e.target.value)
     setVolume(e.target.value)
     player.current.volume = e.target.value / 100
   }
@@ -188,8 +163,6 @@ function Player() {
     return timeFormated
   }
   const timeUpdate = () => {
-    // console.log('test')
-    //this fx will be hit whenever audio is playing
     const length = Math.floor(player.current.duration)
     const currentTime = Math.floor(player.current.currentTime)
     player.current.volume = volume / 100
